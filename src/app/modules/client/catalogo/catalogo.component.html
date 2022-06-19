@@ -1,0 +1,62 @@
+<!-- Shop catalog -->
+<section class="container">
+    <div class="row flex-lg-nowrap">
+
+        <!-- Product grid -->
+        <div class="col">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3" data-filters-columns>
+
+                <!-- Item -->
+                <div class="col pb-sm-2 mb-grid-gutter" *ngFor="let producto of lCatalogo">
+                    <div class="card card-product mx-auto">
+
+                        <!-- Imagen -->
+                        <div class="card-product-img text-center">
+                            <img [src]="producto.urlImage" class="w-50">
+                        </div>
+
+                        <div class="card-body pb-4">
+
+                            <!-- Nombre Producto -->
+                            <h3 class="card-product-title fw-bold text-truncate mb-4 text-center">
+                                {{producto.name}}
+                            </h3>
+
+                            <div class="col-md-12">
+                                Precio Venta - <span class="fw-bold text-danger">
+                                    S/.{{producto.salesPrice | number : '1.2-2'}}
+                                </span>
+                            </div>
+
+                            <div class="col-md-12">
+                                Stock - <span class="">
+                                    {{producto.stock}}
+                                </span>
+                            </div>
+
+                            <div class="row col-md-12">
+                                <div class="col-md-6 text-center align-self-center">Cantidad</div>
+                                <div class="col-md-6">
+                                    <input (input)="calcularPrecioxCantidad($event, producto)" type="number" [min]="1"
+                                        [max]="10" class="form-control form-control-sm bg-light me-3" value="1">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="card-footer">
+                            <button type="button" class="btn btn-primary d-block w-100"
+                                (click)="registrarProductoCarrito(producto)">
+                                <i class="ci-cart align-middle mt-n1 me-2"></i>
+                                Añadir al carrito
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>

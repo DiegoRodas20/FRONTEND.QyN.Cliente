@@ -1,0 +1,142 @@
+<section class="container pt-3 pt-md-4 pb-3 pb-sm-4 pb-lg-5 mb-4">
+    <div class="row">
+
+        <!-- Checkout -->
+        <div class="col-lg-8 pe-lg-6">
+            <div class="d-flex align-items-center justify-content-between pb-2 mb-4">
+                <h1 class="mb-0">Pedido</h1>
+            </div>
+
+            <hr class="border-top-0 border-bottom mb-4">
+
+            <!-- Resumen de Pedido -->
+            <h2 class="h4 mb-4">1. Resumen de Pedido</h2>
+            <div class="bg-secondary rounded mb-5">
+
+                <!-- Item -->
+                <div *ngFor="let producto of lCarrito" class="d-flex align-items-start px-2 px-sm-4 py-4 border-bottom">
+
+                    <a style="min-width: 80px;">
+                        <img [src]="producto.urlImage" width="80" alt="Product thumb">
+                    </a>
+
+                    <div class="w-100 ps-3">
+                        <div class="d-sm-flex">
+
+                            <div class="pe-sm-3 w-100" style="max-width: 16rem;">
+
+                                <h3 class="fs-sm mb-3">
+                                    <a class="nav-link fw-bold">{{producto.name}}</a>
+                                </h3>
+
+                                <ul class="list-unstyled fs-xs mt-n2 mb-2">
+                                    <li class="mb-0"><span class="text-muted">Código:</span> {{producto.code}}</li>
+                                    <li class="mb-0"><span class="text-muted">Categoría:</span> {{producto.type}}
+                                    </li>
+                                    <li class="mb-0"><span class="text-muted">Stock:</span> {{producto.stock}}
+                                    </li>
+                                    <li class="mb-0"><span class="text-muted">Cantidad:</span> {{producto.cantidad}}
+                                    </li>
+                                </ul>
+
+                            </div>
+
+                            <div class="text-end align-items-start pe-sm-3 w-100">
+                                <div class="text-nowrap pt-2">
+                                    <strong class="text-danger">S/.{{producto.salesPrice | number : '1.2-2'}}
+                                    </strong>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Subtotal -->
+                <div class="px-3 px-sm-4 py-4 text-end">
+                    <span class="text-muted">Subtotal:
+                        <strong class="text-dark fs-lg ms-2">S/. {{getSubTotal() | number : '1.2-2'}}</strong>
+                    </span>
+                </div>
+
+            </div>
+
+            <!-- Información del Pedido -->
+            <h2 class="h4 mb-4">2. Información del Pedido</h2>
+            <form [formGroup]="formPedido">
+                <div class="row pb-3">
+
+                    <div class="col-sm-12 mb-4">
+                        <label class="form-label-lg">RUC</label>
+                        <input class="form-control form-control-lg" placeholder="Ingresa tu RUC."
+                            formControlName="rucClient">
+                    </div>
+
+                    <div class="col-sm-12 mb-4">
+                        <label class="form-label-lg">Nombre</label>
+                        <input class="form-control form-control-lg" placeholder="Ingresa tu nombre."
+                            formControlName="nameClient">
+                    </div>
+
+                    <div class="col-sm-12 mb-4">
+                        <label class="form-label-lg">Nro. Celular</label>
+                        <input class="form-control form-control-lg" placeholder="Ingresa tu nombre."
+                            formControlName="phoneClient">
+                    </div>
+
+                    <div class="col-sm-12 mb-4">
+                        <label class="form-label-lg">Correo Electrónico</label>
+                        <input class="form-control form-control-lg" placeholder="Ingresa tu nombre."
+                            formControlName="emailClient">
+                    </div>
+
+                    <div class="col-sm-12 mb-4">
+                        <label class="form-label-lg">Comentario</label>
+                        <textarea class="form-control form-control-lg" rows="5"
+                            placeholder="Ingresa alguna referencia de tu dirección."
+                            formControlName="comments"></textarea>
+                    </div>
+
+                </div>
+            </form>
+
+        </div>
+
+        <!-- Order totals (sticky sidebar) -->
+        <aside class="col-lg-4">
+            <div class="position-sticky">
+                <div class="bg-secondary rounded mb-4">
+
+                    <div class="border-bottom p-4">
+                        <h2 class="h4 mb-0">Orden total</h2>
+                    </div>
+
+                    <ul class="list-unstyled border-bottom mb-0 p-4">
+
+                        <li class="d-flex justify-content-between mb-2">
+                            <span class="fw-bold">Subtotal:</span>
+                            <span class="fw-bold">S/. {{getSubTotal() | number : '1.2-2'}}</span>
+                        </li>
+
+                        <li class="d-flex justify-content-between mb-2">
+                            <span>Montos agregados:</span>
+                            <span>—</span>
+                        </li>
+
+                    </ul>
+
+                    <div class="d-flex justify-content-between p-4">
+                        <span class="h5 mb-0">Monto total:</span>
+                        <span class="h5 mb-0">S/. {{getSubTotal() | number : '1.2-2'}}</span>
+                    </div>
+
+                </div>
+
+                <button type="button" class="btn btn-primary btn-lg d-block w-100" (click)="registrarPedido()">Completar
+                    Pedido</button>
+
+            </div>
+        </aside>
+
+    </div>
+</section>
