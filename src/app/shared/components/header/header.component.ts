@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { CarritoService } from 'src/app/core/services/carrito.service';
 
 
-
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
@@ -37,11 +36,15 @@ export class HeaderComponent implements OnInit {
         this.getCarrito()
     }
 
-    showCatalogo() {
+    gotoCatalogo() {
         this._router.navigate(['/catalogo'])
     }
 
-    registrarPedido(){
+    gotoHome(){
+        this._router.navigate(['/home'])
+    }
+
+    registrarPedido() {
         this._router.navigate(['/pedido'])
     }
 
