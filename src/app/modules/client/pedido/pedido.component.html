@@ -70,24 +70,36 @@
                         <label class="form-label-lg">RUC</label>
                         <input class="form-control form-control-lg" placeholder="Ingresa tu RUC."
                             formControlName="rucClient">
+                        <div *ngIf="formPedido.controls['rucClient'].errors?.required &&
+                        formPedido.controls['rucClient'].touched" class="invalid-feedback">
+                            Completar el RUC.</div>
                     </div>
 
                     <div class="col-sm-12 mb-4">
                         <label class="form-label-lg">Nombre</label>
                         <input class="form-control form-control-lg" placeholder="Ingresa tu nombre."
                             formControlName="nameClient">
+                        <div *ngIf="formPedido.controls['nameClient'].errors?.required &&
+                            formPedido.controls['nameClient'].touched" class="invalid-feedback">
+                            Completar el Nombre.</div>
                     </div>
 
                     <div class="col-sm-12 mb-4">
                         <label class="form-label-lg">Nro. Celular</label>
                         <input class="form-control form-control-lg" placeholder="Ingresa tu nombre."
                             formControlName="phoneClient">
+                        <div *ngIf="formPedido.controls['phoneClient'].errors?.required &&
+                            formPedido.controls['phoneClient'].touched" class="invalid-feedback">
+                            Completar el Nro. Celular.</div>
                     </div>
 
                     <div class="col-sm-12 mb-4">
                         <label class="form-label-lg">Correo Electrónico</label>
                         <input class="form-control form-control-lg" placeholder="Ingresa tu nombre."
                             formControlName="emailClient">
+                        <div *ngIf="formPedido.controls['emailClient'].errors?.required &&
+                        formPedido.controls['emailClient'].touched" class="invalid-feedback">
+                            Completar el Correo Electrónico.</div>
                     </div>
 
                     <div class="col-sm-12 mb-4">
@@ -132,8 +144,9 @@
 
                 </div>
 
-                <button type="button" class="btn btn-primary btn-lg d-block w-100" (click)="registrarPedido()">Completar
-                    Pedido</button>
+                <button type="button" class="btn btn-primary btn-lg d-block w-100" (click)="registrarPedido()">
+                    Completar Pedido
+                </button>
 
             </div>
         </aside>

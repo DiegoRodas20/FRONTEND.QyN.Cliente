@@ -1,5 +1,5 @@
-<!-- Shop catalog -->
-<section class="container">
+<!-- Catalogo de productos -->
+<section class="container pt-5 pb-5">
     <div class="row flex-lg-nowrap">
 
         <!-- Product grid -->
@@ -23,14 +23,14 @@
                             </h3>
 
                             <div class="col-md-12">
-                                Precio Venta - <span class="fw-bold text-danger">
-                                    S/.{{producto.salesPrice | number : '1.2-2'}}
+                                Categoría - <span class="">
+                                    {{producto.type}}
                                 </span>
                             </div>
 
                             <div class="col-md-12">
-                                Stock - <span class="">
-                                    {{producto.stock}}
+                                Precio Venta - <span class="fw-bold text-danger">
+                                    S/.{{producto.salesPrice | number : '1.2-2'}}
                                 </span>
                             </div>
 

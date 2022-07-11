@@ -22,7 +22,9 @@ export class CatalogoComponent implements OnInit {
     ) { }
 
     ngOnInit() {
+
         this.getCatalogo()
+
     }
 
     async getCatalogo() {
@@ -42,6 +44,8 @@ export class CatalogoComponent implements OnInit {
 
     registrarProductoCarrito(producto) {
 
+        console.log(producto)
+
         let productoCarrito: Producto = {
             id: producto.id,
             code: producto.code,
@@ -52,7 +56,7 @@ export class CatalogoComponent implements OnInit {
             stock: producto.stock,
             showInCatalog: producto.showInCatalog,
             urlImage: producto.urlImage,
-            cantidad: producto.cantidad
+            cantidad: producto.cantidad == undefined ? 1 : producto.cantidad
         }
 
         var estado = this._carritoService.addCarrito(productoCarrito)
@@ -60,19 +64,25 @@ export class CatalogoComponent implements OnInit {
         if (estado == 0) {
             console.log('NO SE PUEDE REPETIR EL PRODUCTO')
             Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'No puedes añadir un producto que ya se encuentra en el carrito'
+                title: '¡Atención!',
+                text: 'No puedes añadir un producto que ya se encuentra en el carrito',
+                toast: true,
+                position: 'top-end',
+                icon: 'warning',
+                timer: 4000,
+                showConfirmButton: false
             })
         }
 
         else {
             Swal.fire({
-                icon: 'success',
-                title: 'Exito',
+                title: '¡Éxito!',
                 text: 'Se añadio el producto en el carrito',
-                timer: 3000,
-                timerProgressBar: true,
+                toast: true,
+                position: 'top-end',
+                icon: 'success',
+                timer: 4000,
+                showConfirmButton: false
             })
 
             console.log('REGISTRADO EN EL CARRITO')

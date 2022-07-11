@@ -32,6 +32,11 @@
                         <a class="nav-link click" (click)="gotoCatalogo()">Catalogo</a>
                     </li>
 
+                    <!-- Pedido -->
+                    <li class="nav-item">
+                        <a class="nav-link click" (click)="gotoPedido()">Pedido</a>
+                    </li>
+
                 </ul>
 
             </nav>
@@ -95,7 +100,6 @@
                         <ul class="list-unstyled fs-xs mt-n2 mb-2">
                             <li class="mb-0"><span class="text-muted">Código: </span>{{producto.code}}</li>
                             <li class="mb-0"><span class="text-muted">Categoría: </span>{{producto.type}}</li>
-                            <li class="mb-0"><span class="text-muted">Stock: </span>{{producto.stock}}</li>
                             <li class="mb-0"><span class="text-muted">Cantidad: </span>{{producto.cantidad}}</li>
                         </ul>
 

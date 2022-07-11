@@ -44,6 +44,11 @@ export class HeaderComponent implements OnInit {
         this._router.navigate(['/home'])
     }
 
+    gotoPedido(){
+        this._router.navigate(['/pedido'])
+    }
+
+
     registrarPedido() {
         this._router.navigate(['/pedido'])
     }

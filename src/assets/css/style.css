@@ -805,7 +805,7 @@ a {
 }
 
 a:hover {
-    color: #0e3f40;
+    color: #d6d6d6;
     text-decoration: none
 }
 
@@ -5142,9 +5142,9 @@ fieldset:disabled .btn {
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    padding-top: 1rem;
+    padding-top: 1.4rem;
     padding-right: 1rem;
-    padding-bottom: 1rem;
+    padding-bottom: 1.4rem;
     padding-left: 1rem
 }
 
@@ -15478,7 +15478,8 @@ div.code-toolbar>.toolbar button>span {
 }
 
 .btn-outline-primary {
-    border-color: rgba(23, 105, 106, .4)
+    /* border-color: rgba(23, 105, 106, .4); */
+    border-color: rgb(255 255 255 / 40%);
 }
 
 .btn-outline-success {
@@ -16263,7 +16264,6 @@ img[src*=".svg"].media-tabs-icon {
     flex-basis: 100%;
     margin-right: -1rem;
     margin-left: -1rem;
-    padding-top: 1rem
 }
 
 .navbar-brand {
@@ -21175,6 +21175,14 @@ html:not([dir=rtl]) .range-slider-ui.noUi-horizontal .noUi-handle {
     left: -0.5rem;
     bottom: 100%;
     flex-direction: column-reverse
+}
+
+.form-invalid{
+    border-color: #ff4242;
+    padding-right: calc(1.5em + 1.25rem);
+    background-repeat: no-repeat;
+    background-position: right calc(0.375em + 0.3125rem) center;
+    background-size: calc(0.75em + 0.625rem) calc(0.75em + 0.625rem);
 }
 
 /*# sourceMappingURL=theme.min.css.map */

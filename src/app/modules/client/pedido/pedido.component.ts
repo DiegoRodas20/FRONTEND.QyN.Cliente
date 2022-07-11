@@ -33,7 +33,7 @@ export class PedidoComponent implements OnInit {
             nameClient: [null, [Validators.required]],
             phoneClient: [null, [Validators.required]],
             emailClient: [null, [Validators.required]],
-            comments: [null, [Validators.required]],
+            comments: [null],
         })
     }
 
@@ -46,10 +46,15 @@ export class PedidoComponent implements OnInit {
 
         if (this.formPedido.invalid) {
             Swal.fire({
+                title: '¡Atención!',
+                text: 'Debe completar los datos requeridos',
+                toast: true,
+                position: 'top-end',
                 icon: 'warning',
-                title: 'Atención',
-                text: 'Debe completar los datos requeridos'
+                timer: 4000,
+                showConfirmButton: false
             })
+            this.formPedido.markAllAsTouched()
             return
         }
 
@@ -63,22 +68,32 @@ export class PedidoComponent implements OnInit {
             orderDetail: this.lCarrito.map(item => { return { idProduct: item.id, quantity: item.cantidad } })
         }
 
-        console.log(Pedido)
         try {
             let data = await this._pedidoService.registrarPedido(Pedido)
+            console.log(data)
             Swal.fire({
+                title: '¡Éxito!',
+                text: data.message,
+                toast: true,
+                position: 'top-end',
                 icon: 'success',
-                title: 'Éxito',
-                text: data.message
+                timer: 4000,
+                showConfirmButton: false
             })
         }
         catch (error) {
+
+            let mensaje = error.error.error.join(" \n ")
+            console.log(mensaje)
             Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'Ha ocurrido un error de validación'
+                title: '¡Atención!',
+                text: mensaje,
+                toast: true,
+                position: 'top-end',
+                icon: 'warning',
+                timer: 4000,
+                showConfirmButton: false
             })
-            console.error(error)
         }
 
     }
