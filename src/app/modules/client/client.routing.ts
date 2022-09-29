@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+import { AnimationComponent } from "./animation/animation.component";
 import { CatalogoComponent } from "./catalogo/catalogo.component";
 import { HomeComponent } from "./home/home.component";
 import { PedidoComponent } from "./pedido/pedido.component";
@@ -27,6 +28,10 @@ const routes: Routes = [
                 data: { titulo: 'Pedido' }
             },
         ]
+    },
+    {
+        path: 'locahermosa',
+        component: AnimationComponent,
     },
 
     {
