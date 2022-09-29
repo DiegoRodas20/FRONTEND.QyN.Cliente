@@ -22,9 +22,7 @@ export class CatalogoComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-
         this.getCatalogo()
-
     }
 
     async getCatalogo() {
@@ -70,6 +68,7 @@ export class CatalogoComponent implements OnInit {
                 position: 'top-end',
                 icon: 'warning',
                 timer: 4000,
+                showCloseButton: true,
                 showConfirmButton: false
             })
         }
@@ -82,6 +81,7 @@ export class CatalogoComponent implements OnInit {
                 position: 'top-end',
                 icon: 'success',
                 timer: 4000,
+                showCloseButton: true,
                 showConfirmButton: false
             })
 

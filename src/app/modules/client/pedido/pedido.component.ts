@@ -53,6 +53,7 @@ export class PedidoComponent implements OnInit {
                 position: 'top-end',
                 icon: 'warning',
                 timer: 4000,
+                showCloseButton: true,
                 showConfirmButton: false
             })
             this.formPedido.markAllAsTouched()
@@ -79,21 +80,22 @@ export class PedidoComponent implements OnInit {
                 position: 'top-end',
                 icon: 'success',
                 timer: 4000,
+                showCloseButton: true,
                 showConfirmButton: false
             })
         }
         catch (error) {
-
-            let mensaje = error.error.error.join(" \n ")
-            console.log(mensaje)
+            let mensaje = error.error.error.join("<br>")
             Swal.fire({
                 title: '¡Atención!',
-                text: mensaje,
+                html: `<div>${mensaje}</div>`,
                 toast: true,
                 position: 'top-end',
                 icon: 'warning',
                 timer: 4000,
-                showConfirmButton: false
+                showCloseButton: true,
+                showConfirmButton: false,
+                timerProgressBar: true,
             })
         }
 
