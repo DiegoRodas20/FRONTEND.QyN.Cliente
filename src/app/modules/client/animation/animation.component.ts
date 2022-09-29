@@ -3,8 +3,7 @@ declare var TweenMax;
 
 @Component({
     selector: 'app-animation',
-    templateUrl: 'animation.component.html',
-    styleUrls: ['./animation.component.scss']
+    templateUrl: 'animation.component.html'
 })
 
 export class AnimationComponent implements OnInit {
