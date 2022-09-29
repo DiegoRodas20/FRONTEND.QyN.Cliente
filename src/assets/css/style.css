@@ -617,7 +617,7 @@ body {
     font-weight: 400;
     line-height: 1.5;
     color: #424551;
-    background-color: #fff;
+    background-color: #F1F5F9;
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
 }
@@ -650,7 +650,7 @@ h1,
     margin-bottom: 1.5rem;
     font-weight: 700;
     line-height: 1.2;
-    color: #1e212c
+    color: #062b61
 }
 
 h1,
@@ -20023,12 +20023,11 @@ _:-ms-lang(x),
 }
 
 .card-product {
-    max-width: 22rem;
+    max-width: 18rem;
     margin-right: auto;
     margin-left: auto;
     border: 0;
     box-shadow: none;
-    background-color: transparent
 }
 
 .card-product .card-body,
@@ -20039,18 +20038,16 @@ _:-ms-lang(x),
 }
 
 .card-product .card-footer {
-    display: none;
     padding-top: .25rem
 }
 
 @media(min-width: 992px) {
     .card-product .card-footer {
-        position: absolute;
-        display: none;
+        position: relative;
         top: 100%;
         left: 0;
         width: 100%;
-        box-shadow: 0 1.75rem 1.875rem rgba(154, 156, 165, .16), 0 1.25rem 1rem -0.25rem rgba(154, 156, 165, .1), 0 .5rem .625rem rgba(154, 156, 165, .08), 0 .25rem .25rem rgba(30, 33, 44, .05);
+        /* box-shadow: 0 1.75rem 1.875rem rgba(154, 156, 165, .16), 0 1.25rem 1rem -0.25rem rgba(154, 156, 165, .1), 0 .5rem .625rem rgba(154, 156, 165, .08), 0 .25rem .25rem rgba(30, 33, 44, .05); */
         z-index: 3
     }
 
@@ -20068,13 +20065,16 @@ _:-ms-lang(x),
         transition: background-color .25s
     }
 
-    .card-product:hover .card-footer {
+    /* .card-product:hover .card-footer {
         display: block;
         background-color: #fff;
-        box-shadow: 0 1.75rem 1.875rem rgba(154, 156, 165, .16), 0 1.25rem 1rem -0.25rem rgba(154, 156, 165, .1), 0 .5rem .625rem rgba(154, 156, 165, .08), 0 .25rem .25rem rgba(30, 33, 44, .05);
+        box-shadow: 0 1.75rem 1.875rem rgba(154, 156, 165, .16), 
+                    0 1.25rem 1rem -0.25rem rgba(154, 156, 165, .1), 
+                    0 .5rem .625rem rgba(154, 156, 165, .08), 
+                    0 .25rem .25rem rgba(30, 33, 44, .05);
         -webkit-animation: card-footer-show .15s;
         animation: card-footer-show .15s
-    }
+    } */
 }
 
 .card-product .tns-controls {
@@ -20124,8 +20124,14 @@ _:-ms-lang(x),
 
 .card-product-title {
     font-weight: 400;
-    color: #424551;
-    font-size: 1.125rem
+    color: #062B61;
+    font-size: 1rem
+}
+
+.card-product-description {
+    font-weight: 400;
+    color: #062B61;
+    font-size: 0.85rem
 }
 
 .tns-carousel .card-product {

@@ -85,13 +85,13 @@
         <!-- Item -->
         <div *ngFor="let producto of lCarrito" class="d-flex align-items-start p-4 border-bottom mx-n4">
 
-            <a style="min-width: 80px;">
+            <a class="image-item">
                 <img [src]="producto.urlImage" width="80" alt="Product thumb">
             </a>
 
             <div class="w-100 ps-3">
                 <div class="d-flex justify-content-between">
-                    <div class="w-100 pe-2">
+                    <div class="w-100 px-2">
 
                         <h3 class="fs-sm mb-3">
                             <a class="nav-link fw-bold">{{producto.name}}</a>
@@ -109,7 +109,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="nav-muted me-n2">
+                    <div class="nav-muted me-n2 align-self-center">
                         <a (click)="deleteCarrito(producto)" class="nav-link px-2 mt-n2" data-bs-toggle="tooltip"
                             title="Remove">
                             <i class="ci-delete"></i>

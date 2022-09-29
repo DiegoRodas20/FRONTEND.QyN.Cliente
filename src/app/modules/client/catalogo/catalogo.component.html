@@ -12,33 +12,36 @@
 
                         <!-- Imagen -->
                         <div class="card-product-img text-center">
-                            <img [src]="producto.urlImage" class="w-50">
+                            <img [src]="producto.urlImage" class="w-50 pt-3">
                         </div>
 
-                        <div class="card-body pb-4">
+                        <div class="card-body">
 
                             <!-- Nombre Producto -->
                             <h3 class="card-product-title fw-bold text-truncate mb-4 text-center">
                                 {{producto.name}}
                             </h3>
 
-                            <div class="col-md-12">
-                                Categoría - <span class="">
-                                    {{producto.type}}
-                                </span>
-                            </div>
+                            <div class="card-product-description p-2">
+                                <div class="col-md-12 pb-1">
+                                    Categoría - <span class="">
+                                        {{producto.type}}
+                                    </span>
+                                </div>
 
-                            <div class="col-md-12">
-                                Precio Venta - <span class="fw-bold text-danger">
-                                    S/.{{producto.salesPrice | number : '1.2-2'}}
-                                </span>
-                            </div>
+                                <div class="col-md-12 pb-2">
+                                    Precio Venta - <span class="fw-bold text-danger">
+                                        S/.{{producto.salesPrice | number : '1.2-2'}}
+                                    </span>
+                                </div>
 
-                            <div class="row col-md-12">
-                                <div class="col-md-6 text-center align-self-center">Cantidad</div>
-                                <div class="col-md-6">
-                                    <input (input)="calcularPrecioxCantidad($event, producto)" type="number" [min]="1"
-                                        [max]="10" class="form-control form-control-sm bg-light me-3" value="1">
+                                <div class="row col-md-12">
+                                    <div class="col-md-6 text-center align-self-center">Cantidad</div>
+                                    <div class="col-md-6">
+                                        <input (input)="calcularPrecioxCantidad($event, producto)" type="number"
+                                            [min]="1" [max]="10" class="form-control form-control-sm bg-light me-3"
+                                            value="1">
+                                    </div>
                                 </div>
                             </div>
 

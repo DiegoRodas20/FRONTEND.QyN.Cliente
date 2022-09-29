@@ -1,29 +1,29 @@
-<section class="container pt-3 pt-md-4 pb-3 pb-sm-4 pb-lg-5 mb-4">
+<section class="container pt-3 pt-md-5 pb-3 pb-sm-4 pb-lg-5 mb-4">
     <div class="row">
 
         <!-- Checkout -->
-        <div class="col-lg-8 pe-lg-6">
-            <div class="d-flex align-items-center justify-content-between pb-2 mb-4">
-                <h1 class="mb-0">Pedido</h1>
+        <div class="bg-white rounded col-lg-7 p-4">
+            <div class="d-flex align-items-center justify-content-between">
+                <h3 class="mb-0">Pedido</h3>
             </div>
 
             <hr class="border-top-0 border-bottom mb-4">
 
             <!-- Resumen de Pedido -->
-            <h2 class="h4 mb-4">1. Resumen de Pedido</h2>
+            <h5 class="mb-4">1. Resumen de Pedido</h5>
             <div class="bg-secondary rounded mb-5">
 
                 <!-- Item -->
                 <div *ngFor="let producto of lCarrito" class="d-flex align-items-start px-2 px-sm-4 py-4 border-bottom">
 
-                    <a style="min-width: 80px;">
+                    <a class="image-item">
                         <img [src]="producto.urlImage" width="80" alt="Product thumb">
                     </a>
 
                     <div class="w-100 ps-3">
                         <div class="d-sm-flex">
 
-                            <div class="pe-sm-3 w-100" style="max-width: 16rem;">
+                            <div class="px-2 w-100" style="max-width: 16rem;">
 
                                 <h3 class="fs-sm mb-3">
                                     <a class="nav-link fw-bold">{{producto.name}}</a>
@@ -33,15 +33,13 @@
                                     <li class="mb-0"><span class="text-muted">Código:</span> {{producto.code}}</li>
                                     <li class="mb-0"><span class="text-muted">Categoría:</span> {{producto.type}}
                                     </li>
-                                    <li class="mb-0"><span class="text-muted">Stock:</span> {{producto.stock}}
-                                    </li>
                                     <li class="mb-0"><span class="text-muted">Cantidad:</span> {{producto.cantidad}}
                                     </li>
                                 </ul>
 
                             </div>
 
-                            <div class="text-end align-items-start pe-sm-3 w-100">
+                            <div class="text-end align-items-start align-self-center pe-sm-3 w-100">
                                 <div class="text-nowrap pt-2">
                                     <strong class="text-danger">S/.{{producto.salesPrice | number : '1.2-2'}}
                                     </strong>
@@ -62,40 +60,40 @@
             </div>
 
             <!-- Información del Pedido -->
-            <h2 class="h4 mb-4">2. Información del Pedido</h2>
+            <h5 class="mb-4">2. Información del Pedido</h5>
             <form [formGroup]="formPedido">
                 <div class="row pb-3">
 
-                    <div class="col-sm-12 mb-4">
-                        <label class="form-label-lg">RUC</label>
-                        <input class="form-control form-control-lg" placeholder="Ingresa tu RUC."
+                    <div class="col-sm-6 mb-4">
+                        <label class="form-label">RUC</label>
+                        <input class="form-control" placeholder="Ingresa tu RUC."
                             formControlName="rucClient">
                         <div *ngIf="formPedido.controls['rucClient'].errors?.required &&
                         formPedido.controls['rucClient'].touched" class="invalid-feedback">
                             Completar el RUC.</div>
                     </div>
 
-                    <div class="col-sm-12 mb-4">
-                        <label class="form-label-lg">Nombre</label>
-                        <input class="form-control form-control-lg" placeholder="Ingresa tu nombre."
+                    <div class="col-sm-6 mb-4">
+                        <label class="form-label">Nombre</label>
+                        <input class="form-control" placeholder="Ingresa tu nombre."
                             formControlName="nameClient">
                         <div *ngIf="formPedido.controls['nameClient'].errors?.required &&
                             formPedido.controls['nameClient'].touched" class="invalid-feedback">
                             Completar el Nombre.</div>
                     </div>
 
-                    <div class="col-sm-12 mb-4">
-                        <label class="form-label-lg">Nro. Celular</label>
-                        <input class="form-control form-control-lg" placeholder="Ingresa tu nombre."
+                    <div class="col-sm-6 mb-4">
+                        <label class="form-label">Nro. Celular</label>
+                        <input class="form-control" placeholder="Ingresa tu nombre."
                             formControlName="phoneClient">
                         <div *ngIf="formPedido.controls['phoneClient'].errors?.required &&
                             formPedido.controls['phoneClient'].touched" class="invalid-feedback">
                             Completar el Nro. Celular.</div>
                     </div>
 
-                    <div class="col-sm-12 mb-4">
-                        <label class="form-label-lg">Correo Electrónico</label>
-                        <input class="form-control form-control-lg" placeholder="Ingresa tu nombre."
+                    <div class="col-sm-6 mb-4">
+                        <label class="form-label">Correo Electrónico</label>
+                        <input class="form-control" placeholder="Ingresa tu nombre."
                             formControlName="emailClient">
                         <div *ngIf="formPedido.controls['emailClient'].errors?.required &&
                         formPedido.controls['emailClient'].touched" class="invalid-feedback">
@@ -103,8 +101,8 @@
                     </div>
 
                     <div class="col-sm-12 mb-4">
-                        <label class="form-label-lg">Comentario</label>
-                        <textarea class="form-control form-control-lg" rows="5"
+                        <label class="form-label">Comentario</label>
+                        <textarea class="form-control" rows="5"
                             placeholder="Ingresa alguna referencia de tu dirección."
                             formControlName="comments"></textarea>
                     </div>
@@ -117,10 +115,10 @@
         <!-- Order totals (sticky sidebar) -->
         <aside class="col-lg-4">
             <div class="position-sticky">
-                <div class="bg-secondary rounded mb-4">
+                <div class="bg-white rounded mb-4">
 
                     <div class="border-bottom p-4">
-                        <h2 class="h4 mb-0">Orden total</h2>
+                        <h5 class="mb-0">Orden total</h5>
                     </div>
 
                     <ul class="list-unstyled border-bottom mb-0 p-4">
@@ -138,8 +136,8 @@
                     </ul>
 
                     <div class="d-flex justify-content-between p-4">
-                        <span class="h5 mb-0">Monto total:</span>
-                        <span class="h5 mb-0">S/. {{getSubTotal() | number : '1.2-2'}}</span>
+                        <span class="h6 mb-0">Monto total:</span>
+                        <span class="h6 mb-0">S/. {{getSubTotal() | number : '1.2-2'}}</span>
                     </div>
 
                 </div>
