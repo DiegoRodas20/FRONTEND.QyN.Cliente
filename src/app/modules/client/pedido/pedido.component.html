@@ -66,8 +66,7 @@
 
                     <div class="col-sm-6 mb-4">
                         <label class="form-label">RUC</label>
-                        <input class="form-control" placeholder="Ingresa tu RUC."
-                            formControlName="rucClient">
+                        <input class="form-control" placeholder="Ingresa tu RUC." formControlName="rucClient">
                         <div *ngIf="formPedido.controls['rucClient'].errors?.required &&
                         formPedido.controls['rucClient'].touched" class="invalid-feedback">
                             Completar el RUC.</div>
@@ -75,8 +74,7 @@
 
                     <div class="col-sm-6 mb-4">
                         <label class="form-label">Nombre</label>
-                        <input class="form-control" placeholder="Ingresa tu nombre."
-                            formControlName="nameClient">
+                        <input class="form-control" placeholder="Ingresa tu nombre." formControlName="nameClient">
                         <div *ngIf="formPedido.controls['nameClient'].errors?.required &&
                             formPedido.controls['nameClient'].touched" class="invalid-feedback">
                             Completar el Nombre.</div>
@@ -84,8 +82,7 @@
 
                     <div class="col-sm-6 mb-4">
                         <label class="form-label">Nro. Celular</label>
-                        <input class="form-control" placeholder="Ingresa tu nombre."
-                            formControlName="phoneClient">
+                        <input class="form-control" placeholder="Ingresa tu nombre." formControlName="phoneClient">
                         <div *ngIf="formPedido.controls['phoneClient'].errors?.required &&
                             formPedido.controls['phoneClient'].touched" class="invalid-feedback">
                             Completar el Nro. Celular.</div>
@@ -93,17 +90,23 @@
 
                     <div class="col-sm-6 mb-4">
                         <label class="form-label">Correo Electrónico</label>
-                        <input class="form-control" placeholder="Ingresa tu nombre."
-                            formControlName="emailClient">
+                        <input class="form-control" placeholder="Ingresa tu nombre." formControlName="emailClient">
                         <div *ngIf="formPedido.controls['emailClient'].errors?.required &&
                         formPedido.controls['emailClient'].touched" class="invalid-feedback">
                             Completar el Correo Electrónico.</div>
                     </div>
 
                     <div class="col-sm-12 mb-4">
+                        <label class="form-label">Dirección</label>
+                        <input class="form-control" placeholder="Ingresa tu dirección." formControlName="address">
+                        <div *ngIf="formPedido.controls['address'].errors?.required &&
+                        formPedido.controls['address'].touched" class="invalid-feedback">
+                            Completar la dirección.</div>
+                    </div>
+
+                    <div class="col-sm-12 mb-4">
                         <label class="form-label">Comentario</label>
-                        <textarea class="form-control" rows="5"
-                            placeholder="Ingresa alguna referencia de tu dirección."
+                        <textarea class="form-control" rows="5" placeholder="Ingresa un comentario deseado."
                             formControlName="comments"></textarea>
                     </div>
 
@@ -129,15 +132,15 @@
                         </li>
 
                         <li class="d-flex justify-content-between mb-2">
-                            <span>Montos agregados:</span>
-                            <span>—</span>
+                            <span>IGV:</span>
+                            <span>18%</span>
                         </li>
 
                     </ul>
 
                     <div class="d-flex justify-content-between p-4">
                         <span class="h6 mb-0">Monto total:</span>
-                        <span class="h6 mb-0">S/. {{getSubTotal() | number : '1.2-2'}}</span>
+                        <span class="h6 mb-0">S/. {{getMontoTotal() | number : '1.2-2'}}</span>
                     </div>
 
                 </div>

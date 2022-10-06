@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CarritoService } from 'src/app/core/services/carrito.service';
 import { PedidoService } from 'src/app/core/services/pedido.service';
 import { DetallePedido, Pedido } from 'src/app/shared/models/pedido.model';
@@ -18,6 +19,7 @@ export class PedidoComponent implements OnInit {
     formPedido: FormGroup
 
     constructor(
+        private _router: Router,
         private _pedidoService: PedidoService,
         private _carritoService: CarritoService,
         private _formBuilder: FormBuilder,
@@ -34,6 +36,7 @@ export class PedidoComponent implements OnInit {
             nameClient: [null, [Validators.required]],
             phoneClient: [null, [Validators.required]],
             emailClient: [null, [Validators.required]],
+            address: [null, [Validators.required]],
             comments: [null],
         })
     }
@@ -67,8 +70,11 @@ export class PedidoComponent implements OnInit {
             nameClient: form.nameClient,
             phoneClient: form.phoneClient,
             emailClient: form.emailClient,
+            address: form.address,
             orderDetail: this.lCarrito.map(item => { return { idProduct: item.id, quantity: item.cantidad } })
         }
+
+        console.log(Pedido)
 
         try {
             let data = await this._pedidoService.registrarPedido(Pedido)
@@ -82,21 +88,32 @@ export class PedidoComponent implements OnInit {
                 timer: 4000,
                 showCloseButton: true,
                 showConfirmButton: false
+            }).then((result) => {
+                localStorage.clear()
+                this._router.navigate(['/catalogo'])
             })
         }
         catch (error) {
-            let mensaje = error.error.error.join("<br>")
+
+            let mensajeprueba = "";
+
+            for (let i of error.error.error) {
+                mensajeprueba += `• ${i}<br>`
+            }
+
             Swal.fire({
                 title: '¡Atención!',
-                html: `<div>${mensaje}</div>`,
+                html: `<div>${mensajeprueba}</div>`,
                 toast: true,
                 position: 'top-end',
                 icon: 'warning',
-                timer: 4000,
                 showCloseButton: true,
                 showConfirmButton: false,
-                timerProgressBar: true,
+                width: '25em'
             })
+
+            this.formPedido.reset()
+
         }
 
     }
@@ -104,6 +121,11 @@ export class PedidoComponent implements OnInit {
     getSubTotal() {
         let subTotal = this._carritoService.getSubTotal(this.lCarrito)
         return subTotal
+    }
+
+    getMontoTotal() {
+        let montoTotal = this.getSubTotal() + (this.getSubTotal() * 0.18)
+        return montoTotal
     }
 
 }
