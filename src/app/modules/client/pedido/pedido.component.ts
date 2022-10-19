@@ -112,7 +112,7 @@ export class PedidoComponent implements OnInit {
                 width: '25em'
             })
 
-            this.formPedido.reset()
+            //this.formPedido.reset()
 
         }
 
