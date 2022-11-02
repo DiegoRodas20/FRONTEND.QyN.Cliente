@@ -49,8 +49,9 @@ export class SignInComponent implements OnInit {
 
         try {
             const data: any = await this._authService.iniciarSesion(signin)
-            console.log(data)
-            console.log(data.headers.getHeaders())
+            console.log(data.headers.get('authorization'))
+            console.log(atob(data.headers.get('authorization').split('.')[1]))
+   
         }
 
         catch (error) {
