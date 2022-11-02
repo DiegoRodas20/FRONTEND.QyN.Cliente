@@ -1,9 +1,9 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { AnimationComponent } from "./animation/animation.component";
 import { CatalogoComponent } from "./catalogo/catalogo.component";
 import { HomeComponent } from "./home/home.component";
 import { PedidoComponent } from "./pedido/pedido.component";
+import { PerfilComponent } from "./perfil/perfil.component";
 import { ShellComponent } from "./shell/shell.component";
 
 
@@ -27,13 +27,13 @@ const routes: Routes = [
                 component: PedidoComponent,
                 data: { titulo: 'Pedido' }
             },
+            {
+                path: 'perfil',
+                component: PerfilComponent,
+                data: { titulo: 'Perfil' }
+            },
         ]
     },
-    {
-        path: 'locahermosa',
-        component: AnimationComponent,
-    },
-
     {
         path: '**',
         redirectTo: '/catalogo',

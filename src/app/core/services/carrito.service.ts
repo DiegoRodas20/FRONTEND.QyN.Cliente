@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Product } from '../models/product.model';
+import { LocalStorageService } from './local-storage.service';
 
 
 @Injectable({
@@ -7,32 +9,35 @@ import { Injectable } from '@angular/core';
 
 export class CarritoService {
 
-    lCarrito: any[] = []
+    lCarrito: Product[] = []
 
-    constructor() { }
+    constructor(
+        private _localStorage: LocalStorageService
+    ) { }
 
     getCarrito() {
-        if (localStorage.getItem('Carrito') === null) {
+        if (this._localStorage.get('Carrito')) {
+            this.lCarrito = JSON.parse(this._localStorage.get('Carrito'))
             return this.lCarrito
         }
         else {
-            this.lCarrito = JSON.parse(localStorage.getItem('Carrito'))
             return this.lCarrito
         }
     }
 
-    addCarrito(productoCarrito: any) {
+    addCarrito(productoCarrito: Product) {
 
-        let carritoStorage: any[] = []
+        let carritoStorage: Product[] = []
 
-        if (localStorage.getItem('Carrito') === null) {
+        if (this._localStorage.get('Carrito') === null) {
             this.lCarrito.push(productoCarrito)
             carritoStorage.push(productoCarrito)
-            localStorage.setItem('Carrito', JSON.stringify(carritoStorage))
+            this._localStorage.set('Carrito', JSON.stringify(carritoStorage))
+
             return 1
         }
         else {
-            carritoStorage = JSON.parse(localStorage.getItem('Carrito'))
+            carritoStorage = JSON.parse(this._localStorage.get('Carrito'))
 
             for (let producto of carritoStorage) {
                 if (producto.id == productoCarrito.id) {
@@ -42,18 +47,18 @@ export class CarritoService {
 
             this.lCarrito.push(productoCarrito)
             carritoStorage.push(productoCarrito)
-            localStorage.setItem('Carrito', JSON.stringify(carritoStorage))
+            this._localStorage.set('Carrito', JSON.stringify(carritoStorage))
             return 1
         }
 
     }
 
-    deleteCarrito(productoCarrito: any) {
+    deleteCarrito(productoCarrito: Product) {
 
         for (let index = 0; index < this.lCarrito.length; index++) {
             if (productoCarrito == this.lCarrito[index]) {
                 this.lCarrito.splice(index, 1)
-                localStorage.setItem('Carrito', JSON.stringify(this.lCarrito))
+                this._localStorage.set('Carrito', JSON.stringify(this.lCarrito))
             }
         }
 

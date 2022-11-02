@@ -8,25 +8,25 @@ import { Router } from '@angular/router';
 
 export class ShellComponent implements OnInit {
 
-    estado: string = 'active'
+    openloader: boolean
 
     constructor(
         private _router: Router
-    ) {
+    ) { }
+
+    ngOnInit() {
         this.preloader()
     }
-
-    ngOnInit() { }
 
     preloader() {
 
         this._router.events.subscribe(
-            events => {
+            () => {
 
-                this.estado = 'active'
+                this.openloader = true
 
                 setTimeout(() => {
-                    this.estado = ''
+                    this.openloader = false
                 }, 2000)
 
             });

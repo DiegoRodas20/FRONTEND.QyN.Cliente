@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CarritoService } from 'src/app/core/services/carrito.service';
-import { CatalogoService } from 'src/app/core/services/catalogo.service';
-import { Producto } from 'src/app/shared/models/producto.model';
+import { ProductService } from 'src/app/core/services/product.service';
+import { Product } from 'src/app/core/models/product.model';
 import Swal from 'sweetalert2';
+import { ResponseData } from 'src/app/core/models/response.model';
 
 
 @Component({
@@ -13,24 +14,25 @@ import Swal from 'sweetalert2';
 
 export class CatalogoComponent implements OnInit {
 
-    lCatalogo: any[] = []
+    lCatalogo: Product[] = []
+    Mensaje: string
+    urlPorDefecto: string = '../../../../../assets/img/productodefault.jpg'
 
     constructor(
         private _router: Router,
-        private _catalogoService: CatalogoService,
+        private _productService: ProductService,
         private _carritoService: CarritoService
     ) { }
 
     ngOnInit() {
-        this.getCatalogo()
+        this.getCatalogoProductos()
     }
 
-    async getCatalogo() {
+    async getCatalogoProductos() {
 
         try {
-            const data: any = await this._catalogoService.getCatalogo().toPromise()
-            console.log(data)
-
+            const data: ResponseData = await this._productService.getProductos().toPromise()
+            this.Mensaje = data.message
             this.lCatalogo = data.data
         }
 
@@ -44,7 +46,7 @@ export class CatalogoComponent implements OnInit {
 
         console.log(producto)
 
-        let productoCarrito: Producto = {
+        let productoCarrito: any = {
             id: producto.id,
             code: producto.code,
             name: producto.name,

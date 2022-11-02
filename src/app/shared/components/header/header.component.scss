@@ -6,11 +6,21 @@
     background-color: #062B61;
 }
 
-.navbar-qyn .navbar-nav .nav-link {
+.navbar-qyn .nav-link {
     color: #ffffff;
 }
 
 .image-item{
     min-width: 80px;
     align-self: center;
+}
+
+.cart-icon{
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.cart-icon:hover {
+    color: #ffffff;
+    text-decoration: none
 }

@@ -1,0 +1,51 @@
+<!-- Signin form -->
+<div *ngIf="open" class="view show">
+
+    <!-- Header -->
+    <div class="modal-header border-0 pb-0 px-md-5 px-4 d-block position-relative">
+        <h3 class="modal-title mt-4 mb-0 text-center">Iniciar Sesión</h3>
+        <button type="button" class="btn-close position-absolute" style="top: 1.5rem; right: 1.5rem"
+            data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+
+    <!-- Body -->
+    <div class="modal-body px-md-5 px-4">
+
+        <p class="fs-sm text-muted text-center">
+            Ingresa a tu cuenta usando el email y contraseña registrados.
+        </p>
+
+        <!-- Formulario -->
+        <form [formGroup]="formSignIn">
+
+            <div class="mb-4">
+                <label for="signin-email" class="form-label-lg">Email</label>
+                <input type="email" class="form-control" id="signin-email" placeholder="Ingresa tu email"
+                    formControlName="userName" />
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label-lg" for="signin-password">Contraseña</label>
+                <div class="password-toggle">
+                    <input class="form-control" type="password" id="signin-password" formControlName="password" />
+                    <label class="password-toggle-btn" aria-label="Show/hide password">
+                        <input class="password-toggle-check" type="checkbox" />
+                        <span class="password-toggle-indicator"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-end align-items-center mb-4">
+                <a href="#" class="fs-sm text-decoration-none">¿Olvidaste tu contraseña?</a>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100" (click)="iniciarSesion()">Ingresar</button>
+            <p class="fs-sm pt-4">
+                ¿No tienes una cuenta?
+                <a class="fw-bold text-decoration-none" (click)="onClose()">
+                    Registrate</a>
+            </p>
+        </form>
+    </div>
+
+</div>

@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CarritoService } from 'src/app/core/services/carrito.service';
-import Swal from 'sweetalert2';
+import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 
 
 @Component({
@@ -12,34 +11,27 @@ import Swal from 'sweetalert2';
 
 export class HeaderComponent implements OnInit {
 
-    lCarrito: any[] = []
+    cantidadProductos: number
+    openSignIn: boolean = true
+    openSignUp: boolean = false
 
     constructor(
         private _router: Router,
-        private _carritoService: CarritoService,
+        private _localStorage: LocalStorageService,
     ) { }
 
     ngOnInit() {
-        this.getCarrito()
-        console.log(this.lCarrito.length)
-    }
-
-    getCarrito() {
-        this.lCarrito = this._carritoService.getCarrito()
-    }
-
-    getSubTotal() {
-        let subTotal = this._carritoService.getSubTotal(this.lCarrito)
-        return subTotal
-    }
-
-    deleteCarrito(carrito) {
-        this._carritoService.deleteCarrito(carrito)
-        this.getCarrito()
-        if (!this.lCarrito.length) {
-            this._router.navigate(['/catalogo'])
-            return
-        }
+        this._localStorage.watch('Carrito').subscribe(
+            (result) => {
+                if (result) {
+                    this.cantidadProductos = JSON.parse(result).length
+                    console.log(JSON.parse(result))
+                }
+                else {
+                    this.cantidadProductos = 0
+                }
+            }
+        )
     }
 
     gotoCatalogo() {
@@ -54,26 +46,8 @@ export class HeaderComponent implements OnInit {
         this._router.navigate(['/pedido'])
     }
 
-
-    registrarPedido() {
-
-        if (!this.lCarrito.length) {
-            Swal.fire({
-                title: '¡Atención!',
-                text: 'No tiene productos en su carrito de compras',
-                toast: true,
-                position: 'top-end',
-                icon: 'warning',
-                timer: 4000,
-                showCloseButton: true,
-                showConfirmButton: false
-            }).then((result) => {
-                this._router.navigate(['/catalogo'])
-            })
-            return
-        }
-
-        this._router.navigate(['/pedido'])
+    modalAuth(modalAuth: boolean) {
+        this.openSignIn = modalAuth
+        this.openSignUp = !modalAuth
     }
-
 }

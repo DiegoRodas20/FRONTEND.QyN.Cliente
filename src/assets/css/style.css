@@ -800,12 +800,12 @@ sup {
 }
 
 a {
-    color: #ffffff;
-    text-decoration: underline
+    color: #062b61;
+    text-decoration: underlinec
 }
 
 a:hover {
-    color: #d6d6d6;
+    color: #062b61;
     text-decoration: none
 }
 

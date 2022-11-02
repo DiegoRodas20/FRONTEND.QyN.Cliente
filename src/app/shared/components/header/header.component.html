@@ -1,12 +1,11 @@
 <!-- Header -->
 <header class="header">
-
     <div class="navbar navbar-expand-lg navbar-qyn bg-qyn navbar-sticky" data-fixed-element>
         <div class="container px-0 px-xl-3">
 
-            <!-- Logo FisioAdvance -->
+            <!-- Logo QyN -->
             <a class="navbar-brand order-lg-1 me-0 pe-lg-3 me-lg-4 click">
-                <img class="w-logo" src="../../../../assets/img/logo.jpeg">
+                <img class="w-logo" src="../../../../assets/img/logo.jpeg" />
             </a>
 
             <!-- Menu -->
@@ -15,7 +14,7 @@
                 <!-- Search mobile -->
                 <div class="input-group mb-0 d-lg-none d-block">
                     <input class="form-control w-100 ps-5 rounded-0 border-0" type="text"
-                        placeholder="Search for products...">
+                        placeholder="Search for products..." />
                     <i class="ci-search lead position-absolute start-0 top-50 translate-middle-y ms-3 zindex-5"></i>
                 </div>
 
@@ -40,21 +39,21 @@
             <div class="d-flex align-items-center order-lg-3">
                 <ul class="nav nav-tools flex-nowrap">
 
-                    <li class="nav-item align-self-center mb-0">
-                        <a href="#" class="nav-tool pe-lg-0" data-bs-toggle="offcanvas" data-bs-target="#cart">
-                            <i class="ci-cart nav-tool-icon"></i>
-                            <span
-                                class="badge bg-success align-middle mt-n1 ms-2 px-2 py-1 fs-xs">{{lCarrito.length}}</span>
+                    <li class="nav-item d-lg-block d-none mb-0">
+                        <a class="nav-link click fw-normal"
+                            data-bs-toggle="modal" data-bs-target="#modal-auth">
+                            <i class="ci-profile me-1 fs-base align-middle"></i>
+                            Iniciar Sesión / Registrarse
                         </a>
                     </li>
 
-                    <li class="divider-vertical mb-0 d-lg-none d-block"></li>
-
-                    <li class="nav-item mb-0">
-                        <button class="navbar-toggler mt-n1 me-n3" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#navbarCollapse" aria-expanded="false">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
+                    <li class="nav-item align-self-center mb-0">
+                        <a class="nav-tool pe-lg-0 cart-icon" data-bs-toggle="offcanvas" data-bs-target="#cart">
+                            <i class="ci-cart nav-tool-icon"></i>
+                            <span class="badge bg-success align-middle mt-n1 ms-2 px-2 py-1 fs-xs">
+                                {{ cantidadProductos }}
+                            </span>
+                        </a>
                     </li>
 
                 </ul>
@@ -62,76 +61,17 @@
 
         </div>
     </div>
-
 </header>
 
-<!-- Carrito de Compras -->
-<div id="cart" class="offcanvas offcanvas-end">
-
-    <!-- Header -->
-    <div class="offcanvas-header align-items-center border-bottom">
-        <h2 class="h5 mb-0">Tu carrito ({{lCarrito.length}})</h2>
-        <button class="btn-close me-n1" type="button" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-
-    <!-- Body -->
-    <div class="offcanvas-body">
-
-        <!-- Item -->
-        <div *ngFor="let producto of lCarrito" class="d-flex align-items-start p-4 border-bottom mx-n4">
-
-            <a class="image-item">
-                <img [src]="producto.urlImage" width="80" alt="Product thumb">
-            </a>
-
-            <div class="w-100 ps-3">
-                <div class="d-flex justify-content-between">
-                    <div class="w-100 px-2">
-
-                        <h3 class="fs-sm mb-3">
-                            <a class="nav-link fw-bold">{{producto.name}}</a>
-                        </h3>
-
-                        <ul class="list-unstyled fs-xs mt-n2 mb-2">
-                            <li class="mb-0"><span class="text-muted">Código: </span>{{producto.code}}</li>
-                            <li class="mb-0"><span class="text-muted">Categoría: </span>{{producto.type}}</li>
-                            <li class="mb-0"><span class="text-muted">Cantidad: </span>{{producto.cantidad}}</li>
-                        </ul>
-
-                        <div class="d-flex align-items-center">
-                            <div class="text-nowrap sizeCost">
-                                <strong class="text-danger">S/.{{producto.salesPrice | number : '1.2-2'}} </strong>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="nav-muted me-n2 align-self-center">
-                        <a (click)="deleteCarrito(producto)" class="nav-link px-2 mt-n2" data-bs-toggle="tooltip"
-                            title="Remove">
-                            <i class="ci-delete"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div *ngIf="lCarrito.length == 0">
-            No tienes productos en tu carrito
+<!-- Modal SignIn / SignUp -->
+<div class="modal fade" id="modal-auth" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content border-0">
+            <app-signin [open]="openSignIn" (close)="modalAuth($event)"></app-signin>
+            <app-signup [open]="openSignUp" (close)="modalAuth(!$event)"></app-signup>
         </div>
     </div>
-
-    <!-- Footer -->
-    <div class="offcanvas-footer flex-column border-top">
-
-        <div class="d-flex align-items-center justify-content-between mb-3 pb-1">
-            <span class="text-muted me-2">Subtotal:</span>
-            <span class="h5 mb-0">S/. {{ getSubTotal() | number : '1.2-2'}}</span>
-        </div>
-
-        <a class="btn btn-primary btn-lg d-block w-100" (click)="registrarPedido()">
-            <i class="ci-credit-card fs-lg mt-n1 me-1"></i>
-            Realizar Pedido
-        </a>
-
-    </div>
-
 </div>
+
+<!-- Shopping Cart -->
+<app-shopping-cart></app-shopping-cart>

@@ -1,10 +1,4 @@
-<!-- Page loading spinner-->
-<div [class]="'page-loading '+ estado">
-    <div class="page-loading-inner">
-        <div class="page-spinner"></div><span>Cargando...</span>
-    </div>
-</div>
-
+<app-loader [open]="openloader"></app-loader>
 <app-header></app-header>
 <app-breadcrumb></app-breadcrumb>
 

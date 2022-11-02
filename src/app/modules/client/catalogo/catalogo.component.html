@@ -12,7 +12,7 @@
 
                         <!-- Imagen -->
                         <div class="card-product-img text-center">
-                            <img [src]="producto.urlImage" class="w-50 pt-3">
+                            <img [src]="producto.urlImage == '' ? urlPorDefecto : producto.urlImage" class="w-50 pt-3">
                         </div>
 
                         <div class="card-body">

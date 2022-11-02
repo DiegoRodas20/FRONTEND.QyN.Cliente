@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CarritoService } from 'src/app/core/services/carrito.service';
-import { PedidoService } from 'src/app/core/services/pedido.service';
-import { DetallePedido, Pedido } from 'src/app/shared/models/pedido.model';
+import { OrderService } from 'src/app/core/services/order.service';
 import Swal from 'sweetalert2';
 
 
@@ -20,7 +19,7 @@ export class PedidoComponent implements OnInit {
 
     constructor(
         private _router: Router,
-        private _pedidoService: PedidoService,
+        private _orderService: OrderService,
         private _carritoService: CarritoService,
         private _formBuilder: FormBuilder,
     ) { }
@@ -77,11 +76,11 @@ export class PedidoComponent implements OnInit {
         console.log(Pedido)
 
         try {
-            let data = await this._pedidoService.registrarPedido(Pedido)
+            let data = await this._orderService.registrarPedido(Pedido)
             console.log(data)
             Swal.fire({
                 title: '¡Éxito!',
-                text: data.message,
+                text: 'data.message',
                 toast: true,
                 position: 'top-end',
                 icon: 'success',
