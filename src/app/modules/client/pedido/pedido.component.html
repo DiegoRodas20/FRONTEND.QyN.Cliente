@@ -2,7 +2,7 @@
     <div class="row">
 
         <!-- Checkout -->
-        <div class="bg-white rounded col-lg-7 p-4">
+        <div class="bg-white rounded col-lg-8 p-4">
             <div class="d-flex align-items-center justify-content-between">
                 <h3 class="mb-0">Pedido</h3>
             </div>
@@ -17,7 +17,8 @@
                 <div *ngFor="let producto of lCarrito" class="d-flex align-items-start px-2 px-sm-4 py-4 border-bottom">
 
                     <a class="image-item">
-                        <img [src]="producto.urlImage" width="80" alt="Product thumb">
+                        <img [src]="producto.urlImage == '' ? urlPorDefecto : producto.urlImage" width="80"
+                            alt="Product thumb">
                     </a>
 
                     <div class="w-100 ps-3">
@@ -64,41 +65,45 @@
             <form [formGroup]="formPedido">
                 <div class="row pb-3">
 
+                    <!-- Documento -->
                     <div class="col-sm-6 mb-4">
-                        <label class="form-label">RUC</label>
-                        <input class="form-control" placeholder="Ingresa tu RUC." formControlName="rucClient">
-                        <div *ngIf="formPedido.controls['rucClient'].errors?.required &&
-                        formPedido.controls['rucClient'].touched" class="invalid-feedback">
-                            Completar el RUC.</div>
+                        <label class="form-label">{{tipoDocumento}}</label>
+                        <input class="form-control" [placeholder]="'Ingrese su '+ tipoDocumento "
+                            formControlName="numberDocument" readonly>
+                        <div *ngIf="formPedido.controls['numberDocument'].errors?.required &&
+                        formPedido.controls['numberDocument'].touched" class="invalid-feedback">
+                            Completar el {{tipoDocumento}}.</div>
                     </div>
 
+                    <!-- Nombre -->
                     <div class="col-sm-6 mb-4">
                         <label class="form-label">Nombre</label>
-                        <input class="form-control" placeholder="Ingresa tu nombre." formControlName="nameClient">
-                        <div *ngIf="formPedido.controls['nameClient'].errors?.required &&
-                            formPedido.controls['nameClient'].touched" class="invalid-feedback">
+                        <input class="form-control" placeholder="Ingrese su nombre." formControlName="name" readonly>
+                        <div *ngIf="formPedido.controls['name'].errors?.required &&
+                            formPedido.controls['name'].touched" class="invalid-feedback">
                             Completar el Nombre.</div>
                     </div>
 
-                    <div class="col-sm-6 mb-4">
+                    <!-- <div class="col-sm-6 mb-4">
                         <label class="form-label">Nro. Celular</label>
                         <input class="form-control" placeholder="Ingresa tu nombre." formControlName="phoneClient">
                         <div *ngIf="formPedido.controls['phoneClient'].errors?.required &&
                             formPedido.controls['phoneClient'].touched" class="invalid-feedback">
                             Completar el Nro. Celular.</div>
-                    </div>
+                    </div> -->
 
+                    <!-- Email -->
                     <div class="col-sm-6 mb-4">
                         <label class="form-label">Correo Electrónico</label>
-                        <input class="form-control" placeholder="Ingresa tu nombre." formControlName="emailClient">
-                        <div *ngIf="formPedido.controls['emailClient'].errors?.required &&
-                        formPedido.controls['emailClient'].touched" class="invalid-feedback">
+                        <input class="form-control" placeholder="Ingresa tu nombre." formControlName="email" readonly>
+                        <div *ngIf="formPedido.controls['email'].errors?.required &&
+                        formPedido.controls['email'].touched" class="invalid-feedback">
                             Completar el Correo Electrónico.</div>
                     </div>
 
-                    <div class="col-sm-12 mb-4">
+                    <div class="col-sm-6 mb-4">
                         <label class="form-label">Dirección</label>
-                        <input class="form-control" placeholder="Ingresa tu dirección." formControlName="address">
+                        <input class="form-control" placeholder="Ingresa tu dirección." formControlName="address" readonly>
                         <div *ngIf="formPedido.controls['address'].errors?.required &&
                         formPedido.controls['address'].touched" class="invalid-feedback">
                             Completar la dirección.</div>

@@ -5,8 +5,6 @@ import { SignIn, SignUp } from "../models/auth.model";
 import { ResponseData } from "../models/response.model";
 import { getState, TOKEN_KEY } from "../utils/storage";
 import { JwtHelperService } from "@auth0/angular-jwt";
-import { Observable } from "rxjs";
-import { BaseService } from "./base.service";
 
 const jwtHelper = new JwtHelperService();
 
@@ -14,12 +12,13 @@ const jwtHelper = new JwtHelperService();
     providedIn: 'root'
 })
 
-export class AuthService extends BaseService {
+export class AuthService {
 
     constructor(
         private http: HttpClient
-    ) { super() }
+    ) { }
 
+    // Validar Autenticacion
     public isAuthenticated(): boolean {
         const token = getState(TOKEN_KEY);
         if (!!token) return !jwtHelper.isTokenExpired(token);
@@ -29,21 +28,15 @@ export class AuthService extends BaseService {
     // Iniciar Sesion
     iniciarSesion(signin: SignIn): Promise<any> {
 
-        const options = {
-            headers: this.obtenerHeaders(),
-            observe: "response" as 'body', // to display the full response & as 'body' for type cast
-            responseType: "json"
-        };
-
         const url = `${AUTH_URL}login`
-        return this.http.post<any>(url, signin, { headers: this.obtenerHeaders(), observe: 'response' }).toPromise()
+        return this.http.post<any>(url, signin, { observe: 'response' }).toPromise()
     }
 
     // Registrar Cliente
-    registrarCliente(signup: SignUp): Promise<ResponseData> {
+    registrarCliente(signup: SignUp): Promise<any> {
 
         const url = `${AUTH_URL}signin`
-        return this.http.post<ResponseData>(url, signup).toPromise()
+        return this.http.post<any>(url, signup, { observe: 'response' }).toPromise()
     }
 
 }

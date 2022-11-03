@@ -39,12 +39,33 @@
             <div class="d-flex align-items-center order-lg-3">
                 <ul class="nav nav-tools flex-nowrap">
 
-                    <li class="nav-item d-lg-block d-none mb-0">
-                        <a class="nav-link click fw-normal"
-                            data-bs-toggle="modal" data-bs-target="#modal-auth">
-                            <i class="ci-profile me-1 fs-base align-middle"></i>
+                    <li *ngIf="!user" class="nav-item d-lg-block d-none mb-0">
+                        <a class="nav-link click fw-normal" data-bs-toggle="modal" data-bs-target="#modal-auth">
+                            <i class="ci-profile pb-1 me-1 fs-base align-middle"></i>
                             Iniciar Sesión / Registrarse
                         </a>
+                    </li>
+
+                    <li *ngIf="user" class="nav-item d-lg-block d-none mb-0 dropdown">
+                        <a class="nav-link click fw-normal" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="ci-profile pb-1 me-1 fs-base align-middle"></i>
+                            {{user.name}}
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end">
+                            <button class="dropdown-item d-flex align-items-center" (click)="gotoProfile()">
+                                <i class="ci-profile fs-base me-2"></i>
+                                <span>Mi Perfil</span>
+                            </button>
+                            <button class="dropdown-item d-flex align-items-center">
+                                <i class="ci-bag fs-base me-2"></i>
+                                <span>Mis Pedidos</span>
+                            </button>
+                            <div class="dropdown-divider"></div>
+                            <button class="dropdown-item d-flex align-items-center" (click)="cerrarSesion()">
+                                <i class="ci-logout fs-base me-2"></i>
+                                <span>Cerrar Sesión</span>
+                            </button>
+                        </div>
                     </li>
 
                     <li class="nav-item align-self-center mb-0">

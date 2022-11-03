@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserClient } from 'src/app/core/models/user-client.model';
 import { CarritoService } from 'src/app/core/services/carrito.service';
 import { OrderService } from 'src/app/core/services/order.service';
 import Swal from 'sweetalert2';
@@ -15,7 +16,10 @@ import Swal from 'sweetalert2';
 export class PedidoComponent implements OnInit {
 
     lCarrito: any[] = []
+    user: UserClient
     formPedido: FormGroup
+    tipoDocumento: string
+    urlPorDefecto: string = '../../../../../assets/img/productodefault.jpg'
 
     constructor(
         private _router: Router,
@@ -25,17 +29,17 @@ export class PedidoComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.getCarrito()
         this.crearFormPedido()
+        this.getCarrito()
+        this.getUserData()
     }
 
     crearFormPedido() {
         this.formPedido = this._formBuilder.group({
-            rucClient: [null, [Validators.required]],
-            nameClient: [null, [Validators.required]],
-            phoneClient: [null, [Validators.required]],
-            emailClient: [null, [Validators.required]],
-            address: [null, [Validators.required]],
+            email: [null, []],
+            numberDocument: [null, []],
+            address: [null, []],
+            name: [null, []],
             comments: [null],
         })
     }
@@ -43,6 +47,16 @@ export class PedidoComponent implements OnInit {
     getCarrito() {
         this.lCarrito = this._carritoService.getCarrito()
         console.log(this.lCarrito)
+    }
+
+    getUserData() {
+        let userData = JSON.parse(localStorage.getItem('Usuario'))
+        if (userData) {
+            this.user = userData.data
+            this.formPedido.controls['name'].setValue(this.user.name)
+            this.formPedido.patchValue(this.user.client)
+            this.tipoDocumento = this.user.client.typeDocument
+        }
     }
 
     async registrarPedido() {

@@ -10,47 +10,113 @@
 
     <!-- Body -->
     <div class="modal-body px-md-5 px-4">
+
         <p class="fs-sm text-muted text-center">
             Registrate completando los campos requeridos a continuación.
         </p>
-        <form class="needs-validation" novalidate="">
-            <div class="mb-4">
-                <label for="signup-name" class="form-label-lg">Full name</label>
-                <input type="text" class="form-control" id="signup-name" placeholder="Your full name" required="" />
-            </div>
-            <div class="mb-4">
-                <label for="signup-email" class="form-label-lg">Email</label>
-                <input type="email" class="form-control" id="signup-email" placeholder="Your email address"
-                    required="" />
-            </div>
-            <div class="mb-4">
-                <label class="form-label" for="signup-password">Password</label>
-                <div class="password-toggle">
-                    <input class="form-control" type="password" id="signup-password" />
-                    <label class="password-toggle-btn" aria-label="Show/hide password">
-                        <input class="password-toggle-check" type="checkbox" />
-                        <span class="password-toggle-indicator"></span>
-                    </label>
-                </div>
-            </div>
-            <div class="mb-4">
-                <label class="form-label" for="signup-confirm-password">Password</label>
-                <div class="password-toggle">
-                    <input class="form-control" type="password" id="signup-confirm-password" />
-                    <label class="password-toggle-btn" aria-label="Show/hide password">
-                        <input class="password-toggle-check" type="checkbox" />
-                        <span class="password-toggle-indicator"></span>
-                    </label>
-                </div>
-            </div>
-            
-            <button class="btn btn-primary w-100" type="submit">Registrarse</button>
 
-            <p class="fs-sm pt-4">
-                ¿Ya tienes una cuenta?
-                <a class="fw-bold text-decoration-none" (click)="onClose()">Iniciar Sesión</a>
-            </p>
+        <!-- [formGroup]="formSignUp" -->
+        <form [formGroup]="formSignUp">
+            <div class="row pb-3">
+
+                <!-- Nombres -->
+                <div class="col-sm-6 mb-4">
+                    <label class="form-label">Nombres</label>
+                    <input class="form-control" placeholder="Ingrese su nombre" formControlName="firstName" />
+                </div>
+
+                <!-- Primer Apellido -->
+                <div class="col-sm-6 mb-4">
+                    <label class="form-label">Primer Apellido</label>
+                    <input class="form-control" placeholder="Ingrese su primer apellido" formControlName="lastName" />
+                </div>
+
+                <!-- Segundo Apellido -->
+                <div class="col-sm-6 mb-4">
+                    <label class="form-label">Segundo Apellido</label>
+                    <input class="form-control" placeholder="Ingrese su segundo apellido" formControlName="surName" />
+                </div>
+
+                <!-- Nro Celular -->
+                <div class="col-sm-6 mb-4">
+                    <label class="form-label">Nro. Celular</label>
+                    <input class="form-control" placeholder="Ingrese su nro. celular" formControlName="phone">
+                </div>
+
+                <!-- E-mail -->
+                <div class="col-sm-6 mb-4">
+                    <label class="form-label">E-mail</label>
+                    <input class="form-control" placeholder="Ingrese su correo electrónico" formControlName="email">
+                </div>
+
+                <!-- Contraseña -->
+                <div class="col-sm-6 mb-4">
+                    <label class="form-label-lg">Contraseña</label>
+                    <div class="password-toggle">
+                        <input class="form-control" [type]="hidePassword ? 'password' : 'text'"
+                            placeholder="Ingrese su contraseña" formControlName="password" />
+
+                        <!-- Hide btn password -->
+                        <label class="password-toggle-btn">
+                            <input class="password-toggle-check" type="checkbox"
+                                (click)="hidePassword = !hidePassword" />
+                            <i [class]="hidePassword ? 'ci-eye-closed':'ci-eye'"></i>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Tipo Documento -->
+                <div class="col-sm-6 mb-4">
+                    <label class="form-label">Tipo Documento</label>
+                    <select class="form-select" formControlName="typeDocumentId"
+                        placeholder="Ingrese su correo electrónico">
+                        <option *ngFor="let typedocument of lTypeDocument" [value]="typedocument.id">
+                            {{typedocument.name}}
+                        </option>
+                    </select>
+                </div>
+
+                <!-- Numero Documento -->
+                <div class="col-sm-6 mb-4">
+                    <label class="form-label">Número Documento</label>
+                    <input class="form-control" placeholder="Ingrese su nro. documento"
+                        formControlName="numberDocument">
+                </div>
+
+                <!-- Nombre Compañia -->
+                <div class="col-sm-6 mb-4">
+                    <label class="form-label">Compañia</label>
+                    <input class="form-control" placeholder="Ingrese su compañia" formControlName="companyName">
+                </div>
+
+                <!-- Fecha de nacimiento -->
+                <div class="col-sm-6 mb-4">
+                    <label class="form-label">Fecha Nacimiento</label>
+                    <input type="date" class="form-control" formControlName="bornDate">
+                </div>
+
+                <!-- Direccion -->
+                <div class="col-sm-12 mb-4">
+                    <label class="form-label">Dirección</label>
+                    <input class="form-control" placeholder="Ingrese su dirección" formControlName="address">
+                </div>
+
+            </div>
         </form>
+
+        <button class="btn btn-primary w-100" (click)="registrarCliente()">Registrarse</button>
+
+        <p class="fs-sm pt-4">
+            ¿Ya tienes una cuenta?
+            <a class="fw-bold text-decoration-none" (click)="onCloseModal()">Iniciar Sesión</a>
+        </p>
     </div>
-    
+
 </div>
+
+<alert *ngIf="openModal"
+    [type]="typeModal" 
+    [open]="openModal" 
+    [contenido]="contenidoModal" 
+    (close)="onCloseAlert($event)">
+</alert>

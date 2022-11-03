@@ -7,77 +7,74 @@
             <div class="bg-white rounded mb-4">
 
                 <div class="border-bottom p-4">
-                    <h5 class="card-title mb-1">Diego Rodas</h5>
-                    <p class="card-text text-muted mb-lg-0">diegorodas2008@hotmail.com</p>
+                    <h5 class="card-title mb-1">{{user.name}}</h5>
+                    <p class="card-text text-muted mb-lg-0">{{user.username}}</p>
                 </div>
 
                 <div class="collapse d-lg-block">
                     <div class="list-group list-group-flush border-top">
 
-                        <a href="account-profile.html"
-                            class="list-group-item list-group-item-action d-flex align-items-center active">
+                        <button class="list-group-item list-group-item-action d-flex align-items-center active">
                             <i class="ci-profile fs-lg me-2"></i>
                             <span>Mi Perfil</span>
-                        </a>
+                        </button>
 
-                        <a href="account-orders.html"
-                            class="list-group-item list-group-item-action d-flex align-items-center">
+                        <button class="list-group-item list-group-item-action d-flex align-items-center"
+                            (click)="gotoOrdersxID()">
                             <i class="ci-bag fs-lg me-2"></i>
                             <span>Mis Pedidos</span>
-                        </a>
+                        </button>
 
-                        <a href="#" class="list-group-item list-group-item-action d-flex align-items-center">
+                        <button class="list-group-item list-group-item-action d-flex align-items-center"
+                            (click)="cerrarSesion()">
                             <i class="ci-logout fs-lg me-2"></i>
-                            <span>Sign out</span>
-                        </a>
+                            <span>Cerrar Sesión</span>
+                        </button>
                     </div>
                 </div>
 
             </div>
+
         </aside>
 
         <!-- Datos Perfil -->
         <div class="bg-white rounded col-lg-8 ms-auto p-4">
 
             <h5 class="mb-4">Mi Perfil</h5>
-            <form>
+            <form [formGroup]="formCliente">
                 <div class="row pb-3">
 
-                    <div class="col-sm-6 mb-4">
-                        <label class="form-label">RUC</label>
-                        <input class="form-control" placeholder="Ingresa tu RUC.">
-                    </div>
-
-                    <div class="col-sm-6 mb-4">
+                    <!-- Nombre Completo -->
+                    <div class="col-sm-12 mb-4">
                         <label class="form-label">Nombre</label>
-                        <input class="form-control" placeholder="Ingresa tu nombre.">
+                        <input class="form-control" placeholder="Ingrese su nombre" formControlName="name" readonly>
                     </div>
 
-                    <div class="col-sm-6 mb-4">
-                        <label class="form-label">Nro. Celular</label>
-                        <input class="form-control" placeholder="Ingresa tu nombre.">
+                    <!-- Tipo/Numero Documento -->
+                    <div class="col-sm-12 mb-4">
+                        <label class="form-label">{{tipoDocumento}}</label>
+                        <input class="form-control" placeholder="Ingrese su RUC" formControlName="numberDocument" readonly>
                     </div>
 
-                    <div class="col-sm-6 mb-4">
+                    <!-- Email -->
+                    <div class="col-sm-12 mb-4">
                         <label class="form-label">Correo Electrónico</label>
-                        <input class="form-control" placeholder="Ingresa tu nombre.">
+                        <input class="form-control" placeholder="Ingrese su correo" formControlName="email" readonly>
                     </div>
 
+                    <!-- Direccion -->
                     <div class="col-sm-12 mb-4">
                         <label class="form-label">Dirección</label>
-                        <input class="form-control" placeholder="Ingresa tu dirección.">
-                    </div>
-
-                    <div class="col-sm-12 mb-4">
-                        <label class="form-label">Comentario</label>
-                        <textarea class="form-control" rows="5" placeholder="Ingresa un comentario deseado."></textarea>
+                        <input class="form-control" placeholder="Ingrese su dirección" formControlName="address" readonly>
                     </div>
 
                 </div>
             </form>
 
-            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-
+            <!-- Buttons -->
+            <!-- <div class="col-sm-12 mb-4 text-end">
+                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            </div> -->
         </div>
 
     </div>

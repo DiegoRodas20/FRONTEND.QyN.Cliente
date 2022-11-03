@@ -8,11 +8,13 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { SignUpComponent } from '../modules/client/auth/signup/signup.component';
 import { SignInComponent } from '../modules/client/auth/signin/signin.component';
+import { AlertComponent } from './components/alert/alert.component';
 
 const COMPONENTS = [
     FooterComponent,
     HeaderComponent,
     BreadcrumbComponent,
+    AlertComponent,
     LoaderComponent,
     SignUpComponent,
     SignInComponent,
