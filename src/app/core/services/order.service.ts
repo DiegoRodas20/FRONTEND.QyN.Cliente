@@ -16,7 +16,7 @@ export class OrderService {
     // Registrar Pedido
     registrarPedido(order: RegisterOrder): Promise<Response> {
 
-        const url = `${ORDER_URL}`
+        const url = `${ORDER_URL}/client`
         return this.http.post<Response>(url, order).toPromise()
     }
 

@@ -78,11 +78,8 @@ export class PedidoComponent implements OnInit {
 
         let form = this.formPedido.value
         let Pedido: any = {
+            userId: this.user.id, 
             comments: form.comments,
-            rucClient: form.rucClient,
-            nameClient: form.nameClient,
-            phoneClient: form.phoneClient,
-            emailClient: form.emailClient,
             address: form.address,
             orderDetail: this.lCarrito.map(item => { return { idProduct: item.id, quantity: item.cantidad } })
         }
@@ -91,10 +88,10 @@ export class PedidoComponent implements OnInit {
 
         try {
             let data = await this._orderService.registrarPedido(Pedido)
-            console.log(data)
+            // console.log(data.message)
             Swal.fire({
                 title: '¡Éxito!',
-                text: 'data.message',
+                text: 'Se registro el pedido correctamente.',
                 toast: true,
                 position: 'top-end',
                 icon: 'success',
