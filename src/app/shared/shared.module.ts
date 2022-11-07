@@ -9,16 +9,20 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
 import { SignUpComponent } from '../modules/client/auth/signup/signup.component';
 import { SignInComponent } from '../modules/client/auth/signin/signin.component';
 import { AlertComponent } from './components/alert/alert.component';
+import { ErrorMessageComponent } from './components/error-message/error-message.component';
 
 const COMPONENTS = [
     FooterComponent,
     HeaderComponent,
     BreadcrumbComponent,
+    ShoppingCartComponent,
+    
     AlertComponent,
     LoaderComponent,
+    ErrorMessageComponent,
+
     SignUpComponent,
     SignInComponent,
-    ShoppingCartComponent
 ]
 
 @NgModule({

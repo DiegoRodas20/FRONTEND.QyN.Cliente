@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Alert } from 'src/app/core/models/alert.model';
 import { SignIn } from 'src/app/core/models/auth.model';
 import { ResponseData } from 'src/app/core/models/response.model';
 import { AuthService } from 'src/app/core/services/auth.service';
@@ -8,7 +9,8 @@ import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
     selector: 'app-signin',
-    templateUrl: './signin.component.html'
+    templateUrl: './signin.component.html',
+    styleUrls: ['signin.component.scss'],
 })
 
 export class SignInComponent implements OnInit {
@@ -36,20 +38,22 @@ export class SignInComponent implements OnInit {
 
     crearFormSignIn() {
         this.formSignIn = this._formBuilder.group({
-            userName: [null, [Validators.required]],
+            userName: [null, [Validators.required, Validators.email]],
             password: [null, [Validators.required]],
         })
     }
 
     async iniciarSesion() {
+        this.openModal = false
 
         if (this.formSignIn.invalid) {
 
-            let contenido: any = {
+            let contenido: Alert = {
                 type: 'alert',
                 text: 'Formato inválido, revise los campos porfavor.'
             }
             this.onOpenAlert(contenido)
+            this.formSignIn.markAllAsTouched()
             return
         }
 
@@ -71,7 +75,7 @@ export class SignInComponent implements OnInit {
                 localStorage.setItem('Usuario', usuario)
                 localStorage.setItem('Token', token)
 
-                let contenido: any = {
+                let contenido: Alert = {
                     type: 'success',
                     text: data.body.message
                 }
@@ -90,13 +94,14 @@ export class SignInComponent implements OnInit {
         }
     }
 
-    onOpenAlert(contenido: any) {
+    onOpenAlert(contenido: Alert) {
         this.openModal = true
         this.typeModal = contenido.type
         this.contenidoModal = contenido.text
     }
 
     onCloseAlert(event: boolean) {
+
         this.openModal = event
 
         if (this.typeModal == 'success') {
@@ -109,5 +114,13 @@ export class SignInComponent implements OnInit {
     onCloseModal() {
         this.open = false
         this.close.emit(this.open)
+    }
+
+    prueba(control: string) {
+        if (this.formSignIn.controls[control].touched) {
+            if (this.formSignIn.controls[control].errors) return 'invalid'
+            else return 'valid'
+        }
+        else return ''
     }
 }

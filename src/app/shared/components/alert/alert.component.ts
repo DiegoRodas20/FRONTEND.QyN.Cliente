@@ -1,9 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { alertAnimation } from './alert.animation';
+
 
 @Component({
     selector: 'alert',
     templateUrl: 'alert.component.html',
-    styleUrls: ['alert.component.scss']
+    styleUrls: ['alert.component.scss'],
+    animations: [alertAnimation]
 })
 
 export class AlertComponent implements OnInit {

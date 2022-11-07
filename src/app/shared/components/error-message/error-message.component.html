@@ -1,0 +1,11 @@
+<div *ngIf="formControlError.touched && formControlError.errors" class="invalid-feedback">
+
+    <div *ngIf="formControlError.errors.required" @errorAnimation>
+        Este campo es requerido.
+    </div>
+
+    <div *ngIf="formControlError.errors.email" @errorAnimation>
+        Verificar la dirección del email.
+    </div>
+
+</div>

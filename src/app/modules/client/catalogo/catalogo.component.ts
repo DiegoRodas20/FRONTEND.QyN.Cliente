@@ -5,6 +5,7 @@ import { ProductService } from 'src/app/core/services/product.service';
 import { Product } from 'src/app/core/models/product.model';
 import Swal from 'sweetalert2';
 import { ResponseData } from 'src/app/core/models/response.model';
+import { Alert } from 'src/app/core/models/alert.model';
 
 
 @Component({
@@ -18,6 +19,11 @@ export class CatalogoComponent implements OnInit {
     Mensaje: string
     urlPorDefecto: string = '../../../../../assets/img/productodefault.jpg'
 
+    // Alert Modal
+    typeModal: string
+    openModal: boolean = false
+    contenidoModal: string
+    
     constructor(
         private _router: Router,
         private _productService: ProductService,
@@ -26,6 +32,13 @@ export class CatalogoComponent implements OnInit {
 
     ngOnInit() {
         this.getCatalogoProductos()
+
+        let contenido: Alert = {
+            type: 'success',
+            text: 'Inicio de sesión correcto.'
+        }
+
+        this.onOpenAlert(contenido)
     }
 
     async getCatalogoProductos() {
@@ -94,6 +107,16 @@ export class CatalogoComponent implements OnInit {
     calcularPrecioxCantidad(event, producto) {
         producto.salesPrice = Number(event.target.value) * Number(producto.purchasePrice + 10);
         producto.cantidad = Number(event.target.value)
+    }
+
+    onOpenAlert(contenido: Alert) {
+        this.openModal = true
+        this.typeModal = contenido.type
+        this.contenidoModal = contenido.text
+    }
+
+    onCloseAlert(event: boolean) {
+        this.openModal = event
     }
 
 }

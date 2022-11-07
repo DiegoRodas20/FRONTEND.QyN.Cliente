@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-shell',
@@ -8,28 +7,8 @@ import { Router } from '@angular/router';
 
 export class ShellComponent implements OnInit {
 
-    openloader: boolean
+    constructor() { }
 
-    constructor(
-        private _router: Router
-    ) { }
+    ngOnInit() { }
 
-    ngOnInit() {
-        this.preloader()
-    }
-
-    preloader() {
-
-        this._router.events.subscribe(
-            () => {
-
-                this.openloader = true
-
-                setTimeout(() => {
-                    this.openloader = false
-                }, 2000)
-
-            });
-
-    }
 }

@@ -20,21 +20,22 @@
 
             <div class="mb-4">
                 <label class="form-label-lg">Email</label>
-                <input type="email" class="form-control" placeholder="Ingresa tu email" formControlName="userName" />
+                <input type="email" [class]="'form-control '+ prueba('userName')" placeholder="Ingresa tu email"
+                    formControlName="userName" />
+                <error-message [formControlError]="formSignIn.controls['userName']"></error-message>
             </div>
 
             <div class="mb-4">
                 <label class="form-label-lg">Contraseña</label>
                 <div class="password-toggle">
-                    <input class="form-control" [type]="hidePassword ? 'password' : 'text'"
+                    <input [class]="'form-control '+ prueba('password')" [type]="hidePassword ? 'password' : 'text'"
                         placeholder="Ingresa tu contraseña" formControlName="password" />
-
-                    <!-- Hide btn password -->
                     <label class="password-toggle-btn">
                         <input class="password-toggle-check" type="checkbox" (click)="hidePassword = !hidePassword" />
                         <i [class]="hidePassword ? 'ci-eye-closed':'ci-eye'"></i>
                     </label>
                 </div>
+                <error-message [formControlError]="formSignIn.controls['password']"></error-message>
             </div>
         </form>
 
@@ -52,9 +53,5 @@
 
 </div>
 
-<alert
-    [type]="typeModal" 
-    [open]="openModal" 
-    [contenido]="contenidoModal" 
-    (close)="onCloseAlert($event)">
+<alert [open]="openModal" [type]="typeModal" [contenido]="contenidoModal" (close)="onCloseAlert($event)">
 </alert>
