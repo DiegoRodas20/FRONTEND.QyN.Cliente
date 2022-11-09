@@ -18,12 +18,13 @@ export class CatalogoComponent implements OnInit {
     lCatalogo: Product[] = []
     Mensaje: string
     urlPorDefecto: string = '../../../../../assets/img/productodefault.jpg'
+    showFilter: boolean = true
 
     // Alert Modal
     typeModal: string
     openModal: boolean = false
     contenidoModal: string
-    
+
     constructor(
         private _router: Router,
         private _productService: ProductService,
@@ -117,6 +118,10 @@ export class CatalogoComponent implements OnInit {
 
     onCloseAlert(event: boolean) {
         this.openModal = event
+    }
+
+    showFilters() {
+        this.showFilter = !this.showFilter
     }
 
 }

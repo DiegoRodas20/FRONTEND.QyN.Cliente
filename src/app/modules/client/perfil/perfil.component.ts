@@ -37,6 +37,7 @@ export class PerfilComponent implements OnInit {
 
     getUserData() {
         let userData = JSON.parse(localStorage.getItem('Usuario'))
+        console.log(userData)
         if (userData) {
             this.user = userData.data
             this.formCliente.controls['name'].setValue(this.user.name)

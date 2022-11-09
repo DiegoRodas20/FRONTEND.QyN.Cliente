@@ -18790,7 +18790,7 @@ hr.hr-gradient.hr-light {
 
 .offcanvas-body {
     height: 100%;
-    overflow-y: auto
+    overflow-y: auto;
 }
 
 .offcanvas-body::-webkit-scrollbar {
