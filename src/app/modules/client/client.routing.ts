@@ -3,8 +3,9 @@ import { RouterModule, Routes } from "@angular/router";
 import { CatalogoComponent } from "./catalogo/catalogo.component";
 import { HomeComponent } from "./home/home.component";
 import { PedidoComponent } from "./pedido/pedido.component";
-import { PerfilComponent } from "./perfil/perfil.component";
+import { PerfilComponent } from "./account/perfil/perfil.component";
 import { ShellComponent } from "./shell/shell.component";
+import { PedidosComponent } from "./account/pedidos/pedidos.component";
 
 
 const routes: Routes = [
@@ -28,9 +29,14 @@ const routes: Routes = [
                 data: { titulo: 'Pedido' }
             },
             {
-                path: 'perfil',
+                path: 'miperfil',
                 component: PerfilComponent,
-                data: { titulo: 'Perfil' }
+                data: { titulo: 'Mi Perfil' }
+            },
+            {
+                path: 'mispedidos',
+                component: PedidosComponent,
+                data: { titulo: 'Mis Pedidos' }
             },
         ]
     },

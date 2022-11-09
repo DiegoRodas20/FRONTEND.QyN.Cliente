@@ -46,8 +46,16 @@ export class PerfilComponent implements OnInit {
         }
     }
 
+    gotoProfile() {
+        this._router.navigate(['/miperfil']).then(() => {
+            window.location.reload();
+        })
+    }
+    
     gotoOrdersxID() {
-
+        this._router.navigate(['/mispedidos']).then(() => {
+            window.location.reload();
+        })
     }
 
     gotoHome() {

@@ -14,7 +14,8 @@
                 <div class="collapse d-lg-block">
                     <div class="list-group list-group-flush border-top">
 
-                        <button class="list-group-item list-group-item-action d-flex align-items-center active">
+                        <button class="list-group-item list-group-item-action d-flex align-items-center active"
+                            (click)="gotoProfile()">
                             <i class="ci-profile fs-lg me-2"></i>
                             <span>Mi Perfil</span>
                         </button>
@@ -53,7 +54,8 @@
                     <!-- Tipo/Numero Documento -->
                     <div class="col-sm-12 mb-4">
                         <label class="form-label">{{tipoDocumento}}</label>
-                        <input class="form-control" placeholder="Ingrese su RUC" formControlName="numberDocument" readonly>
+                        <input class="form-control" placeholder="Ingrese su RUC" formControlName="numberDocument"
+                            readonly>
                     </div>
 
                     <!-- Email -->
@@ -65,7 +67,8 @@
                     <!-- Direccion -->
                     <div class="col-sm-12 mb-4">
                         <label class="form-label">Dirección</label>
-                        <input class="form-control" placeholder="Ingrese su dirección" formControlName="address" readonly>
+                        <input class="form-control" placeholder="Ingrese su dirección" formControlName="address"
+                            readonly>
                     </div>
 
                 </div>

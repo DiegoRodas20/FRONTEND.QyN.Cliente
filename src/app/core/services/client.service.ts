@@ -12,9 +12,9 @@ export class ClientService {
 
     constructor(private http: HttpClient) { }
     
-    // Cliente Usuario
+    // Datos de cliente Usuario
     getClientUser(): Observable<ResponseData> {
-        const url = `${CLIENT_URL}`
+        const url = `${CLIENT_URL}/user`
         return this.http.get<ResponseData>(url)
     }
 

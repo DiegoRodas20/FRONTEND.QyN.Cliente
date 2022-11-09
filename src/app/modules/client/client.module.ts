@@ -7,14 +7,16 @@ import { CatalogoComponent } from './catalogo/catalogo.component';
 import { ClientRoutingModule } from './client.routing';
 import { HomeComponent } from './home/home.component';
 import { PedidoComponent } from './pedido/pedido.component';
-import { PerfilComponent } from './perfil/perfil.component';
+import { PerfilComponent } from './account/perfil/perfil.component';
 import { ShellComponent } from './shell/shell.component';
+import { PedidosComponent } from './account/pedidos/pedidos.component';
 
 const COMPONENTS = [
     HomeComponent,
     CatalogoComponent,
     PedidoComponent,
     PerfilComponent,
+    PedidosComponent,
     ShellComponent
 ]
 
