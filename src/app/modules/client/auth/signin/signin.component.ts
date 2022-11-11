@@ -5,12 +5,13 @@ import { Alert } from 'src/app/core/models/alert.model';
 import { SignIn } from 'src/app/core/models/auth.model';
 import { ResponseData } from 'src/app/core/models/response.model';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { alertAnimation } from 'src/app/shared/components/alert/alert.animation';
 
 
 @Component({
     selector: 'app-signin',
     templateUrl: './signin.component.html',
-    styleUrls: ['signin.component.scss'],
+    styleUrls: ['signin.component.scss']
 })
 
 export class SignInComponent implements OnInit {
@@ -112,6 +113,10 @@ export class SignInComponent implements OnInit {
     }
 
     onCloseModal() {
+        this.formSignIn.reset()
+    }
+
+    onOpenSignupModal() {
         this.open = false
         this.close.emit(this.open)
     }

@@ -177,8 +177,12 @@ export class SignUpComponent implements OnInit {
         }
     }
 
-    onCloseModal() {
+    onOpenSigninModal() {
         this.open = false
         this.close.emit(this.open)
+    }
+
+    onCloseModal() {
+        this.formSignUp.reset()
     }
 }

@@ -69,7 +69,7 @@ export class HeaderComponent implements OnInit {
         })
     }
 
-    modalAuth(modalAuth: boolean) {
+    closeModalAuth(modalAuth: boolean) {
         this.openSignIn = modalAuth
         this.openSignUp = !modalAuth
     }

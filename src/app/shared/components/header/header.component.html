@@ -88,8 +88,8 @@
 <div class="modal fade" id="modal-auth" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content border-0">
-            <app-signin [open]="openSignIn" (close)="modalAuth($event)"></app-signin>
-            <app-signup [open]="openSignUp" (close)="modalAuth(!$event)"></app-signup>
+            <app-signin *ngIf="openSignIn" (close)="closeModalAuth($event)"></app-signin>
+            <app-signup *ngIf="openSignUp" (close)="closeModalAuth(!$event)"></app-signup>
         </div>
     </div>
 </div>

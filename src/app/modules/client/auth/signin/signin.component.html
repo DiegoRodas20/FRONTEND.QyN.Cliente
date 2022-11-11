@@ -1,11 +1,11 @@
 <!-- Signin form -->
-<div *ngIf="open" class="view show">
+<div class="view show">
 
     <!-- Header -->
     <div class="modal-header border-0 pb-0 px-md-5 px-4 d-block position-relative">
         <h3 class="modal-title mt-4 mb-0 text-center">Iniciar Sesión</h3>
         <button type="button" class="btn-close position-absolute" style="top: 1.5rem; right: 1.5rem"
-            data-bs-dismiss="modal" aria-label="Close"></button>
+            data-bs-dismiss="modal" aria-label="Close" (click)="onCloseModal()"></button>
     </div>
 
     <!-- Body -->
@@ -40,18 +40,22 @@
         </form>
 
         <div class="d-flex justify-content-end align-items-center mb-4">
-            <a href="#" class="fs-sm text-decoration-none">¿Olvidaste tu contraseña?</a>
+            <a class="fs-sm text-decoration-none">¿Olvidaste tu contraseña?</a>
         </div>
 
         <button type="submit" class="btn btn-primary w-100" (click)="iniciarSesion()">Ingresar</button>
         <p class="fs-sm pt-4">
             ¿No tienes una cuenta?
-            <a class="fw-bold text-decoration-none" (click)="onCloseModal()">
+            <a class="fw-bold text-decoration-none" (click)="onOpenSignupModal()">
                 Registrate</a>
         </p>
     </div>
 
 </div>
 
-<alert [open]="openModal" [type]="typeModal" [contenido]="contenidoModal" (close)="onCloseAlert($event)">
+<alert
+    *ngIf="openModal"
+    [type]="typeModal" 
+    [contenido]="contenidoModal" 
+    (close)="onCloseAlert($event)">
 </alert>

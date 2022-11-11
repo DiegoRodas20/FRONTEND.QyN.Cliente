@@ -31,8 +31,7 @@ export class AlertComponent implements OnInit {
     }
 
     onClose() {
-        this.open = false
-        this.close.emit(this.open)
+        this.close.emit(false)
     }
 
     colorAlert(typeAlert: string) {

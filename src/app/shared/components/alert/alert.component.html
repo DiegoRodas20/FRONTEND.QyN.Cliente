@@ -1,4 +1,4 @@
-<div *ngIf="open" @alertAnimation [class]="'alert d-flex alert-dismissible ' + colorAlert(type)">
+<div @alertAnimation [class]="'alert d-flex alert-dismissible ' + colorAlert(type)">
     <i [class]="'lead me-3 ' + iconAlert(type)"></i>
     <div><span class="fw-bold"> {{ titleAlert(type) }}: </span> {{contenido}} </div>
     <button type="button" class="btn-close" (click)="onClose()" aria-label="Close"></button>
