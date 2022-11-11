@@ -8,6 +8,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { LocalStorageService } from './core/services/local-storage.service';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
+import { ErrorInterceptorService } from './core/interceptors/error.interceptor';
+import { LoaderInterceptorService } from './core/interceptors/loader.interceptor';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import { AuthInterceptor } from './core/interceptors/auth.interceptor';
   providers: [
     LocalStorageService,
     { provide: "WINDOW", useValue: window },
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    // { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptorService, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptorService, multi: true }
   ],
   bootstrap: [AppComponent]
 })

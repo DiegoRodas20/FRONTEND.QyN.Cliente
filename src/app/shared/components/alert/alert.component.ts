@@ -24,6 +24,10 @@ export class AlertComponent implements OnInit {
         this.timerClose()
     }
 
+    ngOnDestroy() {
+        console.log('ALERT COMPONENT DESTROY')
+    }
+
     timerClose() {
         setTimeout(() => {
             this.onClose()

@@ -1,5 +1,4 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject } from "rxjs";
 
 @Injectable({
     providedIn: 'root'
@@ -7,8 +6,22 @@ import { BehaviorSubject } from "rxjs";
 
 export class LoaderService {
 
-    public isLoading: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false)
-    
-    constructor() { }
+    private _opened: boolean
+
+    constructor() {
+        this._opened = true
+    }
+
+    open() {
+        this._opened = true
+    }
+
+    close() {
+        this._opened = false
+    }
+
+    get opened() {
+        return this._opened
+    }
 
 }

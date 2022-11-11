@@ -22,38 +22,43 @@
                 <!-- Nombres -->
                 <div class="col-sm-6 mb-4">
                     <label class="form-label">Nombres</label>
-                    <input class="form-control" placeholder="Ingrese su nombre" formControlName="firstName" />
+                    <input [class]="'form-control '+ cssValidate('firstName')" placeholder="Ingrese su nombre" formControlName="firstName" />
+                    <error-message class="form-label" [formControlError]="formSignUp.controls['firstName']"></error-message>
                 </div>
 
                 <!-- Primer Apellido -->
                 <div class="col-sm-6 mb-4">
                     <label class="form-label">Primer Apellido</label>
-                    <input class="form-control" placeholder="Ingrese su primer apellido" formControlName="lastName" />
+                    <input [class]="'form-control '+ cssValidate('lastName')" placeholder="Ingrese su primer apellido" formControlName="lastName" />
+                    <error-message class="form-label" [formControlError]="formSignUp.controls['lastName']"></error-message>
                 </div>
 
                 <!-- Segundo Apellido -->
                 <div class="col-sm-6 mb-4">
                     <label class="form-label">Segundo Apellido</label>
-                    <input class="form-control" placeholder="Ingrese su segundo apellido" formControlName="surName" />
+                    <input [class]="'form-control '+ cssValidate('surName')" placeholder="Ingrese su segundo apellido" formControlName="surName" />
+                    <error-message class="form-label" [formControlError]="formSignUp.controls['surName']"></error-message>
                 </div>
 
                 <!-- Nro Celular -->
                 <div class="col-sm-6 mb-4">
                     <label class="form-label">Nro. Celular</label>
-                    <input class="form-control" placeholder="Ingrese su nro. celular" formControlName="phone">
+                    <input [class]="'form-control '+ cssValidate('phone')" placeholder="Ingrese su nro. celular" formControlName="phone">
+                    <error-message class="form-label" [formControlError]="formSignUp.controls['phone']"></error-message>
                 </div>
 
                 <!-- E-mail -->
                 <div class="col-sm-6 mb-4">
                     <label class="form-label">E-mail</label>
-                    <input class="form-control" placeholder="Ingrese su correo electrónico" formControlName="email">
+                    <input [class]="'form-control '+ cssValidate('email')" placeholder="Ingrese su correo electrónico" formControlName="email">
+                    <error-message class="form-label" [formControlError]="formSignUp.controls['email']"></error-message>
                 </div>
 
                 <!-- Contraseña -->
                 <div class="col-sm-6 mb-4">
                     <label class="form-label-lg">Contraseña</label>
                     <div class="password-toggle">
-                        <input class="form-control" [type]="hidePassword ? 'password' : 'text'"
+                        <input [class]="'form-control '+ cssValidate('password')" [type]="hidePassword ? 'password' : 'text'"
                             placeholder="Ingrese su contraseña" formControlName="password" />
 
                         <!-- Hide btn password -->
@@ -63,42 +68,48 @@
                             <i [class]="hidePassword ? 'ci-eye-closed':'ci-eye'"></i>
                         </label>
                     </div>
+                    <error-message class="form-label" [formControlError]="formSignUp.controls['password']"></error-message>
                 </div>
 
                 <!-- Tipo Documento -->
                 <div class="col-sm-6 mb-4">
                     <label class="form-label">Tipo Documento</label>
-                    <select class="form-select" formControlName="typeDocumentId"
+                    <select [class]="'form-select '+ cssValidate('typeDocumentId')" formControlName="typeDocumentId"
                         placeholder="Ingrese su correo electrónico">
                         <option *ngFor="let typedocument of lTypeDocument" [value]="typedocument.id">
                             {{typedocument.name}}
                         </option>
                     </select>
+                    <error-message class="form-label" [formControlError]="formSignUp.controls['typeDocumentId']"></error-message>
                 </div>
 
                 <!-- Numero Documento -->
                 <div class="col-sm-6 mb-4">
                     <label class="form-label">Número Documento</label>
-                    <input class="form-control" placeholder="Ingrese su nro. documento"
+                    <input [class]="'form-control '+ cssValidate('numberDocument')" placeholder="Ingrese su nro. documento"
                         formControlName="numberDocument">
+                    <error-message class="form-label" [formControlError]="formSignUp.controls['numberDocument']"></error-message>
                 </div>
 
                 <!-- Nombre Compañia -->
                 <div class="col-sm-6 mb-4">
                     <label class="form-label">Compañia</label>
-                    <input class="form-control" placeholder="Ingrese su compañia" formControlName="companyName">
+                    <input [class]="'form-control '+ cssValidate('companyName')" placeholder="Ingrese su compañia" formControlName="companyName">
+                    <error-message class="form-label" [formControlError]="formSignUp.controls['companyName']"></error-message>
                 </div>
 
                 <!-- Fecha de nacimiento -->
                 <div class="col-sm-6 mb-4">
                     <label class="form-label">Fecha Nacimiento</label>
-                    <input type="date" class="form-control" formControlName="bornDate">
+                    <input type="date" [class]="'form-control '+ cssValidate('bornDate')" formControlName="bornDate">
+                    <error-message class="form-label" [formControlError]="formSignUp.controls['bornDate']"></error-message>
                 </div>
 
                 <!-- Direccion -->
                 <div class="col-sm-12 mb-4">
                     <label class="form-label">Dirección</label>
-                    <input class="form-control" placeholder="Ingrese su dirección" formControlName="address">
+                    <input [class]="'form-control '+ cssValidate('address')" placeholder="Ingrese su dirección" formControlName="address">
+                    <error-message class="form-label" [formControlError]="formSignUp.controls['address']"></error-message>
                 </div>
 
             </div>
@@ -113,10 +124,3 @@
     </div>
 
 </div>
-
-<!-- <alert *ngIf="openModal"
-    [type]="typeModal" 
-    [open]="openModal" 
-    [contenido]="contenidoModal" 
-    (close)="onCloseAlert($event)">
-</alert> -->

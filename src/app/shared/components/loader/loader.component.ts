@@ -12,7 +12,8 @@ import { loaderAnimation } from './loader.animation';
 
 export class LoaderComponent implements OnInit {
 
-    open: boolean
+    @Input() open: boolean
+    @Output() close = new EventEmitter<boolean>();
 
     constructor(
         private _router: Router
@@ -24,7 +25,8 @@ export class LoaderComponent implements OnInit {
             if (event instanceof NavigationStart) this.open = true
 
             setTimeout(() => {
-                if (event instanceof NavigationEnd) this.open = false
+                if (event instanceof NavigationEnd) this.close.emit(false)
+
             }, 2000)
 
         })

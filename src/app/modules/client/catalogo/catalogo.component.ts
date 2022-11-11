@@ -36,7 +36,7 @@ export class CatalogoComponent implements OnInit {
 
         let contenido: Alert = {
             type: 'success',
-            text: 'Inicio de sesión correcto.'
+            contenido: 'Inicio de sesión correcto.'
         }
 
         this.onOpenAlert(contenido)
@@ -113,7 +113,7 @@ export class CatalogoComponent implements OnInit {
     onOpenAlert(contenido: Alert) {
         this.openModal = true
         this.typeModal = contenido.type
-        this.contenidoModal = contenido.text
+        this.contenidoModal = contenido.contenido
     }
 
     onCloseAlert(event: boolean) {

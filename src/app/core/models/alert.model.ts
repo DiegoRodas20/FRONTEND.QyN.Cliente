@@ -1,4 +1,4 @@
 export interface Alert {
-    type: string,
-    text: string
+    type: 'success' | 'error' | 'alert',
+    contenido: string
 }

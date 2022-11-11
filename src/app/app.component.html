@@ -1,2 +1,15 @@
 <router-outlet></router-outlet>
-<app-loader></app-loader>
+
+<!-- Loader -->
+<app-loader 
+    *ngIf="loaderService.opened"
+    (close)="loaderService.close()">
+</app-loader>
+
+<!-- Alerta aplicacion -->
+<alert 
+    *ngIf="alertService.opened" 
+    [type]="alertService.typeModal" 
+    [contenido]="alertService.contenidoModal"
+    (close)="alertService.close()">
+</alert>

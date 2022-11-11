@@ -6,12 +6,12 @@ import { SignIn } from 'src/app/core/models/auth.model';
 import { ResponseData } from 'src/app/core/models/response.model';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { alertAnimation } from 'src/app/shared/components/alert/alert.animation';
+import { AlertService } from 'src/app/shared/components/alert/alert.service';
 
 
 @Component({
     selector: 'app-signin',
-    templateUrl: './signin.component.html',
-    styleUrls: ['signin.component.scss']
+    templateUrl: './signin.component.html'
 })
 
 export class SignInComponent implements OnInit {
@@ -22,15 +22,11 @@ export class SignInComponent implements OnInit {
     hidePassword: boolean = true
     formSignIn: FormGroup
 
-    // Alert Modal
-    typeModal: string
-    openModal: boolean = false
-    contenidoModal: string
-
     constructor(
         private _router: Router,
         private _formBuilder: FormBuilder,
-        private _authService: AuthService
+        private _authService: AuthService,
+        private _alertService: AlertService
     ) { }
 
     ngOnInit() {
@@ -45,15 +41,14 @@ export class SignInComponent implements OnInit {
     }
 
     async iniciarSesion() {
-        this.openModal = false
 
         if (this.formSignIn.invalid) {
 
             let contenido: Alert = {
                 type: 'alert',
-                text: 'Formato inválido, revise los campos porfavor.'
+                contenido: 'Formato inválido, revise los campos porfavor.'
             }
-            this.onOpenAlert(contenido)
+            this._alertService.open(contenido)
             this.formSignIn.markAllAsTouched()
             return
         }
@@ -78,37 +73,22 @@ export class SignInComponent implements OnInit {
 
                 let contenido: Alert = {
                     type: 'success',
-                    text: data.body.message
+                    contenido: data.body.message
                 }
-
-                this.onOpenAlert(contenido)
+                this._alertService.open(contenido)
+                
+                this._router.navigate(['/catalogo']).then(() => {
+                    window.location.reload();
+                })
             }
         }
 
         catch (error) {
-            let contenido: any = {
+            let contenido: Alert = {
                 type: 'error',
-                text: error.error.error
+                contenido: error.error.error
             }
-
-            this.onOpenAlert(contenido)
-        }
-    }
-
-    onOpenAlert(contenido: Alert) {
-        this.openModal = true
-        this.typeModal = contenido.type
-        this.contenidoModal = contenido.text
-    }
-
-    onCloseAlert(event: boolean) {
-
-        this.openModal = event
-
-        if (this.typeModal == 'success') {
-            this._router.navigate(['/catalogo']).then(() => {
-                window.location.reload();
-            })
+            this._alertService.open(contenido)
         }
     }
 
@@ -121,7 +101,7 @@ export class SignInComponent implements OnInit {
         this.close.emit(this.open)
     }
 
-    prueba(control: string) {
+    cssValidate(control: string) {
         if (this.formSignIn.controls[control].touched) {
             if (this.formSignIn.controls[control].errors) return 'invalid'
             else return 'valid'
