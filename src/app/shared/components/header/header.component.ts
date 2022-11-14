@@ -42,7 +42,7 @@ export class HeaderComponent implements OnInit {
         this._localStorage.watch('Carrito').subscribe(
             (result) => {
                 if (result) {
-                    this.cantidadProductos = JSON.parse(result).length
+                    this.cantidadProductos = result.length
                 }
                 else {
                     this.cantidadProductos = 0

@@ -402,7 +402,7 @@
                         <!-- Imagen -->
                         <div class="card-product-img text-center">
                             <a class="card-img-top">
-                                <img [src]="producto.urlImage == '' ? urlPorDefecto : producto.urlImage" class=" pt-3">
+                                <img [src]="producto.urlImage" class=" pt-3">
                             </a>
                             <div class="card-product-widgets-top">
                                 <div class="star-rating ms-auto">
@@ -414,8 +414,9 @@
                                 </div>
                             </div>
                             <div class="card-product-widgets-bottom">
-                                <a class="btn-wishlist ms-auto" data-bs-toggle="tooltip" data-bs-placement="left"
-                                    aria-label="Add to wishlist"></a>
+                                <a class="btn-wishlist ms-auto click" (mouseenter)="tooltip = !tooltip"
+                                    (mouseleave)="tooltip = !tooltip"></a>
+                                <tooltip [open]="tooltip" [contenido]="'Agregar a favoritos'"></tooltip>
                             </div>
                         </div>
 
@@ -435,7 +436,9 @@
 
                                 <div class="col-md-12 pb-3">
                                     Precio Venta - <span class="fw-bold text-danger">
-                                        S/.{{producto.salesPrice | number : '1.2-2'}}
+                                        S/.{{producto.carritoPrice == null ? producto.salesPrice : producto.carritoPrice
+                                        |
+                                        number : '1.2-2'}}
                                     </span>
                                 </div>
 
@@ -499,6 +502,3 @@
         </div>
     </div>
 </section>
-
-<!-- <alert [open]="openModal" [type]="typeModal" [contenido]="contenidoModal" (close)="onCloseAlert($event)">
-</alert> -->

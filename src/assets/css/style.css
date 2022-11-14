@@ -6999,9 +6999,10 @@ fieldset:disabled .btn {
     word-spacing: normal;
     white-space: normal;
     line-break: auto;
-    font-size: 0.875rem;
+    font-size: 0.8rem;
     word-wrap: break-word;
-    opacity: 0
+    opacity: 0;
+    transform: translateX(-50%);
 }
 
 .tooltip.show {
@@ -20190,7 +20191,7 @@ _:-ms-lang(x),
     width: 2rem;
     height: 2rem;
     line-height: 2rem;
-    background-color: #fff;
+    background-color: #f1f5f9;
     color: #787a80;
     transition: background-color .3s, color .3s;
     text-decoration: none;

@@ -30,7 +30,7 @@
                     <li class="nav-item">
                         <a class="nav-link click" (click)="gotoCatalogo()">Catalogo</a>
                     </li>
-
+                    
                 </ul>
 
             </nav>
@@ -48,10 +48,11 @@
 
                     <li *ngIf="user" class="nav-item d-lg-block d-none mb-0 dropdown">
                         <a class="nav-link click fw-normal" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="../../../../assets/img/noelia.jpg" class="d-inline-block rounded-circle mx-3" width="40" alt="Image alt">
+                            <img src="../../../../assets/img/noelia.jpg" class="d-inline-block rounded-circle mx-3"
+                                width="40" alt="Image alt">
                             {{user.name}}
                         </a>
-                        <div class="dropdown-menu dropdown-menu-end">
+                        <div class="dropdown-menu dropdown-menu-end end-0">
                             <button class="dropdown-item d-flex align-items-center" (click)="gotoProfile()">
                                 <i class="ci-profile fs-base me-2"></i>
                                 <span>Mi Perfil</span>
@@ -68,8 +69,9 @@
                         </div>
                     </li>
 
+                    <!-- Carrito de compras -->
                     <li class="nav-item align-self-center mb-0">
-                        <a class="nav-tool pe-lg-0 cart-icon" data-bs-toggle="offcanvas" data-bs-target="#cart">
+                        <a class="nav-tool pe-lg-0 cart-icon click" data-bs-toggle="offcanvas" data-bs-target="#cart">
                             <i class="ci-cart nav-tool-icon"></i>
                             <span class="badge bg-success align-middle mt-n1 ms-2 px-2 py-1 fs-xs">
                                 {{ cantidadProductos }}

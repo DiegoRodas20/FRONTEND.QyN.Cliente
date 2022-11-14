@@ -1,3 +1,4 @@
+import { isNull } from '@angular/compiler/src/output/output_ast';
 import { Injectable } from '@angular/core';
 import { Product } from '../models/product.model';
 import { LocalStorageService } from './local-storage.service';
@@ -16,55 +17,53 @@ export class CarritoService {
     ) { }
 
     getCarrito() {
-        if (this._localStorage.get('Carrito')) {
-            this.lCarrito = JSON.parse(this._localStorage.get('Carrito'))
+
+        // Carrito sin productos
+        if (!this._localStorage.get('Carrito')) {
             return this.lCarrito
         }
+
+        // Carrito con productos
         else {
+            this.lCarrito = this._localStorage.get('Carrito')
             return this.lCarrito
         }
     }
 
-    addCarrito(productoCarrito: Product) {
+    addCarrito(producto: Product) {
 
-        let carritoStorage: Product[] = []
+        // Carrito sin productos
+        if (!this._localStorage.get('Carrito')) {
 
-        if (this._localStorage.get('Carrito') === null) {
-            this.lCarrito.push(productoCarrito)
-            carritoStorage.push(productoCarrito)
-            this._localStorage.set('Carrito', JSON.stringify(carritoStorage))
-
-            return 1
+            this.lCarrito.push(producto)
+            this._localStorage.set('Carrito', this.lCarrito)
+            return true
         }
-        else {
-            carritoStorage = JSON.parse(this._localStorage.get('Carrito'))
 
-            for (let producto of carritoStorage) {
-                if (producto.id == productoCarrito.id) {
-                    return 0
+        // Carrito con productos
+        else {
+            this.lCarrito = this._localStorage.get('Carrito')
+
+            // ¿Producto ingresante ya existe en el carrito?
+            for (let item of this.lCarrito) {
+                if (item.id == producto.id) {
+                    return false
                 }
             }
 
-            this.lCarrito.push(productoCarrito)
-            carritoStorage.push(productoCarrito)
-            this._localStorage.set('Carrito', JSON.stringify(carritoStorage))
-            return 1
+            this.lCarrito.push(producto)
+            this._localStorage.set('Carrito', this.lCarrito)
+            return true
         }
-
     }
 
-    deleteCarrito(productoCarrito: Product) {
-
-        for (let index = 0; index < this.lCarrito.length; index++) {
-            if (productoCarrito == this.lCarrito[index]) {
-                this.lCarrito.splice(index, 1)
-                this._localStorage.set('Carrito', JSON.stringify(this.lCarrito))
-            }
-        }
-
+    deleteCarrito(productoId: number) {
+        const filteredCarrito = this.lCarrito.filter((item) => item.id !== productoId)
+        this._localStorage.set('Carrito', filteredCarrito)
+        this.lCarrito = filteredCarrito
     }
 
-    getSubTotal(lCarrito) {
+    getSubTotal(lCarrito: Product[]) {
 
         let montoCarrito = 0
 

@@ -1,31 +1,46 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { Alert } from 'src/app/core/models/alert.model';
+import { Product } from 'src/app/core/models/product.model';
 import { CarritoService } from 'src/app/core/services/carrito.service';
+import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import Swal from 'sweetalert2';
+import { AlertService } from '../alert/alert.service';
 
 
 @Component({
     selector: 'app-shopping-cart',
-    templateUrl: './shopping-cart.component.html'
+    templateUrl: './shopping-cart.component.html',
+    styleUrls: ['./shopping-cart.component.scss']
 })
 
 export class ShoppingCartComponent implements OnInit {
 
-    lCarrito: any[] = []
-    openlogin: boolean = false
+    lCarrito: Product[] = []
     urlPorDefecto: string = '../../../../../assets/img/productodefault.jpg'
 
     constructor(
         private _router: Router,
         private _carritoService: CarritoService,
+        private _localStorage: LocalStorageService,
+        private _alertService: AlertService
     ) { }
 
     ngOnInit() {
-        this.getCarrito()
+        this.observableCarrito()
     }
 
-    getCarrito() {
-        this.lCarrito = this._carritoService.getCarrito()
+    observableCarrito() {
+        this._localStorage.watch('Carrito').subscribe(
+            (result) => {
+                if (result) {
+                    this.lCarrito = result
+                }
+                else {
+                    this.lCarrito
+                }
+            }
+        )
     }
 
     getSubTotal() {
@@ -33,34 +48,45 @@ export class ShoppingCartComponent implements OnInit {
         return subTotal
     }
 
-    deleteCarrito(carrito) {
-        this._carritoService.deleteCarrito(carrito)
-        this.getCarrito()
-        if (!this.lCarrito.length) {
-            this._router.navigate(['/catalogo'])
-            return
-        }
-    }
-    
-    registrarPedido() {
+    deleteCarrito(productoId: number) {
+
+        this._carritoService.deleteCarrito(productoId)
 
         if (!this.lCarrito.length) {
-            Swal.fire({
-                title: '¡Atención!',
-                text: 'No tiene productos en su carrito de compras',
-                toast: true,
-                position: 'top-end',
-                icon: 'warning',
-                timer: 4000,
-                showCloseButton: true,
-                showConfirmButton: false
-            }).then((result) => {
-                this._router.navigate(['/catalogo'])
+            this._router.navigate(['/catalogo']).then(() => {
+                window.location.reload();
             })
             return
         }
+    }
 
-        this._router.navigate(['/pedido'])
+    registrarPedido() {
+
+        if (!this.lCarrito.length) {
+
+            let contenido: Alert = {
+                type: 'alert',
+                contenido: 'No tiene productos en su carrito de compras'
+            }
+
+            this._alertService.open(contenido)
+            return
+        }
+
+        else if (!localStorage.getItem('Usuario')) {
+
+            let contenido: Alert = {
+                type: 'alert',
+                contenido: 'Debe iniciar su sesión'
+            }
+
+            this._alertService.open(contenido)
+            return
+        }
+
+        this._router.navigate(['/pedido']).then(() => {
+            window.location.reload();
+        })
     }
 
 }

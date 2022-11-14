@@ -11,13 +11,13 @@
     <div class="offcanvas-body">
 
         <!-- Item -->
-        <div *ngFor="let producto of lCarrito" class="d-flex align-items-start p-4 border-bottom mx-n4">
+        <div *ngFor="let producto of lCarrito" class="d-flex align-items-center p-4 border-bottom mx-n4">
 
             <a class="image-item">
                 <img [src]="producto.urlImage == '' ? urlPorDefecto : producto.urlImage" width="80" alt="Product thumb">
             </a>
 
-            <div class="w-100 ps-3">
+            <div class="w-100">
                 <div class="d-flex justify-content-between">
                     <div class="w-100 px-2">
 
@@ -28,17 +28,17 @@
                         <ul class="list-unstyled fs-xs mt-n2 mb-2">
                             <li class="mb-0"><span class="text-muted">Código: </span>{{producto.code}}</li>
                             <li class="mb-0"><span class="text-muted">Categoría: </span>{{producto.type}}</li>
-                            <li class="mb-0"><span class="text-muted">Cantidad: </span>{{producto.cantidad}}</li>
+                            <li class="mb-0"><span class="text-muted">Cantidad: </span>{{producto.quantity}}</li>
                         </ul>
 
                         <div class="d-flex align-items-center">
                             <div class="text-nowrap sizeCost">
-                                <strong class="text-danger">S/.{{ producto.salesPrice | number : '1.2-2' }} </strong>
+                                <strong class="text-danger">S/.{{ producto.carritoPrice | number : '1.2-2' }} </strong>
                             </div>
                         </div>
                     </div>
                     <div class="nav-muted me-n2 align-self-center">
-                        <a (click)="deleteCarrito(producto)" class="nav-link px-2 mt-n2" data-bs-toggle="tooltip"
+                        <a (click)="deleteCarrito(producto.id)" class="nav-link px-2 mt-n2" data-bs-toggle="tooltip"
                             title="Remove">
                             <i class="ci-delete"></i>
                         </a>

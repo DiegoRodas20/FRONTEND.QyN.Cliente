@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Product } from 'src/app/core/models/product.model';
 import { UserClient } from 'src/app/core/models/user-client.model';
 import { CarritoService } from 'src/app/core/services/carrito.service';
 import { OrderService } from 'src/app/core/services/order.service';
 import Swal from 'sweetalert2';
+declare var tns;
 
 
 @Component({
@@ -15,23 +17,35 @@ import Swal from 'sweetalert2';
 
 export class PedidoComponent implements OnInit {
 
-    lCarrito: any[] = []
+    lCarrito: Product[] = []
     user: UserClient
     formPedido: FormGroup
     tipoDocumento: string
-    urlPorDefecto: string = '../../../../../assets/img/productodefault.jpg'
 
     constructor(
-        private _router: Router,
-        private _orderService: OrderService,
         private _carritoService: CarritoService,
         private _formBuilder: FormBuilder,
+        private _orderService: OrderService,
+        private _router: Router
     ) { }
 
     ngOnInit() {
         this.crearFormPedido()
         this.getCarrito()
         this.getUserData()
+        this.animationSlider()
+    }
+
+    animationSlider() {
+        setTimeout(() => {
+
+            // Hero Slider
+            tns({
+                container: '.tns-carousel-inner',
+                controlsText: ['<i class="ci-arrow-left"></i>', '<i class="ci-arrow-right"></i>'],
+                axis: "vertical"
+            });
+        }, 500);
     }
 
     crearFormPedido() {
@@ -78,10 +92,10 @@ export class PedidoComponent implements OnInit {
 
         let form = this.formPedido.value
         let Pedido: any = {
-            userId: this.user.id, 
+            userId: this.user.id,
             comments: form.comments,
             address: form.address,
-            orderDetail: this.lCarrito.map(item => { return { idProduct: item.id, quantity: item.cantidad } })
+            orderDetail: this.lCarrito.map(item => { return { idProduct: item.id, quantity: item.quantity } })
         }
 
         console.log(Pedido)

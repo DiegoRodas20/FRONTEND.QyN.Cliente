@@ -9,82 +9,97 @@
 
             <hr class="border-top-0 border-bottom mb-4">
 
-            <!-- Resumen de Pedido -->
-            <h5 class="mb-4">1. Resumen de Pedido</h5>
-            <div class="bg-secondary rounded mb-5">
+            <!-- Vertical slider + Controls visible on hover -->
+            <div class="tns-carousel-wrapper tns-controls-onhover">
+                <div class="tns-carousel-inner" data-carousel-options=''>
 
-                <!-- Item -->
-                <div *ngFor="let producto of lCarrito" class="d-flex align-items-start px-2 px-sm-4 py-4 border-bottom">
+                    <!-- Carousel item -->
+                    <div>
+                        <!-- Resumen de Pedido -->
+                        <h5 class="mb-4">1. Resumen de Pedido</h5>
+                        <div class="bg-secondary rounded mb-5">
 
-                    <a class="image-item">
-                        <img [src]="producto.urlImage == '' ? urlPorDefecto : producto.urlImage" width="80"
-                            alt="Product thumb">
-                    </a>
+                            <!-- Item -->
+                            <div *ngFor="let producto of lCarrito"
+                                class="d-flex align-items-start px-2 px-sm-4 py-4 border-bottom">
 
-                    <div class="w-100 ps-3">
-                        <div class="d-sm-flex">
+                                <a class="image-item">
+                                    <img [src]="producto.urlImage" width="80" alt="Product thumb">
+                                </a>
 
-                            <div class="px-2 w-100" style="max-width: 16rem;">
+                                <div class="w-100 ps-3">
+                                    <div class="d-sm-flex">
 
-                                <h3 class="fs-sm mb-3">
-                                    <a class="nav-link fw-bold">{{producto.name}}</a>
-                                </h3>
+                                        <div class="px-2 w-100" style="max-width: 16rem;">
 
-                                <ul class="list-unstyled fs-xs mt-n2 mb-2">
-                                    <li class="mb-0"><span class="text-muted">Código:</span> {{producto.code}}</li>
-                                    <li class="mb-0"><span class="text-muted">Categoría:</span> {{producto.type}}
-                                    </li>
-                                    <li class="mb-0"><span class="text-muted">Cantidad:</span> {{producto.cantidad}}
-                                    </li>
-                                </ul>
+                                            <h3 class="fs-sm mb-3">
+                                                <a class="nav-link fw-bold">{{producto.name}}</a>
+                                            </h3>
 
+                                            <ul class="list-unstyled fs-xs mt-n2 mb-2">
+                                                <li class="mb-0"><span class="text-muted">Código:</span>
+                                                    {{producto.code}}</li>
+                                                <li class="mb-0"><span class="text-muted">Categoría:</span>
+                                                    {{producto.type}}
+                                                </li>
+                                                <li class="mb-0"><span class="text-muted">Cantidad:</span>
+                                                    {{producto.quantity}}
+                                                </li>
+                                            </ul>
+
+                                        </div>
+
+                                        <div class="text-end align-items-start align-self-center pe-sm-3 w-100">
+                                            <div class="text-nowrap pt-2">
+                                                <strong class="text-danger">S/.{{producto.salesPrice | number :
+                                                    '1.2-2'}}
+                                                </strong>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="text-end align-items-start align-self-center pe-sm-3 w-100">
-                                <div class="text-nowrap pt-2">
-                                    <strong class="text-danger">S/.{{producto.salesPrice | number : '1.2-2'}}
-                                    </strong>
-                                </div>
+                            <!-- Subtotal -->
+                            <div class="px-3 px-sm-4 py-4 text-end">
+                                <span class="text-muted">Subtotal:
+                                    <strong class="text-dark fs-lg ms-2">S/. {{getSubTotal() | number :
+                                        '1.2-2'}}</strong>
+                                </span>
                             </div>
 
                         </div>
                     </div>
-                </div>
 
-                <!-- Subtotal -->
-                <div class="px-3 px-sm-4 py-4 text-end">
-                    <span class="text-muted">Subtotal:
-                        <strong class="text-dark fs-lg ms-2">S/. {{getSubTotal() | number : '1.2-2'}}</strong>
-                    </span>
-                </div>
+                    <!-- Carousel item -->
+                    <div>
+                        <!-- Información del Pedido -->
+                        <h5 class="mb-4">2. Información del Pedido</h5>
+                        <form [formGroup]="formPedido">
+                            <div class="row pb-3">
 
-            </div>
-
-            <!-- Información del Pedido -->
-            <h5 class="mb-4">2. Información del Pedido</h5>
-            <form [formGroup]="formPedido">
-                <div class="row pb-3">
-
-                    <!-- Documento -->
-                    <div class="col-sm-6 mb-4">
-                        <label class="form-label">{{tipoDocumento}}</label>
-                        <input class="form-control" [placeholder]="'Ingrese su '+ tipoDocumento "
-                            formControlName="numberDocument" readonly>
-                        <div *ngIf="formPedido.controls['numberDocument'].errors?.required &&
+                                <!-- Documento -->
+                                <div class="col-sm-6 mb-4">
+                                    <label class="form-label">{{tipoDocumento}}</label>
+                                    <input class="form-control" [placeholder]="'Ingrese su '+ tipoDocumento "
+                                        formControlName="numberDocument" readonly>
+                                    <div *ngIf="formPedido.controls['numberDocument'].errors?.required &&
                         formPedido.controls['numberDocument'].touched" class="invalid-feedback">
-                            Completar el {{tipoDocumento}}.</div>
-                    </div>
+                                        Completar el {{tipoDocumento}}.</div>
+                                </div>
 
-                    <!-- Nombre -->
-                    <div class="col-sm-6 mb-4">
-                        <label class="form-label">Nombre</label>
-                        <input class="form-control" placeholder="Ingrese su nombre." formControlName="name" readonly>
-                        <div *ngIf="formPedido.controls['name'].errors?.required &&
+                                <!-- Nombre -->
+                                <div class="col-sm-6 mb-4">
+                                    <label class="form-label">Nombre</label>
+                                    <input class="form-control" placeholder="Ingrese su nombre." formControlName="name"
+                                        readonly>
+                                    <div *ngIf="formPedido.controls['name'].errors?.required &&
                             formPedido.controls['name'].touched" class="invalid-feedback">
-                            Completar el Nombre.</div>
-                    </div>
+                                        Completar el Nombre.</div>
+                                </div>
 
-                    <!-- <div class="col-sm-6 mb-4">
+                                <!-- <div class="col-sm-6 mb-4">
                         <label class="form-label">Nro. Celular</label>
                         <input class="form-control" placeholder="Ingresa tu nombre." formControlName="phoneClient">
                         <div *ngIf="formPedido.controls['phoneClient'].errors?.required &&
@@ -92,31 +107,38 @@
                             Completar el Nro. Celular.</div>
                     </div> -->
 
-                    <!-- Email -->
-                    <div class="col-sm-6 mb-4">
-                        <label class="form-label">Correo Electrónico</label>
-                        <input class="form-control" placeholder="Ingresa tu nombre." formControlName="email" readonly>
-                        <div *ngIf="formPedido.controls['email'].errors?.required &&
+                                <!-- Email -->
+                                <div class="col-sm-6 mb-4">
+                                    <label class="form-label">Correo Electrónico</label>
+                                    <input class="form-control" placeholder="Ingresa tu nombre." formControlName="email"
+                                        readonly>
+                                    <div *ngIf="formPedido.controls['email'].errors?.required &&
                         formPedido.controls['email'].touched" class="invalid-feedback">
-                            Completar el Correo Electrónico.</div>
-                    </div>
+                                        Completar el Correo Electrónico.</div>
+                                </div>
 
-                    <div class="col-sm-6 mb-4">
-                        <label class="form-label">Dirección</label>
-                        <input class="form-control" placeholder="Ingresa tu dirección." formControlName="address" readonly>
-                        <div *ngIf="formPedido.controls['address'].errors?.required &&
+                                <div class="col-sm-6 mb-4">
+                                    <label class="form-label">Dirección</label>
+                                    <input class="form-control" placeholder="Ingresa tu dirección."
+                                        formControlName="address" readonly>
+                                    <div *ngIf="formPedido.controls['address'].errors?.required &&
                         formPedido.controls['address'].touched" class="invalid-feedback">
-                            Completar la dirección.</div>
-                    </div>
+                                        Completar la dirección.</div>
+                                </div>
 
-                    <div class="col-sm-12 mb-4">
-                        <label class="form-label">Comentario</label>
-                        <textarea class="form-control" rows="5" placeholder="Ingresa un comentario deseado."
-                            formControlName="comments"></textarea>
-                    </div>
+                                <div class="col-sm-12 mb-4">
+                                    <label class="form-label">Comentario</label>
+                                    <textarea class="form-control" rows="5" placeholder="Ingresa un comentario deseado."
+                                        formControlName="comments"></textarea>
+                                </div>
 
+                            </div>
+                        </form>
+                    </div>
+                    
                 </div>
-            </form>
+            </div>
+
 
         </div>
 

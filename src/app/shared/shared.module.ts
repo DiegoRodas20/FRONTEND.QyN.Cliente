@@ -10,6 +10,7 @@ import { SignUpComponent } from '../modules/client/auth/signup/signup.component'
 import { SignInComponent } from '../modules/client/auth/signin/signin.component';
 import { AlertComponent } from './components/alert/alert.component';
 import { ErrorMessageComponent } from './components/error-message/error-message.component';
+import { ToolTipComponent } from './components/tooltip/tooltip.component';
 
 const COMPONENTS = [
     FooterComponent,
@@ -20,6 +21,7 @@ const COMPONENTS = [
     AlertComponent,
     LoaderComponent,
     ErrorMessageComponent,
+    ToolTipComponent,
 
     SignUpComponent,
     SignInComponent,

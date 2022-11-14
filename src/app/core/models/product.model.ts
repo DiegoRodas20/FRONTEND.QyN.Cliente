@@ -5,19 +5,6 @@ export interface Product {
     type: string,
     quantity: number,
     salesPrice: number,
-    urlImage: string,
-    showInCatalog: boolean
+    carritoPrice: number,
+    urlImage: string
 }
-
-// export interface Producto {
-//     id: number,
-//     code: string,
-//     name: string,
-//     type: string,
-//     salesPrice: number,
-//     purchasePrice: number,
-//     stock: number,
-//     showInCatalog: boolean,
-//     urlImage: string,
-//     cantidad: number
-// }
