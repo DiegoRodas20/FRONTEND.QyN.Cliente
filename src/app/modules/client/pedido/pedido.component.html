@@ -7,14 +7,14 @@
                 <h3 class="mb-0">Pedido</h3>
             </div>
 
-            <hr class="border-top-0 border-bottom mb-4">
+            <hr class="border-top-0 border-bottom">
 
             <!-- Vertical slider + Controls visible on hover -->
-            <div class="tns-carousel-wrapper tns-controls-onhover">
+            <div class="tns-carousel-wrapper tns-controls-outside">
                 <div class="tns-carousel-inner" data-carousel-options=''>
 
                     <!-- Carousel item -->
-                    <div>
+                    <div class="align-self-center pt-4">
                         <!-- Resumen de Pedido -->
                         <h5 class="mb-4">1. Resumen de Pedido</h5>
                         <div class="bg-secondary rounded mb-5">
@@ -73,7 +73,7 @@
                     </div>
 
                     <!-- Carousel item -->
-                    <div>
+                    <div class="align-self-center">
                         <!-- Información del Pedido -->
                         <h5 class="mb-4">2. Información del Pedido</h5>
                         <form [formGroup]="formPedido">
@@ -135,11 +135,9 @@
                             </div>
                         </form>
                     </div>
-                    
+
                 </div>
             </div>
-
-
         </div>
 
         <!-- Order totals (sticky sidebar) -->

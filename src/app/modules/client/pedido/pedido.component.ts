@@ -43,7 +43,9 @@ export class PedidoComponent implements OnInit {
             tns({
                 container: '.tns-carousel-inner',
                 controlsText: ['<i class="ci-arrow-left"></i>', '<i class="ci-arrow-right"></i>'],
-                axis: "vertical"
+                nav: false,
+                gutter: 15
+                // axis: "vertical"
             });
         }, 500);
     }
