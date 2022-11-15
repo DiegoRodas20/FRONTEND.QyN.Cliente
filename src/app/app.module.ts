@@ -27,7 +27,7 @@ import { LoaderInterceptorService } from './core/interceptors/loader.interceptor
   providers: [
     LocalStorageService,
     { provide: "WINDOW", useValue: window },
-    // { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptorService, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptorService, multi: true }
   ],
