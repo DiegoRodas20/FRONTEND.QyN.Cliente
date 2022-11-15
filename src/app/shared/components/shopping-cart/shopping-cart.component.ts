@@ -49,7 +49,8 @@ export class ShoppingCartComponent implements OnInit {
     }
 
     deleteCarrito(productoId: number) {
-
+        debugger
+        
         this._carritoService.deleteCarrito(productoId)
 
         if (!this.lCarrito.length) {

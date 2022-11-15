@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Product } from 'src/app/core/models/product.model';
 import { UserClient } from 'src/app/core/models/user-client.model';
 import { CarritoService } from 'src/app/core/services/carrito.service';
+import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { OrderService } from 'src/app/core/services/order.service';
 import Swal from 'sweetalert2';
 declare var tns;
@@ -26,28 +27,29 @@ export class PedidoComponent implements OnInit {
         private _carritoService: CarritoService,
         private _formBuilder: FormBuilder,
         private _orderService: OrderService,
+        private _localStorage: LocalStorageService,
         private _router: Router
     ) { }
 
     ngOnInit() {
         this.crearFormPedido()
-        this.getCarrito()
+        // this.getCarrito()
+        this.observableCarrito()
         this.getUserData()
         this.animationSlider()
     }
 
-    animationSlider() {
-        setTimeout(() => {
-
-            // Hero Slider
-            tns({
-                container: '.tns-carousel-inner',
-                controlsText: ['<i class="ci-arrow-left"></i>', '<i class="ci-arrow-right"></i>'],
-                nav: false,
-                gutter: 15
-                // axis: "vertical"
-            });
-        }, 500);
+    observableCarrito() {
+        this._localStorage.watch('Carrito').subscribe(
+            (result) => {
+                if (result) {
+                    this.lCarrito = result
+                }
+                else {
+                    this.lCarrito
+                }
+            }
+        )
     }
 
     crearFormPedido() {
@@ -119,6 +121,7 @@ export class PedidoComponent implements OnInit {
                 this._router.navigate(['/catalogo'])
             })
         }
+        
         catch (error) {
 
             let mensajeprueba = "";
@@ -152,6 +155,21 @@ export class PedidoComponent implements OnInit {
     getMontoTotal() {
         let montoTotal = this.getSubTotal() + (this.getSubTotal() * 0.18)
         return montoTotal
+    }
+
+    animationSlider() {
+        setTimeout(() => {
+
+            // Hero Slider
+            tns({
+                container: '.tns-carousel-inner',
+                controlsText: ['<i class="ci-arrow-left"></i>', '<i class="ci-arrow-right"></i>'],
+                nav: false,
+                gutter: 15,
+                loop: false
+                // axis: "vertical"
+            });
+        }, 500);
     }
 
 }

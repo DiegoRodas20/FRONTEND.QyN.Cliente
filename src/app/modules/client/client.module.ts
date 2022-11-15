@@ -6,17 +6,22 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { CatalogoComponent } from './catalogo/catalogo.component';
 import { ClientRoutingModule } from './client.routing';
 import { HomeComponent } from './home/home.component';
-import { PedidoComponent } from './pedido/pedido.component';
-import { PerfilComponent } from './account/perfil/perfil.component';
+import { MiPerfilComponent } from './account/miperfil/miperfil.component';
 import { ShellComponent } from './shell/shell.component';
-import { PedidosComponent } from './account/pedidos/pedidos.component';
+import { MisPedidosComponent } from './account/mispedidos/mispedidos.component';
+import { MenuPerfilComponent } from './account/menu-perfil/menu-perfil.component';
+import { PedidoComponent } from './pedido/pedido.component';
 
 const COMPONENTS = [
     HomeComponent,
     CatalogoComponent,
     PedidoComponent,
-    PerfilComponent,
-    PedidosComponent,
+    
+    // Account
+    MenuPerfilComponent,
+    MisPedidosComponent,
+    MiPerfilComponent,
+
     ShellComponent
 ]
 

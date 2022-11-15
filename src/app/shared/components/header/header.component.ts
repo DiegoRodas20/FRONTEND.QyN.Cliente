@@ -64,7 +64,7 @@ export class HeaderComponent implements OnInit {
     }
 
     gotoProfile() {
-        this._router.navigate(['/miperfil']).then(() => {
+        this._router.navigate(['/micuenta']).then(() => {
             window.location.reload();
         })
     }

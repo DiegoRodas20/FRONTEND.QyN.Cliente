@@ -3,9 +3,10 @@ import { RouterModule, Routes } from "@angular/router";
 import { CatalogoComponent } from "./catalogo/catalogo.component";
 import { HomeComponent } from "./home/home.component";
 import { PedidoComponent } from "./pedido/pedido.component";
-import { PerfilComponent } from "./account/perfil/perfil.component";
+import { MiPerfilComponent } from "./account/miperfil/miperfil.component";
 import { ShellComponent } from "./shell/shell.component";
-import { PedidosComponent } from "./account/pedidos/pedidos.component";
+import { MisPedidosComponent } from "./account/mispedidos/mispedidos.component";
+import { MenuPerfilComponent } from "./account/menu-perfil/menu-perfil.component";
 
 
 const routes: Routes = [
@@ -29,14 +30,9 @@ const routes: Routes = [
                 data: { titulo: 'Pedido' }
             },
             {
-                path: 'miperfil',
-                component: PerfilComponent,
-                data: { titulo: 'Mi Perfil' }
-            },
-            {
-                path: 'mispedidos',
-                component: PedidosComponent,
-                data: { titulo: 'Mis Pedidos' }
+                path: 'micuenta',
+                component: MenuPerfilComponent,
+                data: { titulo: 'Mi Cuenta' }
             },
         ]
     },

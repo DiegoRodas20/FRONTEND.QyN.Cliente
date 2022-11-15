@@ -58,9 +58,9 @@ export class CarritoService {
     }
 
     deleteCarrito(productoId: number) {
+        this.lCarrito = this._localStorage.get('Carrito')
         const filteredCarrito = this.lCarrito.filter((item) => item.id !== productoId)
         this._localStorage.set('Carrito', filteredCarrito)
-        this.lCarrito = filteredCarrito
     }
 
     getSubTotal(lCarrito: Product[]) {

@@ -1,0 +1,41 @@
+<!-- Datos Perfil -->
+<div>
+    <div class="d-flex align-items-center justify-content-between mb-4">
+        <h3 class="mb-0">Mi Perfil</h3>
+    </div>
+
+    <form [formGroup]="formCliente">
+        <div class="row pb-3">
+
+            <!-- Nombre Completo -->
+            <div class="col-sm-12 mb-4">
+                <label class="form-label">Nombre</label>
+                <input class="form-control" placeholder="Ingrese su nombre" formControlName="name" readonly>
+            </div>
+
+            <!-- Tipo/Numero Documento -->
+            <div class="col-sm-12 mb-4">
+                <label class="form-label">{{tipoDocumento}}</label>
+                <input class="form-control" placeholder="Ingrese su RUC" formControlName="numberDocument" readonly>
+            </div>
+
+            <!-- Email -->
+            <div class="col-sm-12 mb-4">
+                <label class="form-label">Correo Electrónico</label>
+                <input class="form-control" placeholder="Ingrese su correo" formControlName="email" readonly>
+            </div>
+
+            <!-- Direccion -->
+            <div class="col-sm-12 mb-4">
+                <label class="form-label">Dirección</label>
+                <input class="form-control" placeholder="Ingrese su dirección" formControlName="address" readonly>
+            </div>
+
+        </div>
+    </form>
+
+    <!-- Buttons -->
+    <!-- <div class="col-sm-12 mb-4 text-end">
+                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            </div> -->
+</div>
