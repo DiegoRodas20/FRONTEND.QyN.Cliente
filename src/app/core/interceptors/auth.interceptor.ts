@@ -22,15 +22,6 @@ export class AuthInterceptor {
         req = req.clone({ headers: req.headers.set('Accept', 'application/json') });
 
         return next.handle(req)
-            .pipe(
-                catchError((error: HttpErrorResponse) => {
-                    // Catching Error Stage
-                    if (error && error.status === 401) {
-                        localStorage.clear()
-                        this.router.navigate(['/login']);
-                    }
-                    return throwError(error); // any further errors are returned to frontend                    
-                })
-            );
+            .pipe();
     }
 }
