@@ -4,3 +4,14 @@ export interface Client {
     numberDocument: string,
     typeDocument: string,
 }
+
+export interface UpdateClient {
+    id: number,
+    typeDocumentId: number,
+    numberDocument: number,
+    name: string,
+    area: string,
+    phone: string,
+    email: string,
+    address: string
+}

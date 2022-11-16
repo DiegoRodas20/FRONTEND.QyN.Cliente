@@ -1,41 +1,65 @@
 <!-- Datos Perfil -->
 <div>
     <div class="d-flex align-items-center justify-content-between mb-4">
-        <h3 class="mb-0">Mi Perfil</h3>
+        <h4 class="mb-0">Mi Perfil</h4>
     </div>
 
     <form [formGroup]="formCliente">
         <div class="row pb-3">
 
             <!-- Nombre Completo -->
-            <div class="col-sm-12 mb-4">
+            <div class="col-sm-6 mb-4">
                 <label class="form-label">Nombre</label>
-                <input class="form-control" placeholder="Ingrese su nombre" formControlName="name" readonly>
+                <input class="form-control" placeholder="Ingrese su nombre" formControlName="userName" readonly>
+            </div>
+
+            <!-- Cliente/Compañia -->
+            <div class="col-sm-6 mb-4">
+                <label class="form-label">Compañia</label>
+                <input [class]="'form-control '+ cssValidate('name')" placeholder="Ingrese su compañia" formControlName="name">
+                <error-message [formControlError]="formCliente.controls['name']"></error-message>
             </div>
 
             <!-- Tipo/Numero Documento -->
-            <div class="col-sm-12 mb-4">
+            <div class="col-sm-6 mb-4">
                 <label class="form-label">{{tipoDocumento}}</label>
-                <input class="form-control" placeholder="Ingrese su RUC" formControlName="numberDocument" readonly>
+                <input [class]="'form-control '+ cssValidate('numberDocument')" placeholder="Ingrese su RUC" formControlName="numberDocument">
+                <error-message [formControlError]="formCliente.controls['numberDocument']"></error-message>
             </div>
 
             <!-- Email -->
-            <div class="col-sm-12 mb-4">
+            <div class="col-sm-6 mb-4">
                 <label class="form-label">Correo Electrónico</label>
-                <input class="form-control" placeholder="Ingrese su correo" formControlName="email" readonly>
+                <input [class]="'form-control '+ cssValidate('email')" placeholder="Ingrese su correo" formControlName="email">
+                <error-message [formControlError]="formCliente.controls['email']"></error-message>
+            </div>
+
+            <!-- Numero Telefono -->
+            <div class="col-sm-6 mb-4">
+                <label class="form-label">Número Telefono</label>
+                <input [class]="'form-control '+ cssValidate('phone')" placeholder="Ingrese su numero" formControlName="phone">
+                <error-message [formControlError]="formCliente.controls['phone']"></error-message>
+            </div>
+
+            <!-- Area -->
+            <div class="col-sm-6 mb-4">
+                <label class="form-label">Área</label>
+                <input [class]="'form-control '+ cssValidate('area')" placeholder="Ingrese su area" formControlName="area">
+                <error-message [formControlError]="formCliente.controls['area']"></error-message>
             </div>
 
             <!-- Direccion -->
             <div class="col-sm-12 mb-4">
                 <label class="form-label">Dirección</label>
-                <input class="form-control" placeholder="Ingrese su dirección" formControlName="address" readonly>
+                <input  [class]="'form-control '+ cssValidate('address')" placeholder="Ingrese su dirección" formControlName="address">
+                <error-message [formControlError]="formCliente.controls['address']"></error-message>
             </div>
 
         </div>
     </form>
 
     <!-- Buttons -->
-    <!-- <div class="col-sm-12 mb-4 text-end">
-                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-            </div> -->
+    <div class="col-sm-12 mb-2 text-end">
+        <button class="btn btn-primary" (click)="actualizarCliente()">Guardar Cambios</button>
+    </div>
 </div>

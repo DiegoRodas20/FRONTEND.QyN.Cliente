@@ -1,72 +1,76 @@
 <!-- Mis Pedidos -->
-<div class="col-lg-8 ms-auto">
-
-    <div class="d-flex align-items-center justify-content-between mb-4 pb-sm-2">
-        <h1 class="h2 mb-0">Mis Pedidos</h1>
+<div>
+    <div class="d-flex align-items-center justify-content-between mb-4">
+        <h4 class="mb-0">Mis Pedidos</h4>
     </div>
 
     <!-- Orders accordion -->
-    <div class="accordion accordion-alt " id="orders">
+    <div class="accordion accordion-alt" id="orders">
 
-        <!-- Order -->
-        <div *ngFor="let pedidos of PedidosCliente" class="accordion-item">
+        <!-- Item Order -->
+        <div *ngFor="let pedido of PedidosCliente; let i = index" class="accordion-item">
+
+            <!-- Cabecera Order -->
             <h6 class="accordion-header" id="order-heading-1">
                 <button
                     class="accordion-button accordion-button-indicator-0 flex-wrap justify-content-between fw-normal py-3 fw-normal border-bottom-0"
-                    type="button" data-bs-toggle="collapse" data-bs-target="#order-collapse-1" aria-expanded="true"
-                    aria-controls="order-collapse-1">
-                    <span class="pe-2">Nro. {{pedidos.id}}</span>
+                    data-bs-toggle="collapse" [attr.data-bs-target]="'#order-'+ i" aria-expanded="true">
+                    <span class="pe-2">Nro. {{pedido.id}}</span>
                     <span class="fs-sm text-muted text-nowrap px-2">
                         <i class="ci-clock fs-base align-middle mt-n1 me-1"></i>
-                        {{pedidos.estimatedDate | date}}
+                        {{pedido.estimatedDate | date}}
                     </span>
-                    <span class="badge bg-info text-white">{{pedidos.orderStatus}}</span>
-                    <span class="text-dark ps-1">{{pedidos.address}}</span>
+                    <span class="badge bg-info text-white">{{pedido.orderStatus}}</span>
+                    <span class="text-dark fw-bold ps-1">S/.{{getMontoTotal(pedido) | number : '1.2-2'}}</span>
                 </button>
             </h6>
-            <div class="accordion-collapse collapse show" id="order-collapse-1" aria-labelledby="order-heading-1"
-                data-bs-parent="#orders">
+
+            <!-- Productos Order -->
+            <div class="accordion-collapse collapse" [id]="'order-'+ i" data-bs-parent="#orders">
                 <div class="accordion-body py-0">
                     <div class="bg-secondary rounded mb-4">
                         <div class="table-responsive">
                             <table class="table mb-0">
                                 <tbody>
-                                    <tr *ngFor="let producto of pedidos.orderDetails">
+                                    <tr *ngFor="let producto of pedido.orderDetails">
                                         <td class="border-top-0">
-                                            <div class="d-flex align-items-start ps-2 py-2">
-                                                <a href="shop-single.html" style="min-width: 80px;">
+                                            <div class="d-flex align-items-center ps-2 py-2">
+                                                <a class="image-item">
                                                     <img [src]="producto.urlImage" width="80" alt="Product thumb">
                                                 </a>
                                                 <div class="ps-3">
                                                     <h3 class="fs-sm mb-3">
-                                                        <a href="shop-single.html"
-                                                            class="nav-link fw-bold">{{producto.name}}</a>
+                                                        <a class="nav-link fw-bold">{{producto.name}}</a>
                                                     </h3>
                                                     <ul class="list-unstyled fs-xs mt-n2 mb-2">
-                                                        <li class="mb-0"><span class="text-muted">Categoría:</span>
-                                                            {{producto.type}}</li>
+                                                        <li class="mb-0">
+                                                            <span class="text-muted">Categoría:</span>
+                                                            {{producto.type}}
+                                                        </li>
                                                     </ul>
                                                 </div>
                                             </div>
                                         </td>
                                         <td class="border-top-0">
                                             <div class="py-2">
-                                                <div class="fs-xs text-muted mb-1">Precio:</div>
-                                                <div class="fs-sm text-dark">S/. {{producto.salesPrice | number
-                                                    : '1.2-2'}}</div>
+                                                <div class="fs-xs text-muted mb-1">Precio</div>
+                                                <div class="fs-sm text-dark">
+                                                    S/. {{producto.salesPrice | number : '1.2-2'}}
+                                                </div>
                                             </div>
                                         </td>
                                         <td class="border-top-0">
                                             <div class="py-2">
-                                                <div class="fs-xs text-muted mb-1">Cantidad:</div>
+                                                <div class="fs-xs text-muted mb-1">Cantidad</div>
                                                 <div class="fs-sm text-dark">{{producto.quantity}}</div>
                                             </div>
                                         </td>
                                         <td class="border-top-0">
                                             <div class="py-2 pe-3 text-end">
-                                                <div class="fs-xs text-muted mb-1">Subtotal:</div>
-                                                <div class="fs-sm fw-bold text-dark">S/. {{producto.salesPrice *
-                                                    producto.quantity | number : '1.2-2'}}</div>
+                                                <div class="fs-xs text-muted mb-1">Subtotal</div>
+                                                <div class="fs-sm fw-bold text-dark">
+                                                    S/. {{producto.salesPrice * producto.quantity | number : '1.2-2'}}
+                                                </div>
                                             </div>
                                         </td>
                                     </tr>
@@ -91,9 +95,10 @@
                                         </td>
                                         <td>
                                             <div class="py-2 pe-3 text-end">
-                                                <span class="fs-xs text-muted">Total: </span>
-                                                <span class="fs-sm fw-bold text-dark">S/.{{getSubTotal() |
-                                                    number : '1.2-2'}} </span>
+                                                <span class="fs-xs text-muted">Total:</span>
+                                                <span class="fs-sm fw-bold text-dark">
+                                                    S/.{{getMontoTotal(pedido) | number : '1.2-2'}}
+                                                </span>
                                             </div>
                                         </td>
                                     </tr>
@@ -106,5 +111,4 @@
         </div>
 
     </div>
-
 </div>

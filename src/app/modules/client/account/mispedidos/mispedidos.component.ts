@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Order } from 'src/app/core/models/order.model';
 import { ResponseData } from 'src/app/core/models/response.model';
 import { UserClient } from 'src/app/core/models/user-client.model';
 import { ClientService } from 'src/app/core/services/client.service';
@@ -41,6 +42,7 @@ export class MisPedidosComponent implements OnInit {
     async getPedidosCliente() {
         try {
             const data: ResponseData = await this._orderService.getPedidosxCliente().toPromise()
+            console.log('PEDIDO', data)
             this.PedidosCliente = data.data
 
             console.log(data)
@@ -50,7 +52,7 @@ export class MisPedidosComponent implements OnInit {
             console.log("Error: ", error)
         }
     }
-    
+
     gotoProfile() {
         this._router.navigate(['/miperfil']).then(() => {
             window.location.reload();
@@ -74,17 +76,12 @@ export class MisPedidosComponent implements OnInit {
         this.gotoHome()
     }
 
-    getSubTotal() {
-        let montoCarrito = 0
-
-        if (this.PedidosCliente.length > 0) {
-            for (let producto of this.PedidosCliente) {
-                for(let product of producto.orderDetails){
-                    montoCarrito = montoCarrito + product.salesPrice
-                }
-            }
+    getMontoTotal(pedido: Order) {
+        let montoPedido = 0
+        for (let producto of pedido.orderDetails) {
+            montoPedido = montoPedido + (producto.salesPrice * producto.quantity)
         }
-        return montoCarrito
+        return montoPedido
     }
 
 }

@@ -117,11 +117,10 @@ export class PedidoComponent implements OnInit {
                 showCloseButton: true,
                 showConfirmButton: false
             }).then((result) => {
-                localStorage.clear()
                 this._router.navigate(['/catalogo'])
             })
         }
-        
+
         catch (error) {
 
             let mensajeprueba = "";
