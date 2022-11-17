@@ -28,6 +28,7 @@ export class OrderTrackingComponent implements OnInit {
 
     ngOnInit() {
         this.openMapBox()
+        this.testMarker()
         this.getHistorialPedido()
     }
 
@@ -39,6 +40,10 @@ export class OrderTrackingComponent implements OnInit {
             .catch((err) => {
                 console.log('******* ERROR ******', err);
             });
+    }
+
+    testMarker(): void {
+        this._mapService.addMarkerCustom([-12.14387067094536, -76.98475274903164]);
     }
 
     async getHistorialPedido() {

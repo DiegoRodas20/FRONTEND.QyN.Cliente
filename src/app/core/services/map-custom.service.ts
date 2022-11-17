@@ -12,7 +12,7 @@ export class MapService {
     mapbox = (mapboxgl as typeof mapboxgl);
     map: mapboxgl.Map;
     style = 'mapbox://styles/mapbox/streets-v11';
-    lat =  -12.14387067094536;
+    lat = -12.14387067094536;
     lng = -76.98475274903164;
     zoom = 14;
     wayPoints: Array<any> = [];
@@ -42,5 +42,18 @@ export class MapService {
             }
         });
     }
+
+    addMarkerCustom(coords): void {
+        const el = document.createElement('div');
+        el.className = 'marker';
+        if (!this.markerDriver) {
+            this.markerDriver = new mapboxgl.Marker(el);
+        } else {
+            this.markerDriver
+                .setLngLat(coords)
+                .addTo(this.map);
+        }
+    }
+
 
 }
