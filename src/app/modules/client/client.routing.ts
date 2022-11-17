@@ -7,6 +7,7 @@ import { MiPerfilComponent } from "./account/miperfil/miperfil.component";
 import { ShellComponent } from "./shell/shell.component";
 import { MisPedidosComponent } from "./account/mispedidos/mispedidos.component";
 import { MenuPerfilComponent } from "./account/menu-perfil/menu-perfil.component";
+import { OrderTrackingComponent } from "./order-tracking/order-tracking.component";
 
 
 const routes: Routes = [
@@ -34,6 +35,11 @@ const routes: Routes = [
                 component: MenuPerfilComponent,
                 data: { titulo: 'Mi Cuenta' }
             },
+            {
+                path: 'order-tracking/:id',
+                component: OrderTrackingComponent,
+                data: { titulo: 'Order Tracking' }
+            }
         ]
     },
     {

@@ -28,8 +28,9 @@
             <div class="mb-4">
                 <label class="form-label-lg">Contraseña</label>
                 <div class="password-toggle">
-                    <input [class]="'form-control '+ cssValidate('password')" [type]="hidePassword ? 'password' : 'text'"
-                        placeholder="Ingresa tu contraseña" formControlName="password" />
+                    <input [class]="'form-control '+ cssValidate('password')"
+                        [type]="hidePassword ? 'password' : 'text'" placeholder="Ingresa tu contraseña"
+                        formControlName="password" />
                     <label class="password-toggle-btn">
                         <input class="password-toggle-check" type="checkbox" (click)="hidePassword = !hidePassword" />
                         <i [class]="hidePassword ? 'ci-eye-closed':'ci-eye'"></i>
@@ -40,13 +41,14 @@
         </form>
 
         <div class="d-flex justify-content-end align-items-center mb-4">
-            <a class="fs-sm text-decoration-none click">¿Olvidaste tu contraseña?</a>
+            <a class="fs-sm text-decoration-none click" (click)="openChangePasswordModal()">¿Olvidaste tu
+                contraseña?</a>
         </div>
 
         <button type="submit" class="btn btn-primary w-100" (click)="iniciarSesion()">Ingresar</button>
         <p class="fs-sm pt-4">
             ¿No tienes una cuenta?
-            <a class="fw-bold text-decoration-none click" (click)="onOpenSignupModal()">
+            <a class="fw-bold text-decoration-none click" (click)="openSignupModal()">
                 Registrate
             </a>
         </p>

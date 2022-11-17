@@ -11,6 +11,7 @@ import { SignInComponent } from '../modules/client/auth/signin/signin.component'
 import { AlertComponent } from './components/alert/alert.component';
 import { ErrorMessageComponent } from './components/error-message/error-message.component';
 import { ToolTipComponent } from './components/tooltip/tooltip.component';
+import { ChangePasswordComponent } from '../modules/client/auth/change-password/change-password.component';
 
 const COMPONENTS = [
     FooterComponent,
@@ -23,8 +24,10 @@ const COMPONENTS = [
     ErrorMessageComponent,
     ToolTipComponent,
 
+    // Auth Components
     SignUpComponent,
     SignInComponent,
+    ChangePasswordComponent
 ]
 
 @NgModule({

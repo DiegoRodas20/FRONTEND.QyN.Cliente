@@ -16,8 +16,7 @@ import { AlertService } from 'src/app/shared/components/alert/alert.service';
 
 export class SignInComponent implements OnInit {
 
-    @Input() open: boolean
-    @Output() close = new EventEmitter<boolean>();
+    @Output() close = new EventEmitter<number>();
 
     hidePassword: boolean = true
     formSignIn: FormGroup
@@ -96,9 +95,12 @@ export class SignInComponent implements OnInit {
         this.formSignIn.reset()
     }
 
-    onOpenSignupModal() {
-        this.open = false
-        this.close.emit(this.open)
+    openChangePasswordModal() {
+        this.close.emit(3)
+    }
+
+    openSignupModal() {
+        this.close.emit(2)
     }
 
     cssValidate(control: string) {

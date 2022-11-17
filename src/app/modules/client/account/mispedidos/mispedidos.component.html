@@ -20,7 +20,7 @@
                         <i class="ci-clock fs-base align-middle mt-n1 me-1"></i>
                         {{pedido.estimatedDate | date}}
                     </span>
-                    <span class="badge bg-info text-white">{{pedido.orderStatus}}</span>
+                    <span [class]="'badge text-white ' + colorStatusPedido(pedido.orderStatusId)">{{pedido.orderStatus}}</span>
                     <span class="text-dark fw-bold ps-1">S/.{{getMontoTotal(pedido) | number : '1.2-2'}}</span>
                 </button>
             </h6>
@@ -95,11 +95,19 @@
                                         </td>
                                         <td>
                                             <div class="py-2 pe-3 text-end">
+                                                <span class="fs-md text-muted">Total: 
+                                                    <strong class="fs-md text-dark ms-2">
+                                                        S/.{{getMontoTotal(pedido) | number : '1.2-2'}}
+                                                    </strong>
+                                                </span>
+                                            </div>
+
+                                            <!-- <div class="py-2 pe-3 text-end">
                                                 <span class="fs-xs text-muted">Total:</span>
                                                 <span class="fs-sm fw-bold text-dark">
                                                     S/.{{getMontoTotal(pedido) | number : '1.2-2'}}
                                                 </span>
-                                            </div>
+                                            </div> -->
                                         </td>
                                     </tr>
                                 </tbody>

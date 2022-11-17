@@ -13,14 +13,14 @@ export class MenuPerfilComponent implements OnInit {
     tipoDocumento: string
 
     // Opciones Menu
-    optionMenu: number = 2
+    optionMenu: number = 1
 
     constructor(
         private _router: Router,
     ) { }
 
     ngOnInit() {
-        // this.gotoProfile()
+        this.gotoProfile()
         this.getUserData()
     }
 

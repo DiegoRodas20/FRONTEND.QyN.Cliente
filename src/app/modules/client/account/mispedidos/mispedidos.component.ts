@@ -84,4 +84,34 @@ export class MisPedidosComponent implements OnInit {
         return montoPedido
     }
 
+    colorStatusPedido(orderstatus: number) {
+
+        switch (orderstatus) {
+            case 1:
+                return 'bg-primary'
+                break;
+            case 2:
+                return 'bg-danger'
+                break;
+            case 3:
+                return 'bg-success'
+                break;
+            case 4:
+                return 'bg-info'
+                break;
+            case 5:
+                return 'bg-warning'
+                break;
+            case 6:
+                return 'bg-dark'
+                break;
+            case 7:
+                return 'bg-success'
+                break;
+            default:
+                return ''
+                break;
+        }
+    }
+
 }

@@ -9337,8 +9337,7 @@ fieldset:disabled .btn {
 }
 
 .bg-success {
-    /* background-color: #03cea4 !important */
-    background-color: #ffffff  !important
+    background-color: #03cea4 !important
 }
 
 .bg-info {
@@ -20207,7 +20206,7 @@ _:-ms-lang(x),
 }
 
 .btn-wishlist.active {
-    color: #062B61
+    color: #e10000
 }
 
 .btn-wishlist.active::before {
@@ -20219,7 +20218,7 @@ _:-ms-lang(x),
 }
 
 .btn-wishlist:hover {
-    color: #062B61
+    color: #e10000
 }
 
 .product-gallery .gallery-item.video-item::after {

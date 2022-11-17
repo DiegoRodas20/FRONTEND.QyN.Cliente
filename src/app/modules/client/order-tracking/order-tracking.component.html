@@ -1,0 +1,69 @@
+<section class="container pt-3 pt-md-4 pb-3 pb-sm-4 pb-lg-5 mb-4">
+    <div class="row p-4 bg-white rounded">
+
+        <div class="col-lg-12 col-md-5 pb-3 pb-md-0 mb-4">
+
+            <h3>Tu pedido con código: {{idOrder}}</h3>
+        </div>
+
+        <!-- <div class="col-lg-5 py-3 mb-4">
+            <table class="table mb-0">
+                <tbody>
+                    <tr>
+                        <th class="border-0 py-2 ps-0">Order No:</th>
+                        <td class="border-0 py-2 px-0 text-muted">34BV66580K92</td>
+                    </tr>
+                    <tr>
+                        <th class="border-0 py-2 ps-0">Shiped via:</th>
+                        <td class="border-0 py-2 px-0 text-muted">UPS Ground</td>
+                    </tr>
+                    <tr>
+                        <th class="border-0 py-2 ps-0">Shipped on:</th>
+                        <td class="border-0 py-2 px-0 text-muted">August 29, 2020, 6:00pm</td>
+                    </tr>
+                    <tr>
+                        <th class="border-0 py-2 ps-0">Destination:</th>
+                        <td class="border-0 py-2 px-0 text-muted">London, United Kingdom</td>
+                    </tr>
+                    <tr>
+                        <th class="border-0 py-2 ps-0">Expected date:</th>
+                        <td class="border-0 py-2 px-0 text-muted">September 4, 2020</td>
+                    </tr>
+                    <tr>
+                        <th class="border-0 py-2 ps-0">Status:</th>
+                        <td class="border-0 py-2 px-0 text-muted">In Transit</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div> -->
+
+        <div class="col-lg-5 justify-content-center mb-4">
+            <div class="table-responsive">
+                <table class="table mb-0">
+                    <thead class="fs-lg">
+                        <tr>
+                            <th class="border-0"></th>
+                            <th class="border-0">Estado</th>
+                            <th class="border-0">Fecha</th>
+                            <th class="border-0">Hora</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let tracking of lOrderHistorial" class="step-vertical active">
+                            <th class="pe-3 position-relative border-0" scope="row">
+                                <div class="step-line"></div>
+                            </th>
+                            <td class="py-3">{{tracking.status}}</td>
+                            <td class="py-3">{{tracking.date | date: 'mediumDate'}}</td>
+                            <td class="py-3">{{tracking.date | date: 'mediumTime'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="col-lg-7">
+            <div id="map" class="map-container mapboxgl-map"></div>
+        </div>
+    </div>
+</section>

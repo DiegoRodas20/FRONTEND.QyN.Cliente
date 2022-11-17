@@ -27,4 +27,11 @@ export class OrderService {
         return this.http.get<ResponseData>(url)
     }
 
+    // Historial del Pedido por ID
+    getOrderHistory(idOrder: number): Promise<ResponseData> {
+        console.log('NUMERO ORDEN', idOrder)
+        const url = `${ORDER_URL}/${idOrder}/statusHistory`
+        return this.http.get<ResponseData>(url).toPromise()
+    }
+
 }

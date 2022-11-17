@@ -413,8 +413,13 @@
                                     <i class="sr-star ci-star-filled active"></i>
                                 </div>
                             </div>
+                            <!-- <div class="card-product-widgets-bottom">
+                                <a class="btn-wishlist active ms-auto" data-bs-toggle="tooltip"
+                                    data-bs-placement="left" aria-label="Remove from wishlist"></a>
+                            </div> -->
+
                             <div class="card-product-widgets-bottom">
-                                <a class="btn-wishlist ms-auto click" (mouseenter)="tooltip = !tooltip"
+                                <a class="btn-wishlist ms-auto active click" (mouseenter)="tooltip = !tooltip"
                                     (mouseleave)="tooltip = !tooltip"></a>
                                 <tooltip [open]="tooltip" [contenido]="'Agregar a favoritos'"></tooltip>
                             </div>

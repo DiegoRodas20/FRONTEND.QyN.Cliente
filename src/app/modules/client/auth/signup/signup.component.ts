@@ -17,8 +17,7 @@ import { AlertService } from 'src/app/shared/components/alert/alert.service';
 
 export class SignUpComponent implements OnInit {
 
-    @Input() open: boolean
-    @Output() close = new EventEmitter<boolean>();
+    @Output() close = new EventEmitter<number>();
 
     hidePassword: boolean = true
     formSignUp: FormGroup
@@ -156,9 +155,8 @@ export class SignUpComponent implements OnInit {
         }
     }
 
-    onOpenSigninModal() {
-        this.open = false
-        this.close.emit(this.open)
+    openSigninModal() {
+        this.close.emit(1)
     }
 
     onCloseModal() {

@@ -11,13 +11,14 @@ import { ShellComponent } from './shell/shell.component';
 import { MisPedidosComponent } from './account/mispedidos/mispedidos.component';
 import { MenuPerfilComponent } from './account/menu-perfil/menu-perfil.component';
 import { PedidoComponent } from './pedido/pedido.component';
+import { OrderTrackingComponent } from './order-tracking/order-tracking.component';
 
 const COMPONENTS = [
     HomeComponent,
     CatalogoComponent,
     PedidoComponent,
-    
-    // Account
+    OrderTrackingComponent,
+    // Menu Profile
     MenuPerfilComponent,
     MisPedidosComponent,
     MiPerfilComponent,

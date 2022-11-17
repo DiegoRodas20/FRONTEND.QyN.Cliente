@@ -39,4 +39,17 @@ export class AuthService {
         return this.http.post<any>(url, signup, { observe: 'response' }).toPromise()
     }
 
+    // Recuperar Contraseña
+    changePasswordRequest(email: string): Promise<any> {
+
+        const url = `${AUTH_URL}changePassword/request`
+        return this.http.post<any>(url, email).toPromise()
+    }
+
+    changePasswordUpdate(changePasswordBody: any): Promise<any> {
+
+        const url = `${AUTH_URL}changePassword/${changePasswordBody.token}`
+        return this.http.put<any>(url, changePasswordBody).toPromise()
+    }
+
 }
