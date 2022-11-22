@@ -74,6 +74,7 @@ export class OrderReviewComponent implements OnInit {
             }
 
             this._alertService.open(contenido)
+            this.formReview.reset()
         }
 
         catch (error) {
