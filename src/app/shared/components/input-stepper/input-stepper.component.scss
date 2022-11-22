@@ -1,0 +1,150 @@
+.c-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.c-actions__item {
+    width: 2rem;
+    height: 2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid transparent;
+    background: #E8E8E9;
+    color: #062b61;
+    cursor: pointer;
+    padding: 0;
+    transition: all 120ms ease-out 0s;
+}
+
+.c-actions__item:hover {
+    transform: scale(1.07);
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.c-actions__item:focus,
+.c-actions__item:active {
+    outline: 0;
+    border-color: var(--blue);
+}
+
+.c-actions__item:active {
+    transform: scale(1);
+    box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.2);
+    border-color: transparent;
+}
+
+.c-actions__item[disabled] {
+    cursor: not-allowed;
+    background: var(--lightestGrey);
+    color: var(--lighterGrey);
+    box-shadow: none;
+    transform: unset;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+@media screen and (max-width: 512px) {
+    .c-actions__item {
+        border-radius: 0.8rem;
+        width: 100%;
+    }
+}
+
+.c-actions__label {
+    font-size: 1rem;
+    width: 5rem;
+    text-align: center;
+    padding: 0.8rem;
+    color: #062b61;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    
+}
+
+@-webkit-keyframes fade {
+    from {
+        opacity: 0;
+        width: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+        width: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+        width: 0;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+        width: 0;
+    }
+}
+
+@-webkit-keyframes cardBump {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(0.98);
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes cardBump {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(0.98);
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}

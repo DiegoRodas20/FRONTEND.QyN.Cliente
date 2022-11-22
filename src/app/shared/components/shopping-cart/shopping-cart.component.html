@@ -8,13 +8,13 @@
     </div>
 
     <!-- Body -->
-    <div class="offcanvas-body">
+    <div class="offcanvas-body pt-0">
 
         <!-- Item -->
-        <div *ngFor="let producto of lCarrito" class="d-flex align-items-center p-4 border-bottom mx-n4">
+        <div *ngFor="let producto of lCarrito" @opacity class="d-flex align-items-center p-4 border-bottom mx-n4">
 
             <a class="image-item">
-                <img [src]="producto.urlImage == '' ? urlPorDefecto : producto.urlImage" width="80" alt="Product thumb">
+                <img [src]="producto.urlImage" width="80" alt="Product thumb">
             </a>
 
             <div class="w-100">
@@ -56,8 +56,8 @@
     <div class="offcanvas-footer flex-column border-top">
 
         <div class="d-flex align-items-center justify-content-between mb-3 pb-1">
-            <span class="text-muted me-2">Subtotal:</span>
-            <span class="h5 mb-0">S/. {{ getSubTotal() | number : '1.2-2'}}</span>
+            <span class="me-2">Monto total:</span>
+            <span class="h5 mb-0">S/. {{ getMontoTotal() | number : '1.2-2'}}</span>
         </div>
 
         <a class="btn btn-primary btn-lg d-block w-100" (click)="registrarPedido()">

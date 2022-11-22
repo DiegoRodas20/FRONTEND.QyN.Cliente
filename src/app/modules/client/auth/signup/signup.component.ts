@@ -4,9 +4,9 @@ import { Router } from '@angular/router';
 import { Alert } from 'src/app/core/models/alert.model';
 import { SignIn, SignUp } from 'src/app/core/models/auth.model';
 import { ResponseData } from 'src/app/core/models/response.model';
-import { TypeDocument } from 'src/app/core/models/typedocument.model';
+import { TypeDocument } from 'src/app/core/models/type-document.model';
 import { AuthService } from 'src/app/core/services/auth.service';
-import { TypeDocumentService } from 'src/app/core/services/typedocument.service';
+import { TypeDocumentService } from 'src/app/core/services/type-document.service';
 import { AlertService } from 'src/app/shared/components/alert/alert.service';
 
 

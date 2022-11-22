@@ -3,10 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { AUTH_URL } from "../utils/url_constants";
 import { SignIn, SignUp } from "../models/auth.model";
 import { ResponseData } from "../models/response.model";
-import { getState, TOKEN_KEY } from "../utils/storage";
-import { JwtHelperService } from "@auth0/angular-jwt";
 
-const jwtHelper = new JwtHelperService();
 
 @Injectable({
     providedIn: 'root'
@@ -17,13 +14,6 @@ export class AuthService {
     constructor(
         private http: HttpClient
     ) { }
-
-    // Validar Autenticacion
-    public isAuthenticated(): boolean {
-        const token = getState(TOKEN_KEY);
-        if (!!token) return !jwtHelper.isTokenExpired(token);
-        return false;
-    }
 
     // Iniciar Sesion
     iniciarSesion(signin: SignIn): Promise<any> {

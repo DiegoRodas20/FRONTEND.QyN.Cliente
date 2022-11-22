@@ -2,7 +2,7 @@
     <div class="row pb-2 pb-lg-0">
 
         <!-- Menu Perfil -->
-        <aside class="col-xl-4 col-lg-4 pb-3 mb-4 mb-lg-0">
+        <aside class="col-xl-3 col-lg-3 pb-3 mb-4 mb-lg-0">
             <div class="bg-white rounded mb-4">
 
                 <div class="px-6 pt-4">
@@ -10,7 +10,7 @@
                 </div>
 
                 <div class="border-bottom p-4">
-                    <h5 class="card-title mb-1">{{user.name}}</h5>
+                    <h6 class="card-title mb-1">{{user.name}}</h6>
                     <p class="card-text text-muted mb-lg-0">{{user.username}}</p>
                 </div>
 
@@ -42,7 +42,7 @@
             </div>
         </aside>
 
-        <div class="col-lg-8 ms-auto p-4 bg-white rounded">
+        <div class="col-lg-9 ms-auto p-4 bg-white rounded">
             <app-miperfil *ngIf="optionMenu == 1"></app-miperfil>
             <app-mispedidos *ngIf="optionMenu == 2"></app-mispedidos>
         </div>

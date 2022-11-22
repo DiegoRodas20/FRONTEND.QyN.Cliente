@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { opacity } from 'src/app/core/animations/opacity.animation';
 import { Alert } from 'src/app/core/models/alert.model';
 import { Product } from 'src/app/core/models/product.model';
 import { CarritoService } from 'src/app/core/services/carrito.service';
@@ -11,13 +12,14 @@ import { AlertService } from '../alert/alert.service';
 @Component({
     selector: 'app-shopping-cart',
     templateUrl: './shopping-cart.component.html',
-    styleUrls: ['./shopping-cart.component.scss']
+    styleUrls: ['./shopping-cart.component.scss'],
+    animations: [opacity]
+
 })
 
 export class ShoppingCartComponent implements OnInit {
 
     lCarrito: Product[] = []
-    urlPorDefecto: string = '../../../../../assets/img/productodefault.jpg'
 
     constructor(
         private _router: Router,
@@ -43,14 +45,13 @@ export class ShoppingCartComponent implements OnInit {
         )
     }
 
-    getSubTotal() {
-        let subTotal = this._carritoService.getSubTotal(this.lCarrito)
-        return subTotal
+    getMontoTotal() {
+        let montoTotal = this._carritoService.getMontoTotal(this.lCarrito)
+        return montoTotal
     }
 
     deleteCarrito(productoId: number) {
-        debugger
-        
+
         this._carritoService.deleteCarrito(productoId)
 
         if (!this.lCarrito.length) {

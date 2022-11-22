@@ -63,13 +63,13 @@ export class CarritoService {
         this._localStorage.set('Carrito', filteredCarrito)
     }
 
-    getSubTotal(lCarrito: Product[]) {
+    getMontoTotal(lCarrito: Product[]) {
 
         let montoCarrito = 0
 
         if (lCarrito.length > 0) {
             for (let producto of lCarrito) {
-                montoCarrito = montoCarrito + producto.salesPrice
+                montoCarrito = montoCarrito + producto.carritoPrice
             }
         }
 

@@ -2,22 +2,18 @@
     <div class="row">
 
         <!-- Checkout -->
-        <div class="bg-white rounded col-lg-8 p-4">
-            <div class="d-flex align-items-center justify-content-between">
-                <h3 class="mb-0">Pedido</h3>
-            </div>
-
-            <hr class="border-top-0 border-bottom">
+        <div class="col-lg-8 p-4 bg-white rounded">
 
             <!-- Vertical slider + Controls visible on hover -->
             <div class="tns-carousel-wrapper tns-controls-outside">
                 <div class="tns-carousel-inner" data-carousel-options=''>
 
                     <!-- Carousel item -->
-                    <div class="align-self-center pt-4">
+                    <div class="align-self-center">
+
                         <!-- Resumen de Pedido -->
                         <h5 class="mb-4">1. Resumen de Pedido</h5>
-                        <div class="bg-secondary rounded mb-5">
+                        <div class="bg-secondary rounded">
 
                             <!-- Item -->
                             <div *ngFor="let producto of lCarrito"
@@ -51,8 +47,8 @@
 
                                         <div class="text-end align-items-start align-self-center pe-sm-3 w-100">
                                             <div class="text-nowrap pt-2">
-                                                <strong class="text-danger">S/.{{producto.salesPrice | number :
-                                                    '1.2-2'}}
+                                                <strong class="text-danger">
+                                                    S/.{{producto.carritoPrice | number : '1.2-2'}}
                                                 </strong>
                                             </div>
                                         </div>
@@ -63,77 +59,248 @@
 
                             <!-- Subtotal -->
                             <div class="px-3 px-sm-4 py-4 text-end">
-                                <span class="text-muted">Subtotal:
-                                    <strong class="text-dark fs-lg ms-2">S/. {{getSubTotal() | number :
-                                        '1.2-2'}}</strong>
+                                <span class="h6">Monto total:
+                                    <strong class="ms-2">
+                                        S/. {{getMontoTotal() | number :'1.2-2'}}
+                                    </strong>
                                 </span>
                             </div>
 
                         </div>
+
                     </div>
 
                     <!-- Carousel item -->
-                    <div class="align-self-center">
+                    <div class="align-self-center px-3">
                         <!-- Información del Pedido -->
-                        <h5 class="mb-4">2. Información del Pedido</h5>
+                        <h5 class="my-4">
+                            2. Información del Pedido
+                        </h5>
                         <form [formGroup]="formPedido">
-                            <div class="row pb-3">
+                            <div class="row">
 
-                                <!-- Documento -->
-                                <div class="col-sm-6 mb-4">
-                                    <label class="form-label">{{tipoDocumento}}</label>
-                                    <input class="form-control" [placeholder]="'Ingrese su '+ tipoDocumento "
-                                        formControlName="numberDocument" readonly>
-                                    <div *ngIf="formPedido.controls['numberDocument'].errors?.required &&
-                        formPedido.controls['numberDocument'].touched" class="invalid-feedback">
-                                        Completar el {{tipoDocumento}}.</div>
-                                </div>
-
-                                <!-- Nombre -->
+                                <!-- Nombre Completo -->
                                 <div class="col-sm-6 mb-4">
                                     <label class="form-label">Nombre</label>
-                                    <input class="form-control" placeholder="Ingrese su nombre." formControlName="name"
-                                        readonly>
-                                    <div *ngIf="formPedido.controls['name'].errors?.required &&
-                            formPedido.controls['name'].touched" class="invalid-feedback">
-                                        Completar el Nombre.</div>
+                                    <input class="form-control" placeholder="Ingrese su nombre"
+                                        formControlName="userName" readonly>
                                 </div>
 
-                                <!-- <div class="col-sm-6 mb-4">
-                        <label class="form-label">Nro. Celular</label>
-                        <input class="form-control" placeholder="Ingresa tu nombre." formControlName="phoneClient">
-                        <div *ngIf="formPedido.controls['phoneClient'].errors?.required &&
-                            formPedido.controls['phoneClient'].touched" class="invalid-feedback">
-                            Completar el Nro. Celular.</div>
-                    </div> -->
+                                <!-- Cliente/Compañia -->
+                                <div class="col-sm-6 mb-4">
+                                    <label class="form-label">Compañia</label>
+                                    <input [class]="'form-control '+ cssValidate('name')"
+                                        placeholder="Ingrese su compañia" formControlName="name" readonly>
+                                    <error-message [formControlError]="formPedido.controls['name']"></error-message>
+                                </div>
+
+                                <!-- Tipo/Numero Documento -->
+                                <div class="col-sm-6 mb-4">
+                                    <label class="form-label">{{tipoDocumento}}</label>
+                                    <input [class]="'form-control '+ cssValidate('numberDocument')"
+                                        placeholder="Ingrese su RUC" formControlName="numberDocument" readonly>
+                                    <error-message [formControlError]="formPedido.controls['numberDocument']">
+                                    </error-message>
+                                </div>
 
                                 <!-- Email -->
                                 <div class="col-sm-6 mb-4">
                                     <label class="form-label">Correo Electrónico</label>
-                                    <input class="form-control" placeholder="Ingresa tu nombre." formControlName="email"
-                                        readonly>
-                                    <div *ngIf="formPedido.controls['email'].errors?.required &&
-                        formPedido.controls['email'].touched" class="invalid-feedback">
-                                        Completar el Correo Electrónico.</div>
+                                    <input [class]="'form-control '+ cssValidate('email')"
+                                        placeholder="Ingrese su correo" formControlName="email" readonly>
+                                    <error-message [formControlError]="formPedido.controls['email']"></error-message>
                                 </div>
 
+                                <!-- Numero Telefono -->
                                 <div class="col-sm-6 mb-4">
-                                    <label class="form-label">Dirección</label>
-                                    <input class="form-control" placeholder="Ingresa tu dirección."
-                                        formControlName="address" readonly>
-                                    <div *ngIf="formPedido.controls['address'].errors?.required &&
-                        formPedido.controls['address'].touched" class="invalid-feedback">
-                                        Completar la dirección.</div>
+                                    <label class="form-label">Número Telefono</label>
+                                    <input [class]="'form-control '+ cssValidate('phone')"
+                                        placeholder="Ingrese su numero" formControlName="phone" readonly>
+                                    <error-message [formControlError]="formPedido.controls['phone']"></error-message>
                                 </div>
 
+                                <!-- Area -->
+                                <div class="col-sm-6 mb-4">
+                                    <label class="form-label">Área</label>
+                                    <input [class]="'form-control '+ cssValidate('area')" placeholder="Ingrese su area"
+                                        formControlName="area" readonly>
+                                    <error-message [formControlError]="formPedido.controls['area']"></error-message>
+                                </div>
+
+                                <!-- Direccion -->
+                                <div class="col-sm-12 mb-4">
+                                    <label class="form-label">Dirección</label>
+                                    <input [class]="'form-control bg-white click '+ cssValidate('address')"
+                                        placeholder="Ingrese su dirección" formControlName="address"
+                                        (click)="openModal = 1" data-bs-toggle="modal" data-bs-target="#modal-address"
+                                        readonly>
+                                    <error-message [formControlError]="formPedido.controls['address']"></error-message>
+                                </div>
+
+                                <!-- Comentarios -->
                                 <div class="col-sm-12 mb-4">
                                     <label class="form-label">Comentario</label>
-                                    <textarea class="form-control" rows="5" placeholder="Ingresa un comentario deseado."
-                                        formControlName="comments"></textarea>
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            <i class="ci-comment"></i>
+                                        </span>
+                                        <textarea [class]="'form-control '+ cssValidate('comments')"
+                                            formControlName="comments" placeholder="Ingresa un comentario deseado"
+                                            rows="4"></textarea>
+                                    </div>
+                                    <error-message [formControlError]="formPedido.controls['comments']"></error-message>
                                 </div>
 
                             </div>
                         </form>
+                    </div>
+
+                    <!-- Carousel item -->
+                    <div class="align-self-center">
+
+                        <!-- Card -->
+                        <div class="card-list">
+                            <div class="card-item">
+
+                                <div class="card-item__side -front">
+                                    <div class="card-item__focus">
+
+                                    </div>
+                                    <div class="card-item__cover">
+                                        <img src="https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/23.jpeg"
+                                            class="card-item__bg">
+                                    </div>
+
+                                    <div class="card-item__wrapper">
+                                        <div class="card-item__top">
+                                            <img src="https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/chip.png"
+                                                class="card-item__chip">
+                                            <div class="card-item__type">
+                                            </div>
+                                        </div>
+                                        <label for="v-card-number" class="card-item__number">
+                                            <span>
+                                                <div class="card-item__numberItem">7</div>
+                                            </span>
+                                            <span>
+                                                <div class="card-item__numberItem">8</div>
+                                            </span><span>
+                                                <div class="card-item__numberItem">6</div>
+                                            </span><span>
+                                                <div class="card-item__numberItem">9</div>
+                                            </span><span>
+                                                <div class="card-item__numberItem -active"> </div>
+                                            </span><span>
+                                                <div class="card-item__numberItem">*</div>
+                                            </span><span>
+                                                <div class="card-item__numberItem">*</div>
+                                            </span><span>
+                                                <div class="card-item__numberItem">*</div>
+                                            </span><span>
+                                                <div class="card-item__numberItem">*</div>
+                                            </span><span>
+                                                <div class="card-item__numberItem -active"> </div>
+                                            </span><span>
+                                                <div class="card-item__numberItem">*</div>
+                                            </span><span>
+                                                <div class="card-item__numberItem">*</div>
+                                            </span><span>
+                                                <div class="card-item__numberItem">*</div>
+                                            </span><span>
+                                                <div class="card-item__numberItem">*</div>
+                                            </span><span>
+                                                <div class="card-item__numberItem -active"> </div>
+                                            </span><span>
+                                                <div class="card-item__numberItem">6</div>
+                                            </span><span>
+                                                <div class="card-item__numberItem">8</div>
+                                            </span><span>
+                                                <div class="card-item__numberItem">7</div>
+                                            </span><span>
+                                                <div class="card-item__numberItem">6</div>
+                                            </span></label>
+                                        <div class="card-item__content"><label for="v-card-name"
+                                                class="card-item__info">
+                                                <div class="card-item__holder">Card Holder</div>
+                                                <div class="card-item__name"><span><span
+                                                            class="card-item__nameItem">a</span><span
+                                                            class="card-item__nameItem">s</span><span
+                                                            class="card-item__nameItem">d</span><span
+                                                            class="card-item__nameItem">a</span><span
+                                                            class="card-item__nameItem">s</span><span
+                                                            class="card-item__nameItem">d</span><span
+                                                            class="card-item__nameItem">a</span><span
+                                                            class="card-item__nameItem">s</span><span
+                                                            class="card-item__nameItem">d</span><span
+                                                            class="card-item__nameItem">a</span><span
+                                                            class="card-item__nameItem">s</span><span
+                                                            class="card-item__nameItem">d</span><span
+                                                            class="card-item__nameItem">a</span><span
+                                                            class="card-item__nameItem">s</span><span
+                                                            class="card-item__nameItem">d</span><span
+                                                            class="card-item__nameItem">a</span><span
+                                                            class="card-item__nameItem">s</span></span></div>
+                                            </label>
+                                            <div class="card-item__date"><label for="v-card-month"
+                                                    class="card-item__dateTitle">Expires</label><label
+                                                    for="v-card-month"
+                                                    class="card-item__dateItem"><span>MM</span></label> / <label
+                                                    for="cardYear" class="card-item__dateItem"><span>YY</span></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-item__side -back">
+                                    <div class="card-item__cover"><img
+                                            src="https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/23.jpeg"
+                                            class="card-item__bg"></div>
+                                    <div class="card-item__band"></div>
+                                    <div class="card-item__cvv">
+                                        <div class="card-item__cvvTitle">CVV</div>
+                                        <div class="card-item__cvvBand">
+                                            <span>*</span><span>*</span><span>*</span><span>*</span>
+                                        </div>
+                                        <div class="card-item__type">
+                                            <!---->
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="card-form__inner">
+                            <form [formGroup]="formPedido">
+                                <div class="row">
+
+                                    <!-- Nombre Completo -->
+                                    <div class="col-sm-12 mb-4">
+                                        <label class="form-label">Nombre</label>
+                                        <input class="form-control" placeholder="Ingrese su nombre"
+                                            formControlName="userName" readonly>
+                                    </div>
+
+                                    <!-- Cliente/Compañia -->
+                                    <div class="col-sm-12 mb-4">
+                                        <label class="form-label">Compañia</label>
+                                        <input [class]="'form-control '+ cssValidate('name')"
+                                            placeholder="Ingrese su compañia" formControlName="name" readonly>
+                                        <error-message [formControlError]="formPedido.controls['name']"></error-message>
+                                    </div>
+
+                                    <!-- Tipo/Numero Documento -->
+                                    <div class="col-sm-12 mb-4">
+                                        <label class="form-label">{{tipoDocumento}}</label>
+                                        <input [class]="'form-control '+ cssValidate('numberDocument')"
+                                            placeholder="Ingrese su RUC" formControlName="numberDocument" readonly>
+                                        <error-message [formControlError]="formPedido.controls['numberDocument']">
+                                        </error-message>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
                     </div>
 
                 </div>
@@ -178,3 +345,15 @@
 
     </div>
 </section>
+
+<!-- Modal Direccion -->
+
+<div class="modal fade" id="modal-address" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content border-0">
+            <address-map class="map-container" *ngIf="openModal == 1" (address)="setAddress($event)"
+                (close)="openModal = $event">
+            </address-map>
+        </div>
+    </div>
+</div>

@@ -650,7 +650,7 @@ h1,
     margin-bottom: 1.5rem;
     font-weight: 700;
     line-height: 1.2;
-    color: #062b61
+    color: #000
 }
 
 h1,
@@ -15478,11 +15478,6 @@ div.code-toolbar>.toolbar button>span {
     color: #fff
 }
 
-.btn-outline-primary {
-    /* border-color: rgba(23, 105, 106, .4); */
-    border-color: rgb(255 255 255 / 40%);
-}
-
 .btn-outline-success {
     border-color: rgba(3, 206, 164, .4)
 }
@@ -20133,6 +20128,12 @@ _:-ms-lang(x),
     font-weight: 400;
     color: #062B61;
     font-size: 0.85rem
+}
+
+.card-product-price {
+    font-weight: 700;
+    color: #ff4242;
+    font-size: 1rem
 }
 
 .tns-carousel .card-product {

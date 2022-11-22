@@ -92,8 +92,6 @@ export class HeaderComponent implements OnInit {
         }
 
         catch (error) {
-            console.log(error)
-
             let contenido: Alert = {
                 type: 'error',
                 contenido: error.error.error

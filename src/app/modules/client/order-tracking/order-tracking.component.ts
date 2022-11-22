@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Alert } from 'src/app/core/models/alert.model';
-import { MapService } from 'src/app/core/services/map-custom.service';
+import { MapBoxService } from 'src/app/core/services/mapbox.service';
 import { OrderService } from 'src/app/core/services/order.service';
 import { AlertService } from 'src/app/shared/components/alert/alert.service';
 
@@ -18,7 +18,7 @@ export class OrderTrackingComponent implements OnInit {
     idOrder: number
 
     constructor(
-        private _mapService: MapService,
+        private _mapService: MapBoxService,
         private _orderService: OrderService,
         private _alertService: AlertService,
         private _route: ActivatedRoute
@@ -27,23 +27,7 @@ export class OrderTrackingComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.openMapBox()
-        this.testMarker()
         this.getHistorialPedido()
-    }
-
-    openMapBox() {
-        this._mapService.buildMap()
-            .then((data) => {
-                console.log('*** TODO BIEN *****', data);
-            })
-            .catch((err) => {
-                console.log('******* ERROR ******', err);
-            });
-    }
-
-    testMarker(): void {
-        this._mapService.addMarkerCustom([-12.14387067094536, -76.98475274903164]);
     }
 
     async getHistorialPedido() {

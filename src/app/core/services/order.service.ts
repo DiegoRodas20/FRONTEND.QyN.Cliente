@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core"
 import { HttpClient } from '@angular/common/http';
 import { ORDER_URL } from "../utils/url_constants";
-import { RegisterOrder } from "src/app/core/models/order.model";
+import { OrderReview, RegisterOrder } from "src/app/core/models/order.model";
 import { Observable } from "rxjs";
 import { ResponseData } from "../models/response.model";
 
@@ -29,9 +29,15 @@ export class OrderService {
 
     // Historial del Pedido por ID
     getOrderHistory(idOrder: number): Promise<ResponseData> {
-        console.log('NUMERO ORDEN', idOrder)
         const url = `${ORDER_URL}/${idOrder}/statusHistory`
         return this.http.get<ResponseData>(url).toPromise()
+    }
+
+    // Registrar Order Review
+    registrarOrderReview(orderReview: OrderReview): Promise<ResponseData> {
+
+        const url = `${ORDER_URL}/${orderReview.id}/comment`
+        return this.http.put<ResponseData>(url, orderReview).toPromise()
     }
 
 }

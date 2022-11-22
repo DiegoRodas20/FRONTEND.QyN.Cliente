@@ -1,0 +1,20 @@
+.input-map {
+    position: fixed;
+    top: 40px;
+    left: 20px;
+    z-index: 1;
+    width: 25%;
+}
+
+.btn-map {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1;
+}
+
+.search-results {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

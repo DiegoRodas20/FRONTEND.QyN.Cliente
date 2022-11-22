@@ -24,7 +24,7 @@ export class ErrorInterceptorService {
                     let mensajeError = ""
 
                     for (let i of error.error.error) {
-                        mensajeError += `• ${i}\n`
+                        mensajeError += `${i}\n`
                     }
 
                     let contenido: Alert = {

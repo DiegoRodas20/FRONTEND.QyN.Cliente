@@ -5,4 +5,7 @@ export const PRODUCT_URL        = `${environment.API_URL}product`
 export const ORDER_URL          = `${environment.API_URL}order`
 export const CLIENT_URL         = `${environment.API_URL}client`
 
+export const CATEGORY_URL       = `${environment.API_URL}category`
 export const TYPEDOCUMENT_URL   = `${environment.API_URL}typedocument`
+
+export const MAPBOX_URL         = `${environment.API_MAPBOX}geocoding/v5/`

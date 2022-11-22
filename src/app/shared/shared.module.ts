@@ -12,6 +12,8 @@ import { AlertComponent } from './components/alert/alert.component';
 import { ErrorMessageComponent } from './components/error-message/error-message.component';
 import { ToolTipComponent } from './components/tooltip/tooltip.component';
 import { ChangePasswordComponent } from '../modules/client/auth/change-password/change-password.component';
+import { InputStepperComponent } from './components/input-stepper/input-stepper.component';
+import { AddressMapComponent } from './components/address-map/address-map.component';
 
 const COMPONENTS = [
     FooterComponent,
@@ -23,7 +25,9 @@ const COMPONENTS = [
     LoaderComponent,
     ErrorMessageComponent,
     ToolTipComponent,
-
+    InputStepperComponent,
+    AddressMapComponent,
+    
     // Auth Components
     SignUpComponent,
     SignInComponent,

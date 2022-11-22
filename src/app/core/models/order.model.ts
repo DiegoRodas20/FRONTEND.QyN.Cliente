@@ -19,10 +19,16 @@ export interface RegisterOrder {
 }
 
 export interface OrderDetail {
-    idProducto: number,
+    idProduct: number,
     quantity: number,
-    urlImage: string,
-    name: string,
-    type: string,
-    salesPrice: number
+    urlImage?: string,
+    name?: string,
+    type?: string,
+    salesPrice?: number
+}
+
+export interface OrderReview {
+    id: number,
+    commentsOnOrder: string,
+    punctuation: number
 }

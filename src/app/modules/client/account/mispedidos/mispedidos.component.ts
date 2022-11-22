@@ -18,6 +18,7 @@ export class MisPedidosComponent implements OnInit {
     user: UserClient
     PedidosCliente: any[] = []
     tipoDocumento: string
+    idOrder: number
 
     constructor(
         private _router: Router,
@@ -32,7 +33,6 @@ export class MisPedidosComponent implements OnInit {
 
     getUserData() {
         let userData = JSON.parse(localStorage.getItem('Usuario'))
-        console.log(userData)
         if (userData) {
             this.user = userData.data
             this.tipoDocumento = this.user.client.typeDocument
@@ -42,10 +42,7 @@ export class MisPedidosComponent implements OnInit {
     async getPedidosCliente() {
         try {
             const data: ResponseData = await this._orderService.getPedidosxCliente().toPromise()
-            console.log('PEDIDO', data)
             this.PedidosCliente = data.data
-
-            console.log(data)
         }
 
         catch (error) {
@@ -74,6 +71,16 @@ export class MisPedidosComponent implements OnInit {
     cerrarSesion() {
         localStorage.clear()
         this.gotoHome()
+    }
+
+    gotoOrderTracking(idOrder: number) {
+        this._router.navigate([`/order-tracking/${idOrder}`]).then(() => {
+            window.location.reload();
+        })
+    }
+
+    changeIdOrder(idOrder: number) {
+        this.idOrder = idOrder
     }
 
     getMontoTotal(pedido: Order) {

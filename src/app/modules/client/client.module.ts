@@ -12,12 +12,20 @@ import { MisPedidosComponent } from './account/mispedidos/mispedidos.component';
 import { MenuPerfilComponent } from './account/menu-perfil/menu-perfil.component';
 import { PedidoComponent } from './pedido/pedido.component';
 import { OrderTrackingComponent } from './order-tracking/order-tracking.component';
+import { FilterTablePipe } from 'src/app/core/pipes/filter-table.pipe';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { FilterCategoryPipe } from 'src/app/core/pipes/filter-category.pipe';
+import { OrderReviewComponent } from './order-review/order-review.component';
 
 const COMPONENTS = [
     HomeComponent,
     CatalogoComponent,
     PedidoComponent,
+
+    // Order
     OrderTrackingComponent,
+    OrderReviewComponent,
+
     // Menu Profile
     MenuPerfilComponent,
     MisPedidosComponent,
@@ -26,20 +34,27 @@ const COMPONENTS = [
     ShellComponent
 ]
 
+const PIPES = [
+    FilterTablePipe,
+    FilterCategoryPipe
+]
+
 @NgModule({
     declarations: [
-        COMPONENTS
+        COMPONENTS,
+        PIPES
     ],
     exports: [
         COMPONENTS,
         FormsModule,
-        ReactiveFormsModule,
+        ReactiveFormsModule
     ],
     imports: [
         CommonModule,
         RouterModule,
         FormsModule,
         ReactiveFormsModule,
+        NgxPaginationModule,
         SharedModule,
         ClientRoutingModule,
     ]

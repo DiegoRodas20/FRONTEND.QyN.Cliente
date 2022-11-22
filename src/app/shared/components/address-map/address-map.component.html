@@ -1,0 +1,47 @@
+<!-- Address form -->
+<div class="view show">
+
+    <!-- Body -->
+    <div class="modal-body">
+
+        <!-- Mapa -->
+        <div class="mb-4">
+            <div id="map" class="map-container mapboxgl-map">
+
+                <!-- Formulario -->
+                <form [formGroup]="formDireccion">
+
+                    <!-- Direccion -->
+                    <div class="mb-4 input-map">
+
+                        <div class="input-group">
+                            <span class="input-group-text">
+                                <i class="ci-search"></i>
+                            </span>
+                            <input [class]="'form-control form-control-sm '+ cssValidate('address')"
+                                placeholder="Ingrese su dirección" formControlName="address" (keyup)="getAdress()">
+                        </div>
+
+                        <div *ngIf="showResults" @opacity class="dropdown-menu show w-100">
+                            <a *ngFor="let address of lAddresses" class="dropdown-item d-flex click"
+                                (click)="getPlacesByQuery(address)">
+                                <i class="ci-map-pin-solid me-3 align-self-center"></i>
+                                <div class="search-results">
+                                    <p class="m-0 fw-bold" style="font-size: 12px;">{{address.text}}</p>
+                                    <p class="m-0" style="font-size: 12px;">{{address.place_name}}</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                </form>
+
+                <button class="btn btn-primary btn-map" data-bs-dismiss="modal" (click)="registrarAddress()">
+                    Ingresar dirección
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+</div>
