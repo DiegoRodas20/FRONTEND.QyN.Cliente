@@ -2,14 +2,18 @@
     <div class="row p-4 bg-white rounded">
 
         <!-- Header -->
-        <div class="col-lg-12 col-md-5 pb-3 pb-md-0 mb-4">
+        <div class="col-lg-12 col-md-5 pb-md-0">
             <h3>Rastrea tu Pedido</h3>
         </div>
 
-        <div class="col-lg-4 fs-ordertracking">
+        <div class="col-lg-12 mb-4">
+            <div id="map" class="map-tracking mapboxgl-map"></div>
+        </div>
+
+        <div class="d-inline-flex fs-ordertracking mt-4">
 
             <!-- Datos del Pedido -->
-            <div class="p-3 mb-4 shadow bg-primary">
+            <div class="col-lg-5 p-3 mb-4 me-6 shadow bg-primary text-center">
                 <table class="table mb-0 text-light">
                     <tbody>
                         <tr>
@@ -37,7 +41,7 @@
             </div>
 
             <!-- Historial de Pedido -->
-            <div class="justify-content-center mb-4 table-responsive">
+            <div class="col-lg-6 justify-content-center mb-4 table-responsive">
                 <table class="table mb-0">
                     <thead>
                         <tr>
@@ -61,38 +65,5 @@
             </div>
 
         </div>
-
-        <div class="col-lg-8">
-            <div id="map" class="map-tracking mapboxgl-map"></div>
-        </div>
-
-        <!-- Datos del Pedido -->
-        <!-- <div class="col-lg-4 py-3 align-self-center fs-ordertracking shadow bg-primary">
-            <table class="table mb-0 text-light">
-                <tbody>
-                    <tr>
-                        <th class="border-0 py-2 ps-0">Nro. Orden:</th>
-                        <td class="border-0 py-2 px-0 ">{{Pedido.id}}</td>
-                    </tr>
-                    <tr>
-                        <th class="border-0 py-2 ps-0">Fecha Estimada:</th>
-                        <td class="border-0 py-2 px-0">{{Pedido.estimatedDate | date: 'mediumDate'}}</td>
-                    </tr>
-                    <tr>
-                        <th class="border-0 py-2 ps-0">Destino:</th>
-                        <td class="border-0 py-2 px-0">{{Pedido.address}}</td>
-                    </tr>
-                    <tr>
-                        <th class="border-0 py-2 ps-0">Teléfono:</th>
-                        <td class="border-0 py-2 px-0">{{Pedido.client.phone}}</td>
-                    </tr>
-                    <tr>
-                        <th class="border-0 py-2 ps-0">Correo:</th>
-                        <td class="border-0 py-2 px-0">{{Pedido.client.email}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div> -->
-
     </div>
 </section>

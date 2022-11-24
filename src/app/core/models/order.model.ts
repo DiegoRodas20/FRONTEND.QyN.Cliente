@@ -32,3 +32,8 @@ export interface OrderReview {
     commentsOnOrder: string,
     punctuation: number
 }
+
+export interface OrderHistorial {
+    status?: string,
+    date?: string
+}
