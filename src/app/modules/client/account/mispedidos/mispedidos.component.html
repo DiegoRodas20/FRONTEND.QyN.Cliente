@@ -1,5 +1,5 @@
 <!-- Mis Pedidos -->
-<div>
+<div class="ms-auto p-4 bg-white rounded">
     <div class="d-flex align-items-center justify-content-between mb-4">
         <h4 class="mb-0">Mis Pedidos</h4>
     </div>
@@ -8,7 +8,7 @@
     <div class="accordion accordion-alt" id="orders">
 
         <!-- Item Order -->
-        <div *ngFor="let pedido of PedidosCliente; let i = index" class="accordion-item">
+        <div *ngFor="let pedido of PedidosCliente | paginate: { itemsPerPage: 6, currentPage: p} ; let i = index" @opacity class="accordion-item">
 
             <!-- Cabecera Order -->
             <h6 class="accordion-header" id="order-heading-1">
@@ -128,6 +128,14 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="d-flex align-items-center pt-md-4">
+            <nav class="pt-1 ms-auto">
+                <pagination-controls previousLabel="Anterior" nextLabel="Siguiente" (pageChange)="p = $event">
+                </pagination-controls>
+            </nav>
         </div>
 
     </div>

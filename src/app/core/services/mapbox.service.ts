@@ -14,6 +14,7 @@ import { MAPBOX_URL } from "../utils/url_constants";
 export class MapBoxService {
 
     public useLocation?: [number, number]
+    public locationDefault: LngLatLike = [-76.980221, -12.1321655]
     private map?: Map
     private markers: Marker[] = []
 
@@ -69,7 +70,7 @@ export class MapBoxService {
                <h6 class="mb-2 ">${place.text}</h6>
                <span class="">${place.place_name}</span>`
         )
-        const newMarker = new Marker({ color: '#062B61'})
+        const newMarker = new Marker({ color: '#062B61' })
             .setLngLat([lng, lat])
             .setPopup(popup)
             .addTo(this.map)

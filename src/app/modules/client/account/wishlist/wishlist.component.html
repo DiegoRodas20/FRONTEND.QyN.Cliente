@@ -1,0 +1,86 @@
+<!-- Wish List -->
+<div class="ms-auto p-4 rounded">
+
+    <!-- Header -->
+    <div class="d-flex align-items-center justify-content-between mb-4">
+        <h4 class="mb-0">Productos Favoritos</h4>
+    </div>
+
+    <div *ngIf="!lWishList.length" class="">
+        No tiene productos en su lista de favoritos.
+    </div>
+
+    <!-- Product grid -->
+    <div *ngIf="lWishList.length" class="col">
+
+        <div [class]="'row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3'">
+
+            <!-- Item -->
+            <div class="col pb-sm-2 mb-grid-gutter" *ngFor="let producto of lWishList" @opacity>
+                <div class="card card-product mx-auto">
+
+                    <!-- Imagen -->
+                    <div class="card-product-img text-center">
+                        <a class="card-img-top">
+                            <img [src]="producto.urlImage" class=" pt-3">
+                        </a>
+                        <div class="card-product-widgets-top">
+                            <div class="star-rating ms-auto">
+                                <i class="sr-star ci-star-filled active"></i>
+                                <i class="sr-star ci-star-filled active"></i>
+                                <i class="sr-star ci-star-filled active"></i>
+                                <i class="sr-star ci-star-filled active"></i>
+                                <i class="sr-star ci-star-filled active"></i>
+                            </div>
+                        </div>
+
+                        <div class="card-product-widgets-bottom">
+                            <a class="btn-wishlist ms-auto active selected"
+                                (click)="eliminarProductoFavorito(producto.id)">
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+
+                        <!-- Nombre Producto -->
+                        <h3 class="card-product-title fw-bold text-truncate mb-4 text-center">
+                            {{producto.name}}
+                        </h3>
+
+                        <div class="p-2">
+                            <div class="col-md-12 pb-1 card-product-description">
+                                Categoría - <span class="">
+                                    {{producto.type}}
+                                </span>
+                            </div>
+
+                            <div class="col-md-12 pb-3">
+                                <span class="fw-bold card-product-price">
+                                    S/.{{(producto.carritoPrice == null ? producto.salesPrice :
+                                    producto.carritoPrice) | number : '1.2-2'}}
+                                </span>
+                            </div>
+
+                            <div class="col-md-12">
+                                <input-stepper (value)="calcularPrecioxCantidad($event, producto)"></input-stepper>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <button type="button" class="btn btn-primary d-block w-100"
+                            (click)="registrarProductoCarrito(producto)">
+                            <i class="ci-cart align-middle mt-n1 me-2"></i>
+                            Añadir al carrito
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

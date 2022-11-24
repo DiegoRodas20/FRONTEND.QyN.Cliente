@@ -2,7 +2,7 @@ import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MapBoxService } from 'src/app/core/services/mapbox.service';
 import { Map, Popup, Marker } from 'mapbox-gl';
-import { PlacesResponse } from 'src/app/core/models/places.model';
+import { Feature, PlacesResponse } from 'src/app/core/models/places.model';
 import { opacity } from 'src/app/core/animations/opacity.animation';
 import { AlertService } from '../alert/alert.service';
 import { Alert } from 'src/app/core/models/alert.model';
@@ -17,7 +17,7 @@ import { Alert } from 'src/app/core/models/alert.model';
 export class AddressMapComponent implements AfterViewInit {
 
     formDireccion: FormGroup
-    lAddresses: any[] = []
+    lAddresses: Feature[] = []
     showResults: boolean = false
     map: Map
 
@@ -37,7 +37,6 @@ export class AddressMapComponent implements AfterViewInit {
 
     ngAfterViewInit() {
         this.crearMapBox()
-        // this.prueba()
     }
 
     crearFormDireccion() {
@@ -48,41 +47,19 @@ export class AddressMapComponent implements AfterViewInit {
 
     crearMapBox() {
 
-        if (!this._mapboxService.useLocation) throw Error('No se tiene la localizacion')
-
         this.map = new Map({
             container: 'map',
             style: 'mapbox://styles/mapbox/streets-v12',
-            center: this._mapboxService.useLocation,
+            center: this._mapboxService.locationDefault,
             zoom: 14,
         })
-
-        this.map.on('load', () => this.map.resize())
-
-        // const popup = new Popup().setHTML(`
-        //     <h6>Aqui estoy</h6>
-        //     <span>Estoy en este lugar del mundo</span>`
-        // )
-
-        // const marker = new Marker({ color: 'red' })
-        //     .setLngLat(this._mapboxService.useLocation)
-        //     .setPopup(popup)
-        //     .addTo(this.map)
-
-        // const markerDiv = marker.getElement();
-
-        // markerDiv.addEventListener('mouseenter', () => marker.togglePopup());
-        // markerDiv.addEventListener('mouseleave', () => marker.togglePopup());
-
         this._mapboxService.setMap(this.map)
-
         this.getPlaceByCoords()
     }
 
     async getAdress() {
 
         try {
-
             if (this.formDireccion.invalid) {
                 this.showResults = false
                 return
@@ -136,10 +113,6 @@ export class AddressMapComponent implements AfterViewInit {
         let form = this.formDireccion.value
         this.address.emit(form.address)
         this.close.emit(2)
-    }
-
-    onCloseModal() {
-        this.formDireccion.reset()
     }
 
     cssValidate(control: string) {

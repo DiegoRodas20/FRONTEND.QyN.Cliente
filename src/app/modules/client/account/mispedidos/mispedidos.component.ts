@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { opacity } from 'src/app/core/animations/opacity.animation';
 import { Order } from 'src/app/core/models/order.model';
 import { ResponseData } from 'src/app/core/models/response.model';
 import { UserClient } from 'src/app/core/models/user-client.model';
@@ -10,7 +11,8 @@ import { OrderService } from 'src/app/core/services/order.service';
 
 @Component({
     selector: 'app-mispedidos',
-    templateUrl: './mispedidos.component.html'
+    templateUrl: './mispedidos.component.html',
+    animations: [opacity]
 })
 
 export class MisPedidosComponent implements OnInit {
@@ -19,6 +21,7 @@ export class MisPedidosComponent implements OnInit {
     PedidosCliente: any[] = []
     tipoDocumento: string
     idOrder: number
+    p: number = 1;
 
     constructor(
         private _router: Router,
@@ -41,7 +44,7 @@ export class MisPedidosComponent implements OnInit {
 
     async getPedidosCliente() {
         try {
-            const data: ResponseData = await this._orderService.getPedidosxCliente().toPromise()
+            const data: ResponseData = await this._orderService.getPedidosxCliente()
             this.PedidosCliente = data.data
         }
 

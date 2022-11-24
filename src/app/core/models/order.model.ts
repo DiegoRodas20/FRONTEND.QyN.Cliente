@@ -1,14 +1,14 @@
 
 export interface Order {
-    id: number,
-    orderStatusId: number,
-    orderStatus: string,
-    estimatedDate: string,
-    address: string,
-    comments: string,
-    orderDetails: OrderDetail[],
-    punctuation: number,
-    postComments: string
+    id?: number,
+    orderStatusId?: number,
+    orderStatus?: string,
+    estimatedDate?: string,
+    address?: string,
+    comments?: string,
+    orderDetails?: OrderDetail[],
+    punctuation?: number,
+    postComments?: string
 }
 
 export interface RegisterOrder {
@@ -19,7 +19,7 @@ export interface RegisterOrder {
 }
 
 export interface OrderDetail {
-    idProduct: number,
+    idProduct?: number,
     quantity: number,
     urlImage?: string,
     name?: string,

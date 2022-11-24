@@ -9,6 +9,7 @@ import { FormControl } from '@angular/forms';
 import { opacity } from 'src/app/core/animations/opacity.animation';
 import { CategoryService } from 'src/app/core/services/category.service';
 import { Category } from 'src/app/core/models/category.model';
+import { WishListService } from 'src/app/core/services/wish-list.service';
 
 
 @Component({
@@ -24,7 +25,7 @@ export class CatalogoComponent implements OnInit {
     productName: string
 
     Mensaje: string
-    showFilter: boolean = true
+    showFilter: boolean = false
     tooltip: boolean = false
 
     filtro = new FormControl()
@@ -36,6 +37,7 @@ export class CatalogoComponent implements OnInit {
         private _carritoService: CarritoService,
         private _categoryService: CategoryService,
         private _productService: ProductService,
+        private _wishListService: WishListService
     ) { }
 
     ngOnInit() {
@@ -65,7 +67,7 @@ export class CatalogoComponent implements OnInit {
 
             this.lCategory = data.data
         }
-        
+
         catch (error) {
             console.log("Error:", error)
         }
@@ -110,6 +112,44 @@ export class CatalogoComponent implements OnInit {
 
     showFilters() {
         this.showFilter = !this.showFilter
+    }
+
+    agregarProductoFavoritos(producto: Product) {
+
+        let productoWishlist: Product = {
+            id: producto.id,
+            code: producto.code,
+            name: producto.name,
+            type: producto.type,
+            salesPrice: producto.salesPrice,
+            urlImage: producto.urlImage,
+            isSelected: true
+        }
+
+        let estado = this._wishListService.addWishList(productoWishlist)
+
+        if (estado) {
+            let contenido: Alert = {
+                type: 'success',
+                contenido: 'Se añadio el producto en la lista de deseos'
+            }
+            this._alertService.open(contenido)
+
+            this.lCatalogo = this.lCatalogo.map((value) => {
+                if (value.id == producto.id) {
+                    value.isSelected = true
+                }
+                return value
+            })
+        }
+
+        else {
+            let contenido: Alert = {
+                type: 'alert',
+                contenido: 'El producto ya se encuentra en la lista de deseos'
+            }
+            this._alertService.open(contenido)
+        }
     }
 
     itemChecked(categoryName: string) {

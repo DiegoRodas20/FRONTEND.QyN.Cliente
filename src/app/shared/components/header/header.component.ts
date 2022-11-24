@@ -64,7 +64,6 @@ export class HeaderComponent implements OnInit {
         })
     }
 
-
     async getHistorialPedido() {
 
         if (this.formOrder.invalid) {
@@ -130,6 +129,10 @@ export class HeaderComponent implements OnInit {
 
     closeModalAuth(modalAuth: number) {
         this.openModal = modalAuth
+    }
+
+    closeModalOrderTrack() {
+        this.formOrder.reset()
     }
 
     cerrarSesion() {

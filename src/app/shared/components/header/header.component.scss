@@ -1,4 +1,4 @@
-.bg-qyn{
+.bg-qyn {
     background-color: #062B61;
 }
 
@@ -6,7 +6,7 @@
     color: #ffffff;
 }
 
-.cart-icon{
+.cart-icon {
     color: #ffffff;
     text-decoration: underline;
 }
@@ -14,4 +14,22 @@
 .cart-icon:hover {
     color: #ffffff;
     text-decoration: none
+}
+
+.car-animation {
+    animation: car 4s ease-out infinite;
+}
+
+@keyframes car {
+    0% , 90% {
+        transform: rotateZ(0)
+    }
+
+    5% ,15% , 25%, 35%, 45%, 55%, 65%, 75% {
+        transform: rotateZ(20deg)
+    }
+
+    10%, 20%, 30%, 40%, 50%, 60%, 70%, 80% {
+        transform: rotateZ(-20deg)
+    }
 }

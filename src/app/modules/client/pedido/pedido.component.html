@@ -132,8 +132,7 @@
                                     <label class="form-label">Dirección</label>
                                     <input [class]="'form-control bg-white click '+ cssValidate('address')"
                                         placeholder="Ingrese su dirección" formControlName="address"
-                                        (click)="openModal = 1" data-bs-toggle="modal" data-bs-target="#modal-address"
-                                        readonly>
+                                        (click)="openModal = 1" readonly>
                                     <error-message [formControlError]="formPedido.controls['address']"></error-message>
                                 </div>
 
@@ -324,8 +323,11 @@
                         </li>
 
                         <li class="d-flex justify-content-between mb-2">
-                            <span>IGV:</span>
-                            <span>18%</span>
+                            <div>
+                                <span>IGV:</span>
+                                <span> 18%</span>
+                            </div>
+                            <span>S/.{{getIGV() | number : '1.2-2'}}</span>
                         </li>
 
                     </ul>
@@ -346,14 +348,6 @@
     </div>
 </section>
 
-<!-- Modal Direccion -->
-
-<div class="modal fade" id="modal-address" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-        <div class="modal-content border-0">
-            <address-map class="map-container" *ngIf="openModal == 1" (address)="setAddress($event)"
-                (close)="openModal = $event">
-            </address-map>
-        </div>
-    </div>
-</div>
+<!-- Mapa -->
+<address-map *ngIf="openModal == 1" (address)="setAddress($event)" (close)="openModal = $event">
+</address-map>

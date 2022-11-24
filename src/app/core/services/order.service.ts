@@ -22,9 +22,15 @@ export class OrderService {
         return this.http.post<ResponseData>(url, order).toPromise()
     }
 
-    getPedidosxCliente(): Observable<ResponseData> {
+    getPedidosxCliente(): Promise<ResponseData> {
         const url = `${ORDER_URL}/client`
-        return this.http.get<ResponseData>(url)
+        return this.http.get<ResponseData>(url).toPromise()
+    }
+
+    // Pedido por ID
+    getOrderById(idOrder: number): Promise<ResponseData>{
+        const url = `${ORDER_URL}/${idOrder}`
+        return this.http.get<ResponseData>(url).toPromise()
     }
 
     // Historial del Pedido por ID

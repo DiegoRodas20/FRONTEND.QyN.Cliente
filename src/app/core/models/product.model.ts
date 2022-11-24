@@ -3,8 +3,9 @@ export interface Product {
     code: string,
     name: string,
     type: string,
-    quantity: number,
+    quantity?: number,
     salesPrice: number,
-    carritoPrice: number,
-    urlImage: string
+    carritoPrice?: number,
+    urlImage: string,
+    isSelected?: boolean
 }

@@ -131,6 +131,10 @@ export class PedidoComponent implements OnInit {
             }
 
             this._alertService.open(contenido)
+            this._localStorage.remove('Carrito')
+            this._router.navigate(['/catalogo']).then(() => {
+                window.location.reload();
+            })
         }
 
         catch (error) {
@@ -148,8 +152,13 @@ export class PedidoComponent implements OnInit {
         return montoTotal
     }
 
+    getIGV() {
+        let igv = this.getMontoTotal() * 0.18
+        return igv
+    }
+
     getSubTotal() {
-        let subTotal = this.getMontoTotal() - (this.getMontoTotal() * 0.18)
+        let subTotal = this.getMontoTotal() - this.getIGV()
         return subTotal
     }
 

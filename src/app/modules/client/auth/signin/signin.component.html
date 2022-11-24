@@ -19,14 +19,14 @@
         <form [formGroup]="formSignIn">
 
             <div class="mb-4">
-                <label class="form-label-lg">Email</label>
+                <label class="form-label">Email</label>
                 <input type="email" [class]="'form-control '+ cssValidate('userName')" placeholder="Ingresa tu email"
                     formControlName="userName" />
                 <error-message [formControlError]="formSignIn.controls['userName']"></error-message>
             </div>
 
             <div class="mb-4">
-                <label class="form-label-lg">Contraseña</label>
+                <label class="form-label">Contraseña</label>
                 <div class="password-toggle">
                     <input [class]="'form-control '+ cssValidate('password')"
                         [type]="hidePassword ? 'password' : 'text'" placeholder="Ingresa tu contraseña"

@@ -85,7 +85,7 @@
 
                 <!-- Item -->
                 <div class="col pb-sm-2 mb-grid-gutter" @opacity
-                    *ngFor="let producto of lCatalogo | filterTable: filtro.value | filterCategory: productName | paginate: { itemsPerPage: 4, currentPage: p}">
+                    *ngFor="let producto of lCatalogo | filterTable: filtro.value | filterCategory: productName | paginate: { itemsPerPage: 8, currentPage: p}">
                     <div class="card card-product mx-auto">
 
                         <!-- Imagen -->
@@ -104,8 +104,11 @@
                             </div>
 
                             <div class="card-product-widgets-bottom">
-                                <a class="btn-wishlist ms-auto active click" (mouseenter)="tooltip = !tooltip"
-                                    (mouseleave)="tooltip = !tooltip"></a>
+                                <a  [class]="'btn-wishlist ms-auto active ' + (producto.isSelected == undefined || !producto.isSelected ? '' : 'selected')"
+                                    (click)="agregarProductoFavoritos(producto)" 
+                                    (mouseenter)="tooltip = !tooltip"
+                                    (mouseleave)="tooltip = !tooltip">
+                                </a>
                                 <tooltip [open]="tooltip" [contenido]="'Agregar a favoritos'"></tooltip>
                             </div>
                         </div>

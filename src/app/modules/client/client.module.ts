@@ -16,6 +16,7 @@ import { FilterTablePipe } from 'src/app/core/pipes/filter-table.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FilterCategoryPipe } from 'src/app/core/pipes/filter-category.pipe';
 import { OrderReviewComponent } from './order-review/order-review.component';
+import { WishListComponent } from './account/wishlist/wishlist.component';
 
 const COMPONENTS = [
     HomeComponent,
@@ -30,7 +31,8 @@ const COMPONENTS = [
     MenuPerfilComponent,
     MisPedidosComponent,
     MiPerfilComponent,
-
+    WishListComponent,
+    
     ShellComponent
 ]
 
